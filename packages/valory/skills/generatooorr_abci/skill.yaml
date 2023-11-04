@@ -1,0 +1,180 @@
+name: generatooorr_abci
+author: valory
+version: 0.1.0
+type: skill
+description: The chained abci for the generatooorr skill.
+license: Apache-2.0
+aea_version: '>=1.0.0, <2.0.0'
+fingerprint:
+  __init__.py: bafybeieegktb3lc2pl6v64khnqpaizjb5y66su5lokbrsyu5zzicccugie
+  behaviours.py: bafybeic6yt354zw4yzn27lne7rd4a5b2bxp33diafmqlfnwsk6rd72srd4
+  composition.py: bafybeif33xcvl2k7vk6em7egabmhoelx3lalch4mjyqcx3dgxu7lbui4x4
+  dialogues.py: bafybeigpwuzku3we7axmxeamg7vn656maww6emuztau5pg3ebsoquyfdqm
+  handlers.py: bafybeihnfcdzboryxxdwzjfrgvo5642rwrotnzrx3scqnhqfxbktcs7hpu
+  models.py: bafybeiftznx23nhizpla7y3yh2uvpjdn3psukfrx5ouk5u4jfp73bx6yqu
+fingerprint_ignore_patterns: []
+connections: []
+contracts: []
+protocols: []
+skills:
+- valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
+- valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
+- valory/inbox_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
+- valory/mech_interact_abci:0.1.0:bafybeibujkhpk6cqrwbhxihufzxjgbrvnqfehlinzciolq7oevtkjkkos4
+- valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
+- valory/outbox_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
+- valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
+behaviours:
+  main:
+    args: {}
+    class_name: ImpactEvaluatorConsensusBehaviour
+handlers:
+  abci:
+    args: {}
+    class_name: ABCIRoundHandler
+  contract_api:
+    args: {}
+    class_name: ContractApiHandler
+  http:
+    args: {}
+    class_name: HttpHandler
+  ipfs:
+    args: {}
+    class_name: IpfsHandler
+  ledger_api:
+    args: {}
+    class_name: LedgerApiHandler
+  signing:
+    args: {}
+    class_name: SigningHandler
+  tendermint:
+    args: {}
+    class_name: TendermintHandler
+models:
+  abci_dialogues:
+    args: {}
+    class_name: AbciDialogues
+  benchmark_tool:
+    args:
+      log_dir: /logs
+    class_name: BenchmarkTool
+  contract_api_dialogues:
+    args: {}
+    class_name: ContractApiDialogues
+  http_dialogues:
+    args: {}
+    class_name: HttpDialogues
+  ipfs_dialogues:
+    args: {}
+    class_name: IpfsDialogues
+  ledger_api_dialogues:
+    args: {}
+    class_name: LedgerApiDialogues
+  params:
+    args:
+      broadcast_to_server: false
+      cleanup_history_depth: 1
+      cleanup_history_depth_current: null
+      default_chain_id: ethereum
+      drand_public_key: 868f005eb8e6e4ca0a47c8a77ceaa5309a47978a7c71bc5cce96366b5d7a569937c529eeda66c7293784a9402801af31
+      genesis_config:
+        genesis_time: '2022-09-26T00:00:00.000000000Z'
+        chain_id: chain-c4daS1
+        consensus_params:
+          block:
+            max_bytes: '22020096'
+            max_gas: '-1'
+            time_iota_ms: '1000'
+          evidence:
+            max_age_num_blocks: '100000'
+            max_age_duration: '172800000000000'
+            max_bytes: '1048576'
+          validator:
+            pub_key_types:
+            - ed25519
+          version: {}
+        voting_power: '10'
+      keeper_timeout: 30.0
+      max_attempts: 10
+      max_healthcheck: 120
+      multisend_address: '0x0000000000000000000000000000000000000000'
+      termination_sleep: 900
+      init_fallback_gas: 0
+      ipfs_address: https://gateway.autonolas.tech/ipfs/
+      keeper_allowed_retries: 3
+      reset_pause_duration: 300
+      on_chain_service_id: null
+      reset_tendermint_after: 2
+      retry_attempts: 400
+      retry_timeout: 3
+      request_retry_delay: 1.0
+      request_timeout: 10.0
+      round_timeout_seconds: 30.0
+      tweet_evaluation_round_timeout: 600.0
+      service_id: generatooorr
+      service_registry_address: null
+      setup:
+        all_participants:
+        - '0x10E867Ac2Fb0Aa156ca81eF440a5cdf373bE1AaC'
+        safe_contract_address: '0x0000000000000000000000000000000000000000'
+        consensus_threshold: null
+      share_tm_config_on_startup: false
+      sleep_time: 1
+      tendermint_check_sleep_delay: 3
+      tendermint_com_url: http://localhost:8080
+      tendermint_max_retries: 5
+      tendermint_url: http://localhost:26657
+      tendermint_p2p_url: localhost:26656
+      tx_timeout: 10.0
+      validate_timeout: 1205
+      finalize_timeout: 60.0
+      history_check_timeout: 1205
+      max_points_per_period: 5000
+      multisend_batch_size: 50
+      mech_agent_address: '0xff82123dfb52ab75c417195c5fdb87630145ae81'
+      slash_cooldown_hours: 3
+      slash_threshold_amount: 10_000_000_000_000_000
+      light_slash_unit_amount: 5_000_000_000_000_000
+      serious_slash_unit_amount: 8_000_000_000_000_000
+      use_slashing: false
+      use_termination: false
+    class_name: Params
+  randomness_api:
+    args:
+      api_id: cloudflare
+      headers: {}
+      method: GET
+      parameters: {}
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://drand.cloudflare.com/public/latest
+    class_name: RandomnessApi
+  mech_response:
+    args:
+      api_id: mech_response
+      headers:
+        Content-Type: application/json
+      method: GET
+      parameters: {}
+      response_key: result
+      response_type: str
+      retries: 5
+      url: ''
+    class_name: MechResponseSpecs
+  requests:
+    args: {}
+    class_name: Requests
+  signing_dialogues:
+    args: {}
+    class_name: SigningDialogues
+  state:
+    args: {}
+    class_name: SharedState
+  tendermint_dialogues:
+    args: {}
+    class_name: TendermintDialogues
+dependencies:
+  open-aea-cli-ipfs:
+    version: <2.0.0,>=1.41.0.post1
+is_abstract: false
