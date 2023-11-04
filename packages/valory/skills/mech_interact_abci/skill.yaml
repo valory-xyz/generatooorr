@@ -7,35 +7,35 @@ description: The mech interact skill can be used to send requests to a mech and 
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeidf3nlv5fpvfy4libtscayhirdw64shgmhfmvjiftjmjkmhu7auxq
+  __init__.py: bafybeigwttkbktdinirbkurrh4pkehnuxe6xmly62hqq6puyhpr42h3zia
   behaviours/__init__.py: bafybeie3zsi6p3yanz5mqwpkdrcgywaqvkit3hdintsb4awnvalgxpxa4i
-  behaviours/base.py: bafybeifb2lef4zqej47lnxukax5i46th6lspsbnznn67isg5jsvksqaeme
-  behaviours/request.py: bafybeicratceusphv3pep7cngvfwthdif56dv2y4zeemixszapgwadqszu
-  behaviours/response.py: bafybeiaib6iqagg7n2nky2nes3vxxite4asftl6tlo5in6datk52raga7m
-  behaviours/round_behaviour.py: bafybeib33inrpyzzlx7k7i3okkslsx4p46dgdaww2m5k7rno57o5nndage
-  dialogues.py: bafybeigjmyzd2bx6mgqiet2c223k6wkc5jk7kdkstbhpaxlqxatey26tlm
+  behaviours/base.py: bafybeifvitz4zdwimqlo4tfk6rwzsiwa2ftmkt26tbodz3xye3cwmctjte
+  behaviours/request.py: bafybeibt7gp7kl3ff6depakhz3ymckg3hi3bopomprhxm4sliz5qmf2g7a
+  behaviours/response.py: bafybeicleph77j5yfrgcvafuxfaun73a7iuaaqdvli27p4r6rmldhxavdy
+  behaviours/round_behaviour.py: bafybeigdlmv6p5d6m4znmpoqribarvszrtzdgainfex5af7iq2pbrhm4gm
+  dialogues.py: bafybeidxz7x7oclhykgpxm5vohdxhk5u2khvm5b63iyuomkgws6cmz7bme
   fsm_specification.yaml: bafybeiedt2qmjawb2nf5i4byknvdhyd2hn5qvuwcsyifaswxukybdcv7x4
-  handlers.py: bafybeiduy2nwkqdynainuimkjulcv7u2qq6iglkuut3gfurkckydapitg4
-  models.py: bafybeiefic3muob67mijgak6i7cd6yuwbhyrdpjphdnlof257zhg276nzu
+  handlers.py: bafybeib25kmnviqhpyklgmlokm3m3afcg3g3v5kjoarvp6b4hj34sxsdua
+  models.py: bafybeiezszbkjjd4gsyaikocvwocvpha63qzgz6kraop36qyyu4ykqaa7u
   payloads.py: bafybeif3vbkr2x77bgyg3wsomebbwtdy2hssyu7nkfcz7euymm35a5nd5i
-  rounds.py: bafybeia2nkap3jf2ytnufez5wywirw2yjzqaqmrvehfuydfdwzmzbnbjoy
+  rounds.py: bafybeibdhyfpzitaz6x6cindybfdwcu5ea45rzg7wcidr66xupzvxfvncu
   states/__init__.py: bafybeie34wx5znr2hxwh3gs2fchmbeuzjcfnraymdvtzjaxaq5zsiw233q
-  states/base.py: bafybeicqmq7rxkipmpes5fg52huzfcdos5jwq52srnfpbp2zssynw2boru
+  states/base.py: bafybeieemxcqbxye6hpgai6ipvaexlh55bs6aj3o25j2bgw7urvaubzxfu
   states/final_states.py: bafybeicaueeikbajxejkbzeozqv4xrh6qnjopaihkqa23oeqtzfi2p44cq
-  states/request.py: bafybeifnds7ircefeyrq6qu3npfuebxr3knwe5mlz3m272e5gwtywrgipy
-  states/response.py: bafybeibaxnp2oxwjptoq7qzm6o7ww2qrdj2vnxzg2qt523vz2ftqzx5hyi
+  states/request.py: bafybeifogtq7oacijbdj4gdrr5xnsybkrl2y3f7vk3p4il4sx4iib6on7y
+  states/response.py: bafybeid42yvtii4bxd3nlbc2svqvnj2z46ll6ydpngnudtj35e6z2mstvu
   tests/__init__.py: bafybeifojfnffwlsv6aiku25nwyjwm7h4m45yci3fgmaawpeoyoogzonum
-  tests/test_behaviours.py: bafybeidj7git7zaego7k75eejtxlr3usj6wnnqisu7urqwvalpwh5w7nyq
+  tests/test_behaviours.py: bafybeiahn2myvn5dxukydcqrupnwxhj6boipf7rn5bawsbwiwf4mxv7q4e
   tests/test_dialogues.py: bafybeig6uzk7fklieyxapemiobdvv5tyx7hgdkdpl4vnacohgw2ecphdpq
   tests/test_handlers.py: bafybeidwrmekr5tydmehvkolyksw37sah5js7buy3ca5fxkpgkppmgb3wi
-  tests/test_models.py: bafybeid3cvcttdxlklwvr6tqmiurb2qywvmgr5bnsn62pb5gl5p552eagy
+  tests/test_models.py: bafybeif3ctpqkxetmgakjyw27brr6t7fy3gi4g7e57kjtblqsyebel4rfq
   tests/test_payloads.py: bafybeiakqhgochfu4ra4hp65hi7jvxtjd7fdub5wqmhlccrc4va26hb7da
-  tests/test_rounds.py: bafybeiauu5adaoxu7yvtrfa6uwdw4sxr5gn2pj7qjh6vowd556iji6vtca
+  tests/test_rounds.py: bafybeidltmhtcnex6wbvwyovgz4ajgtxvuwsp4w26dylufpxxhkv3nzfte
 fingerprint_ignore_patterns: []
 connections: []
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeiaiwsdkahhluledg3n4gmejht6oxi7zbfkqruxqe4yj3anbb2x7yi
-- valory/mech:0.1.0:bafybeibgiguxj3yp7wgxsynbvhjlqm2aikscyett6pynrsof2kbop6dy24
+- valory/mech:0.1.0:bafybeihfwkrvn67racrxl7oqtbfph6girvwrezajv3hfrmdjhcqdoerlu4
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 protocols:
 - valory/contract_api:1.0.0:bafybeialhbjvwiwcnqq3ysxcyemobcbie7xza66gaofcvla5njezkvhcka

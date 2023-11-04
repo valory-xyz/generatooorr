@@ -1,11 +1,11 @@
 {
     "dev": {
-        "contract/valory/mech/0.1.0": "bafybeibgiguxj3yp7wgxsynbvhjlqm2aikscyett6pynrsof2kbop6dy24",
-        "skill/valory/mech_interact_abci/0.1.0": "bafybeibujkhpk6cqrwbhxihufzxjgbrvnqfehlinzciolq7oevtkjkkos4",
-        "skill/valory/inbox_abci/0.1.0": "bafybeigi5yl3wwvtfbo5ddzdzqkqdoovz4w7j4avmvusbaamuje7orzayi",
-        "skill/valory/outbox_abci/0.1.0": "bafybeiapeggg7lmkkbnt5ek54yd6zsc5bcduv3i7i736xl7geiegac6s2y",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeihhcfn5tlxo6hxu3whgwti4jnglp3pwyerg67u5lf3kjx7vkkfisu",
-        "agent/valory/generatooorr/0.1.0": "bafybeid56bhxix4i5fq5wb4stidtkk5zetkuaysw4gj3mltbv2irjhf76a"
+        "contract/valory/mech/0.1.0": "bafybeihfwkrvn67racrxl7oqtbfph6girvwrezajv3hfrmdjhcqdoerlu4",
+        "skill/valory/mech_interact_abci/0.1.0": "bafybeihfqxhzalopsl3wpyrkzyjxitwzezcpgbncqtuucqrxmtsei64dcq",
+        "skill/valory/inbox_abci/0.1.0": "bafybeibak5e2ia6qszvgruxhyze36lgn2lonamc5vjk6knyiainj627t7q",
+        "skill/valory/outbox_abci/0.1.0": "bafybeie3k2jljlqvzmm2dkmmufacszs4onlakfalw5drvkvbdux7wwn6bi",
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeigzerczwy7ql5fhjfznx5wxkvknbmfktukwfpod4qd2bvht7gjkp4",
+        "agent/valory/generatooorr/0.1.0": "bafybeibd65n5k5llecd4tp72pjdgifnv5wwtrevcju5c7ozp5tvkgfcwa4"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",

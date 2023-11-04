@@ -6,13 +6,13 @@ description: A skill that dynamically updates NFT images according to user score
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeieh4xmeumc6jmhzjjnyxgttoe6fbuzyxyoej32c5ezjsacvjq7noy
-  behaviours.py: bafybeieajgfzik3tehwlfyonm5y4fvrjm6tb32u2mujgtk4ewjvivgsal4
-  dialogues.py: bafybeibeolj27x46yj5vje3nv5svvkey4b43jlfta3nx2mt4gfen7q5h6q
-  handlers.py: bafybeiaglrfhkfxnhkl7odw5pcakvs6chr3iid5cgf73k46jlrccebvek4
-  models.py: bafybeifwjlyqs3ejamksxwlck4idazihn3ypqrdftgynp7oeta6hllazsu
+  __init__.py: bafybeibwrbmf4xsfn4ic5gbevrotk72ot3kozdpxie4p4wcbvqe2wxsi7m
+  behaviours.py: bafybeihhpurgbo37ir6e5oc72cs6gweowdmezen5rtywdpepivzgp4gfwy
+  dialogues.py: bafybeia5bnteroy6p3c77x4wdbivaknsjodpum42awsdoorqp2lrt3epru
+  handlers.py: bafybeiddon42xx5bnyrbr5brq3w5gzogd6qqzj5wzt7edcziku4jiqiixq
+  models.py: bafybeicos5pdhgmikn7pmakxhtpgnur3x4zyfj27c5xkvb3dz6kmrd35di
   payloads.py: bafybeihqxdxdivnt7m42zk67hm74zkaqugwivau42oggydfv3wa4evwdbm
-  rounds.py: bafybeigi27jicrvwicfvx2dtwdup472b2ksclv5i2qxz4txwrfbzs4ugkq
+  rounds.py: bafybeiawx45m3y7gouopfqmxljjrjk6k4uc7myjrltmm4xfzv37b422z4i
 fingerprint_ignore_patterns: []
 connections:
 - valory/http_server:0.22.0:bafybeie3d6tj2kzewced4nnttxdvr7njue2ortvawmwdt67gwf4tcuosom
