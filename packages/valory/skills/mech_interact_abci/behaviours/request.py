@@ -59,7 +59,7 @@ Ox = "0x"
 # which is what we want in most cases
 # more info here: https://safe-docs.dev.gnosisdev.com/safe/docs/contracts_tx_execution/
 SAFE_GAS = 0
-GNOSIS_CHAIN_ID = "gnosis"
+GNOSIS_CHAIN_ID = "ethereum"
 
 
 class MechRequestBehaviour(MechInteractBaseBehaviour):
@@ -187,7 +187,7 @@ class MechRequestBehaviour(MechInteractBaseBehaviour):
             contract_id=str(GnosisSafeContract.contract_id),
             contract_callable="get_raw_safe_transaction_hash",
             to_address=self.params.multisend_address,
-            value=self.txs_value,
+            value=0,
             data=self.multisend_data,
             safe_tx_gas=SAFE_GAS,
             operation=SafeOperation.DELEGATE_CALL.value,
@@ -257,7 +257,7 @@ class MechRequestBehaviour(MechInteractBaseBehaviour):
             batch = MultisendBatch(
                 to=self.params.mech_agent_address,
                 data=HexBytes(self.request_data),
-                value=self.price,
+                value=0,
             )
             self.multisend_batches.append(batch)
 

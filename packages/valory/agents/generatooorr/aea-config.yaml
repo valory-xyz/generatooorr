@@ -33,11 +33,11 @@ skills:
 - valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
 - valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
 - valory/inbox_abci:0.1.0:bafybeihoxvwp3fmxrgrrcimlqtntyn3wfpbwosam27oycbelln46uncw6u
-- valory/mech_interact_abci:0.1.0:bafybeihfqxhzalopsl3wpyrkzyjxitwzezcpgbncqtuucqrxmtsei64dcq
-- valory/outbox_abci:0.1.0:bafybeie4ws4ycybgsid5qjqwdqnrrj5mrwnxojeodvtoaefkwchgztyvkm
+- valory/mech_interact_abci:0.1.0:bafybeigspyuj6x5sp6d7hebuuwas32ycauj7u3qrpxk7fcn563hgucp73a
+- valory/outbox_abci:0.1.0:bafybeihsrqlgk3fh5h5oaf4bjghk5t76uatqrwbzjkjjbdtrs3vmiw2dfy
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/generatooorr_abci:0.1.0:bafybeiaf4vxkzpq5yegqpoz3ahvgbmuviewe3vic5cuy3kkmbxtqexet6q
+- valory/generatooorr_abci:0.1.0:bafybeiahio4mrgqmzuzvuebzisknnvfscxotdibz2fxm5tvrruy3x3gaqu
 default_ledger: ethereum
 required_ledgers:
 - ethereum
@@ -84,8 +84,8 @@ public_id: valory/ledger:0.19.0
 type: connection
 config:
   ledger_apis:
-    gnosis:
-      address: ${str:http://localhost:8545}
+    ethereum:
+      address: ${str:localhost:8545}
       chain_id: ${int:1337}
       poa_chain: ${bool:false}
       default_gas_price_strategy: ${str:eip1559}
@@ -137,7 +137,7 @@ models:
       keeper_timeout: 30.0
       max_attempts: 10
       max_healthcheck: 120
-      multisend_address: ${str:0x0000000000000000000000000000000000000000}
+      multisend_address: ${str:0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761}
       termination_sleep: ${int:900}
       init_fallback_gas: 0
       keeper_allowed_retries: 3
@@ -153,8 +153,8 @@ models:
       service_id: generatooorr
       service_registry_address: ${str:null}
       setup:
-        all_participants: ${list:["0x10E867Ac2Fb0Aa156ca81eF440a5cdf373bE1AaC"]}
-        safe_contract_address: ${str:0x0000000000000000000000000000000000000000}
+        all_participants: ${list:["0x339b3295C01c1b54F8A36746F700b5ADEC413795"]}
+        safe_contract_address: ${str:0x74db17b32Db70F166376310dF071fe9747C0F4DE}
         consensus_threshold: ${int:null}
       share_tm_config_on_startup: ${bool:false}
       sleep_time: 1
@@ -169,7 +169,7 @@ models:
       history_check_timeout: 1205
       max_points_per_period: ${int:5000}
       multisend_batch_size: ${int:50}
-      mech_agent_address: ${str:0xff82123dfb52ab75c417195c5fdb87630145ae81}
+      mech_agent_address: ${str:0x1847f93501704F9AA67FE8Af5de7e999af5d0970}
       ipfs_address: ${str:https://gateway.autonolas.tech/ipfs/}
       default_chain_id: ${str:ethereum}
       use_slashing: ${bool:false}
@@ -180,3 +180,4 @@ type: connection
 config:
   host: 0.0.0.0
   target_skill_id: valory/generatooorr_abci:0.1.0
+  port: 8001
