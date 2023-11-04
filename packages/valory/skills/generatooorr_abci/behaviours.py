@@ -39,7 +39,7 @@ from packages.valory.skills.transaction_settlement_abci.behaviours import \
     TransactionSettlementRoundBehaviour
 
 
-class ImpactEvaluatorConsensusBehaviour(AbstractRoundBehaviour):
+class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):
     """Class to define the behaviours this AbciApp has."""
 
     initial_behaviour_cls = RegistrationStartupBehaviour

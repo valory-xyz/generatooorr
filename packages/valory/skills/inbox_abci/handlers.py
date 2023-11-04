@@ -103,23 +103,15 @@ class HttpApplication:
         """Initialize object."""
         self.inbox = inbox
 
-    def handle(
-        self,
-        message: HttpMessage,
-        dialogue: HttpDialogue,
-    ) -> TypedResponse:
+    def handle(self,message: HttpMessage) -> TypedResponse:
         """Handle incoming request."""
         url_meta = urlparse(message.url)
         handler: Callable[[HttpMessage, HttpDialogue], TypedResponse] = getattr(
-            self, message.method + url_meta.path.replace("/", "_"), None
+            self, message.method + url_meta.path.replace("/", "_"), self._respond_404
         )
-        if handler is None:
-            return self._respond_404(message=message, dialogue=dialogue)
-        return handler(message, dialogue)
+        return handler(message)
 
-    def post_generate(
-        self, message: HttpMessage, dialogue: HttpDialogue
-    ) -> TypedResponse:
+    def post_generate(self, message: HttpMessage) -> TypedResponse:
         """Handle POST /generate"""
         self.inbox.put(json.loads(message.body.decode()))
         return TypedResponse(
@@ -128,9 +120,15 @@ class HttpApplication:
             headers=JSON_MIME_TYPE_HEADER,
         )
 
-    def _respond_404(
-        self, message: HttpMessage, dialogue: HttpDialogue
-    ) -> TypedResponse:
+    def get_responses(self, message: HttpMessage) -> TypedResponse:
+        """Handle GET /responses"""
+        return TypedResponse(
+            code=HttpResponseCode.OK,
+            data={"data": self.inbox.get_responses()},
+            headers=JSON_MIME_TYPE_HEADER,
+        )
+
+    def _respond_404(self, message: HttpMessage) -> TypedResponse:
         """Send an OK response with the provided data"""
         return TypedResponse(
             code=HttpResponseCode.NOT_FOUND,
@@ -144,10 +142,12 @@ class InBox:
     """InBox for requests."""
 
     _queue: List[Dict]
+    _processed: List[Dict]
 
     def __init__(self) -> None:
         """Initialize object."""
         self._queue = []
+        self._processed = []
 
     def get(self) -> Optional[Dict]:
         """Get request from inbox."""
@@ -160,6 +160,13 @@ class InBox:
         request["nonce"] = uuid4().hex
         self._queue.append(request)
 
+    def add_response(self, response: Dict) -> None:
+        """Add response to processed list."""
+        self._processed.append(response)
+    
+    def get_responses(self) -> List[Dict]:
+        """Return the available responses."""
+        return self._processed
 
 class HttpHandler(BaseHttpHandler):
     """This implements the echo handler."""
@@ -218,7 +225,7 @@ class HttpHandler(BaseHttpHandler):
                 message.body,
             )
         )
-        response = self.app.handle(message=message, dialogue=dialogue)
+        response = self.app.handle(message=message)
         http_response = dialogue.reply(
             performative=HttpMessage.Performative.RESPONSE,
             target_message=message,

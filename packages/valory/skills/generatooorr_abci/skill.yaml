@@ -27,7 +27,7 @@ skills:
 behaviours:
   main:
     args: {}
-    class_name: ImpactEvaluatorConsensusBehaviour
+    class_name: GeneratooorrConsensusBehaviour
 handlers:
   abci:
     args: {}

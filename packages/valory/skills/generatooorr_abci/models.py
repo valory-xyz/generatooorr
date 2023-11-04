@@ -40,10 +40,12 @@ from packages.valory.skills.outbox_abci.models import \
     Params as BaseOutboxAbciParams
 from packages.valory.skills.reset_pause_abci.rounds import \
     Event as ResetPauseEvent
+from packages.valory.skills.transaction_settlement_abci.models import TransactionParams as BaseTransactionParams
 
 MechInteractAbciParams = BaseMechInteractAbciParams
 InboxAbciParams = BaseInboxAbciParams
 OutboxAbciParams = BaseOutboxAbciParams
+TransactionParams = BaseTransactionParams
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
@@ -76,5 +78,5 @@ class SharedState(BaseSharedState):
         ] = self.context.params.round_timeout_seconds
 
 
-class Params(MechInteractAbciParams, InboxAbciParams, OutboxAbciParams):
+class Params(MechInteractAbciParams, InboxAbciParams, OutboxAbciParams, TransactionParams):
     """A model to represent params for multiple abci apps."""
