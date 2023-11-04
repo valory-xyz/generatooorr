@@ -1,0 +1,23 @@
+[build-system]
+requires = [ "poetry-core",]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "eth-lisbon-hack"
+version = "0.1.0.rc0"
+description = "Eth lisbon hack"
+authors = [ "angrybayblade <vptl185@gmail.com>",]
+readme = "README.md"
+[[tool.poetry.packages]]
+include = "eth_lisbon_hack"
+
+[tool.poetry.dependencies]
+python = "<4,>=3.8"
+open-autonomy = "==0.13.3"
+open-aea-test-autonomy = "==0.13.3"
+open-aea-ledger-ethereum = "==1.41.0.post1"
+open-aea-ledger-cosmos = "==1.41.0.post1"
+protobuf = ">=4.21.0,<4.25.0"
+web3 = ">=6.0.0,<7"
+tomte = {version = "==0.2.13", extras = ["tests", "cli", "tox"]}
+
