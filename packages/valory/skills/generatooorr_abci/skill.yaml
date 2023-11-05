@@ -22,7 +22,7 @@ skills:
 - valory/inbox_abci:0.1.0:bafybeieazapmwri77ownig2tgku7ewiaeh6sv5mmgjwh7e53nwam5dgggu
 - valory/mech_interact_abci:0.1.0:bafybeidseofiffz76yby3v4xgjzghpsh4cwafrcbl3l2p2al4j76ycegv4
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/outbox_abci:0.1.0:bafybeia5rz6q52jgnwi36meav4vrelfy3k7kn4b5q2zeibjzjyyrubci74
+- valory/outbox_abci:0.1.0:bafybeid44s3ogfm53lxtvziwusi5ymbaijvlhvwewj5zbjyhbmyj7esq5e
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 behaviours:
   main:
@@ -101,6 +101,7 @@ models:
       termination_sleep: 900
       init_fallback_gas: 0
       ipfs_address: https://gateway.autonolas.tech/ipfs/
+      inbox_auth: inbox_auth
       keeper_allowed_retries: 3
       reset_pause_duration: 300
       on_chain_service_id: null
@@ -138,6 +139,9 @@ models:
       serious_slash_unit_amount: 8000000000000000
       use_slashing: false
       use_termination: false
+      w3_inbox_project_id: dummy
+      w3_notification_type: dummy
+      w3_notification_api_key: dummy
     class_name: Params
   randomness_api:
     args:
