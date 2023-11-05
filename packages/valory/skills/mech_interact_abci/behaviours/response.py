@@ -28,16 +28,22 @@ from packages.valory.contracts.mech.contract import Mech
 from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import get_name
 from packages.valory.skills.mech_interact_abci.behaviours.base import (
-    DataclassEncoder, MechInteractBaseBehaviour, WaitableConditionType)
+    DataclassEncoder,
+    MechInteractBaseBehaviour,
+    WaitableConditionType,
+)
 from packages.valory.skills.mech_interact_abci.behaviours.request import (
-    GNOSIS_CHAIN_ID, V1_HEX_PREFIX)
+    GNOSIS_CHAIN_ID,
+    V1_HEX_PREFIX,
+)
 from packages.valory.skills.mech_interact_abci.models import MechResponseSpecs
-from packages.valory.skills.mech_interact_abci.payloads import \
-    MechResponsePayload
+from packages.valory.skills.mech_interact_abci.payloads import MechResponsePayload
 from packages.valory.skills.mech_interact_abci.states.base import (
-    MechInteractionResponse, MechRequest)
-from packages.valory.skills.mech_interact_abci.states.response import \
-    MechResponseRound
+    MechInteractionResponse,
+    MechRequest,
+)
+from packages.valory.skills.mech_interact_abci.states.response import MechResponseRound
+
 
 IPFS_HASH_PREFIX = f"{V1_HEX_PREFIX}701220"
 

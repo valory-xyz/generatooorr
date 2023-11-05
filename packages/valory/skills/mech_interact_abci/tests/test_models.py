@@ -19,8 +19,7 @@
 
 """Test the models.py module of the MechInteract."""
 
-from packages.valory.skills.abstract_round_abci.test_tools.base import \
-    DummyContext
+from packages.valory.skills.abstract_round_abci.test_tools.base import DummyContext
 from packages.valory.skills.mech_interact_abci.models import SharedState
 
 

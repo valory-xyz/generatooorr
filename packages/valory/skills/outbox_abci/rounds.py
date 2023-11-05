@@ -25,11 +25,20 @@ from enum import Enum
 from typing import Dict, FrozenSet, List, Optional, Set, Tuple, cast
 
 from packages.valory.skills.abstract_round_abci.base import (
-    AbciApp, AbciAppTransitionFunction, AppState, BaseSynchronizedData,
-    CollectSameUntilThresholdRound, DegenerateRound, EventToTimeout, get_name)
-from packages.valory.skills.mech_interact_abci.states.base import \
-    MechInteractionResponse
+    AbciApp,
+    AbciAppTransitionFunction,
+    AppState,
+    BaseSynchronizedData,
+    CollectSameUntilThresholdRound,
+    DegenerateRound,
+    EventToTimeout,
+    get_name,
+)
+from packages.valory.skills.mech_interact_abci.states.base import (
+    MechInteractionResponse,
+)
 from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
+
 
 MAX_TOKEN_EVENT_RETRIES = 3
 

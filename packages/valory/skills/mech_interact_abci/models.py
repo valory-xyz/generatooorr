@@ -26,16 +26,16 @@ from aea.exceptions import enforce
 from hexbytes import HexBytes
 
 from packages.valory.contracts.multisend.contract import MultiSendOperation
-from packages.valory.skills.abstract_round_abci.models import (ApiSpecs,
-                                                               BaseParams)
-from packages.valory.skills.abstract_round_abci.models import \
-    BenchmarkTool as BaseBenchmarkTool
-from packages.valory.skills.abstract_round_abci.models import \
-    Requests as BaseRequests
-from packages.valory.skills.abstract_round_abci.models import \
-    SharedState as BaseSharedState
-from packages.valory.skills.mech_interact_abci.rounds import \
-    MechInteractAbciApp
+from packages.valory.skills.abstract_round_abci.models import ApiSpecs, BaseParams
+from packages.valory.skills.abstract_round_abci.models import (
+    BenchmarkTool as BaseBenchmarkTool,
+)
+from packages.valory.skills.abstract_round_abci.models import Requests as BaseRequests
+from packages.valory.skills.abstract_round_abci.models import (
+    SharedState as BaseSharedState,
+)
+from packages.valory.skills.mech_interact_abci.rounds import MechInteractAbciApp
+
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool

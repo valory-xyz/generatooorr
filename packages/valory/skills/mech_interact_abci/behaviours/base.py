@@ -31,11 +31,12 @@ from packages.valory.contracts.mech.contract import Mech
 from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
 from packages.valory.skills.abstract_round_abci.behaviour_utils import (
-    BaseBehaviour, TimeoutException)
-from packages.valory.skills.mech_interact_abci.models import (MechParams,
-                                                              MultisendBatch)
-from packages.valory.skills.mech_interact_abci.states.base import \
-    SynchronizedData
+    BaseBehaviour,
+    TimeoutException,
+)
+from packages.valory.skills.mech_interact_abci.models import MechParams, MultisendBatch
+from packages.valory.skills.mech_interact_abci.states.base import SynchronizedData
+
 
 WaitableConditionType = Generator[None, None, bool]
 

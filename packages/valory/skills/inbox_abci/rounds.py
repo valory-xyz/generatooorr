@@ -25,9 +25,17 @@ from enum import Enum
 from typing import Dict, FrozenSet, List, Optional, Set, Tuple, cast
 
 from packages.valory.skills.abstract_round_abci.base import (
-    AbciApp, AbciAppTransitionFunction, AppState, BaseSynchronizedData,
-    CollectSameUntilThresholdRound, DegenerateRound, EventToTimeout, get_name)
+    AbciApp,
+    AbciAppTransitionFunction,
+    AppState,
+    BaseSynchronizedData,
+    CollectSameUntilThresholdRound,
+    DegenerateRound,
+    EventToTimeout,
+    get_name,
+)
 from packages.valory.skills.inbox_abci.payloads import InboxPayload
+
 
 MAX_TOKEN_EVENT_RETRIES = 3
 

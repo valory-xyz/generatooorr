@@ -27,18 +27,25 @@ import pytest
 
 from packages.valory.skills.abstract_round_abci.base import AbciAppDB
 from packages.valory.skills.abstract_round_abci.behaviours import BaseBehaviour
-from packages.valory.skills.abstract_round_abci.test_tools.base import \
-    FSMBehaviourBaseCase
-from packages.valory.skills.mech_interact_abci.behaviours.base import \
-    MechInteractBaseBehaviour
-from packages.valory.skills.mech_interact_abci.behaviours.request import \
-    MechRequestBehaviour
-from packages.valory.skills.mech_interact_abci.behaviours.response import \
-    MechResponseBehaviour
-from packages.valory.skills.mech_interact_abci.behaviours.round_behaviour import \
-    MechInteractRoundBehaviour
+from packages.valory.skills.abstract_round_abci.test_tools.base import (
+    FSMBehaviourBaseCase,
+)
+from packages.valory.skills.mech_interact_abci.behaviours.base import (
+    MechInteractBaseBehaviour,
+)
+from packages.valory.skills.mech_interact_abci.behaviours.request import (
+    MechRequestBehaviour,
+)
+from packages.valory.skills.mech_interact_abci.behaviours.response import (
+    MechResponseBehaviour,
+)
+from packages.valory.skills.mech_interact_abci.behaviours.round_behaviour import (
+    MechInteractRoundBehaviour,
+)
 from packages.valory.skills.mech_interact_abci.states.base import (
-    Event, SynchronizedData)
+    Event,
+    SynchronizedData,
+)
 
 
 @dataclass

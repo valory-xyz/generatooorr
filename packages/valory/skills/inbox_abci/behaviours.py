@@ -25,13 +25,17 @@ from typing import Dict, Generator, Set, Type, cast
 
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
-    AbstractRoundBehaviour, BaseBehaviour)
+    AbstractRoundBehaviour,
+    BaseBehaviour,
+)
 from packages.valory.skills.inbox_abci.handlers import InBox
 from packages.valory.skills.inbox_abci.models import Params, SharedState
 from packages.valory.skills.inbox_abci.payloads import InboxPayload
-from packages.valory.skills.inbox_abci.rounds import (InboxAbciApp,
-                                                      SynchronizedData,
-                                                      WaitRound)
+from packages.valory.skills.inbox_abci.rounds import (
+    InboxAbciApp,
+    SynchronizedData,
+    WaitRound,
+)
 
 
 class InboxAbciBaseBehaviour(BaseBehaviour, ABC):

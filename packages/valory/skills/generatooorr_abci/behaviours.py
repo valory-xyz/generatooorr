@@ -22,21 +22,25 @@
 from typing import Set, Type
 
 from packages.valory.skills.abstract_round_abci.behaviours import (
-    AbstractRoundBehaviour, BaseBehaviour)
-from packages.valory.skills.generatooorr_abci.composition import \
-    GeneratooorrAbciApp
-from packages.valory.skills.inbox_abci.behaviours import \
-    InboxAbciRoundBehaviour
-from packages.valory.skills.mech_interact_abci.behaviours.round_behaviour import \
-    MechInteractRoundBehaviour
-from packages.valory.skills.outbox_abci.behaviours import \
-    OutboxAbciRoundBehaviour
+    AbstractRoundBehaviour,
+    BaseBehaviour,
+)
+from packages.valory.skills.generatooorr_abci.composition import GeneratooorrAbciApp
+from packages.valory.skills.inbox_abci.behaviours import InboxAbciRoundBehaviour
+from packages.valory.skills.mech_interact_abci.behaviours.round_behaviour import (
+    MechInteractRoundBehaviour,
+)
+from packages.valory.skills.outbox_abci.behaviours import OutboxAbciRoundBehaviour
 from packages.valory.skills.registration_abci.behaviours import (
-    AgentRegistrationRoundBehaviour, RegistrationStartupBehaviour)
-from packages.valory.skills.reset_pause_abci.behaviours import \
-    ResetPauseABCIConsensusBehaviour
-from packages.valory.skills.transaction_settlement_abci.behaviours import \
-    TransactionSettlementRoundBehaviour
+    AgentRegistrationRoundBehaviour,
+    RegistrationStartupBehaviour,
+)
+from packages.valory.skills.reset_pause_abci.behaviours import (
+    ResetPauseABCIConsensusBehaviour,
+)
+from packages.valory.skills.transaction_settlement_abci.behaviours import (
+    TransactionSettlementRoundBehaviour,
+)
 
 
 class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):

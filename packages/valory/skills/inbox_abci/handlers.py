@@ -30,27 +30,35 @@ from uuid import uuid4
 from aea.protocols.base import Message
 from typing_extensions import TypedDict
 
-from packages.valory.connections.http_server.connection import \
-    PUBLIC_ID as HTTP_SERVER_PUBLIC_ID
+from packages.valory.connections.http_server.connection import (
+    PUBLIC_ID as HTTP_SERVER_PUBLIC_ID,
+)
 from packages.valory.protocols.http.message import HttpMessage
-from packages.valory.skills.abstract_round_abci.handlers import \
-    ABCIRoundHandler as BaseABCIRoundHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    ContractApiHandler as BaseContractApiHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    HttpHandler as BaseHttpHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    IpfsHandler as BaseIpfsHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    LedgerApiHandler as BaseLedgerApiHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    SigningHandler as BaseSigningHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    TendermintHandler as BaseTendermintHandler
-from packages.valory.skills.inbox_abci.dialogues import (HttpDialogue,
-                                                         HttpDialogues)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    ABCIRoundHandler as BaseABCIRoundHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    ContractApiHandler as BaseContractApiHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    HttpHandler as BaseHttpHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    IpfsHandler as BaseIpfsHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    LedgerApiHandler as BaseLedgerApiHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    SigningHandler as BaseSigningHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    TendermintHandler as BaseTendermintHandler,
+)
+from packages.valory.skills.inbox_abci.dialogues import HttpDialogue, HttpDialogues
 from packages.valory.skills.inbox_abci.models import SharedState
 from packages.valory.skills.inbox_abci.rounds import SynchronizedData
+
 
 ABCIRoundHandler = BaseABCIRoundHandler
 SigningHandler = BaseSigningHandler
@@ -63,7 +71,7 @@ IpfsHandler = BaseIpfsHandler
 JSON_MIME_HEADER = {"Content-Type": "application/json"}
 RESPONSE_HEADERS = {
     "Server": "Generatooorr/0.1.0.rc01",
-    "Connection" : "Closed",
+    "Connection": "Closed",
     "Access-Control-Allow-Origin": "*",
 }
 CODE_TO_MESSAGE = {
@@ -111,11 +119,16 @@ class HttpApplication:
         self.inbox = inbox
         self.auth = auth
 
-    def handle(self,message: HttpMessage) -> TypedResponse:
+    def handle(self, message: HttpMessage) -> TypedResponse:
         """Handle incoming request."""
         if message.method == "post":
             # TOFIX: Use header parser from some package
-            headers = dict(map(lambda x:x.split(": ", maxsplit=1), message.headers.strip().split("\n")))
+            headers = dict(
+                map(
+                    lambda x: x.split(": ", maxsplit=1),
+                    message.headers.strip().split("\n"),
+                )
+            )
             if headers.get("Authorization", "") != self.auth:
                 return TypedResponse(
                     code=HttpResponseCode.UNAUTHORIZED,
@@ -160,7 +173,6 @@ class HttpApplication:
         )
 
 
-
 class InBox:
     """InBox for requests."""
 
@@ -188,7 +200,7 @@ class InBox:
         self._processed.append(response)
         with open(db or "/logs/db.json", "w") as file:
             json.dump(self._processed, file)
-    
+
     def get_responses(self) -> List[Dict]:
         """Return the available responses."""
         return self._processed
@@ -234,7 +246,6 @@ class HttpHandler(BaseHttpHandler):
         for key, val in {**RESPONSE_HEADERS, **extra}.items():
             header_str += f"{key}: {val}\n"
         return header_str
-
 
     def handle(self, message: Message) -> None:
         """

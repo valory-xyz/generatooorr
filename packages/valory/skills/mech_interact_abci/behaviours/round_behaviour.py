@@ -21,16 +21,15 @@
 
 from typing import Set, Type
 
-from packages.valory.skills.abstract_round_abci.behaviour_utils import \
-    BaseBehaviour
-from packages.valory.skills.abstract_round_abci.behaviours import \
-    AbstractRoundBehaviour
-from packages.valory.skills.mech_interact_abci.behaviours.request import \
-    MechRequestBehaviour
-from packages.valory.skills.mech_interact_abci.behaviours.response import \
-    MechResponseBehaviour
-from packages.valory.skills.mech_interact_abci.rounds import \
-    MechInteractAbciApp
+from packages.valory.skills.abstract_round_abci.behaviour_utils import BaseBehaviour
+from packages.valory.skills.abstract_round_abci.behaviours import AbstractRoundBehaviour
+from packages.valory.skills.mech_interact_abci.behaviours.request import (
+    MechRequestBehaviour,
+)
+from packages.valory.skills.mech_interact_abci.behaviours.response import (
+    MechResponseBehaviour,
+)
+from packages.valory.skills.mech_interact_abci.rounds import MechInteractAbciApp
 
 
 class MechInteractRoundBehaviour(AbstractRoundBehaviour):

@@ -25,14 +25,19 @@ from typing import Dict, Generator, Set, Type, cast
 
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
-    AbstractRoundBehaviour, BaseBehaviour)
-from packages.valory.skills.mech_interact_abci.states.base import \
-    MechInteractionResponse
+    AbstractRoundBehaviour,
+    BaseBehaviour,
+)
+from packages.valory.skills.mech_interact_abci.states.base import (
+    MechInteractionResponse,
+)
 from packages.valory.skills.outbox_abci.models import Params
 from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
-from packages.valory.skills.outbox_abci.rounds import (OutboxAbciApp,
-                                                       PushNotificationRound,
-                                                       SynchronizedData)
+from packages.valory.skills.outbox_abci.rounds import (
+    OutboxAbciApp,
+    PushNotificationRound,
+    SynchronizedData,
+)
 
 
 class OutboxAbciBaseBehaviour(BaseBehaviour, ABC):
@@ -65,24 +70,26 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
         self.context.state.inbox.add_response(data)
 
         address = self.synchronized_data.requests[response.nonce]
-        self.context.logger.info(f"Pushing notification for address {address} with noncee {response.nonce}")    
+        self.context.logger.info(
+            f"Pushing notification for address {address} with noncee {response.nonce}"
+        )
         notification_response = yield from self.get_http_response(
             method="post",
             url=f"https://notify.walletconnect.com/{self.params.w3_inbox_project_id}/notify",
             headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {self.params.w3_notification_api_key}'
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.params.w3_notification_api_key}",
             },
-            content=json.dumps({
+            content=json.dumps(
+                {
                     "notification": {
-                    "type": f"{self.params.w3_notification_type}",
-                    "title": "Another",
-                    "body": "Generated video with IPFS hash " + data["video"]
-                },
-                "accounts": [
-                    f"eip155:1:{address}"
-                ]
-            }).encode("utf-8")
+                        "type": f"{self.params.w3_notification_type}",
+                        "title": "Another",
+                        "body": "Generated video with IPFS hash " + data["video"],
+                    },
+                    "accounts": [f"eip155:1:{address}"],
+                }
+            ).encode("utf-8"),
         )
         self.context.logger.info(notification_response)
 
@@ -93,7 +100,9 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
         with self.context.benchmark_tool.measure(
             self.behaviour_id,
         ).consensus():
-            payload = PushNotificationPayload(sender=self.context.agent_address, content=json.dumps({"status": True}))
+            payload = PushNotificationPayload(
+                sender=self.context.agent_address, content=json.dumps({"status": True})
+            )
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()
         self.set_done()

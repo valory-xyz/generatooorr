@@ -20,10 +20,11 @@
 """This module contains the response state of the mech interaction abci app."""
 
 from packages.valory.skills.abstract_round_abci.base import get_name
-from packages.valory.skills.mech_interact_abci.payloads import \
-    MechResponsePayload
+from packages.valory.skills.mech_interact_abci.payloads import MechResponsePayload
 from packages.valory.skills.mech_interact_abci.states.base import (
-    MechInteractionRound, SynchronizedData)
+    MechInteractionRound,
+    SynchronizedData,
+)
 
 
 class MechResponseRound(MechInteractionRound):

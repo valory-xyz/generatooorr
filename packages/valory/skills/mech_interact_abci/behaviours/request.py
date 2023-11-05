@@ -30,26 +30,31 @@ import multicodec
 from aea.helpers.cid import to_v1
 from hexbytes import HexBytes
 
-from packages.valory.contracts.gnosis_safe.contract import (GnosisSafeContract,
-                                                            SafeOperation)
+from packages.valory.contracts.gnosis_safe.contract import (
+    GnosisSafeContract,
+    SafeOperation,
+)
 from packages.valory.contracts.multisend.contract import MultiSendContract
 from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import get_name
-from packages.valory.skills.abstract_round_abci.io_.store import \
-    SupportedFiletype
+from packages.valory.skills.abstract_round_abci.io_.store import SupportedFiletype
 from packages.valory.skills.mech_interact_abci.behaviours.base import (
-    DataclassEncoder, MechInteractBaseBehaviour, WaitableConditionType)
+    DataclassEncoder,
+    MechInteractBaseBehaviour,
+    WaitableConditionType,
+)
 from packages.valory.skills.mech_interact_abci.models import MultisendBatch
-from packages.valory.skills.mech_interact_abci.payloads import \
-    MechRequestPayload
+from packages.valory.skills.mech_interact_abci.payloads import MechRequestPayload
 from packages.valory.skills.mech_interact_abci.states.base import (
-    MechInteractionResponse, MechMetadata)
-from packages.valory.skills.mech_interact_abci.states.request import \
-    MechRequestRound
-from packages.valory.skills.transaction_settlement_abci.payload_tools import \
-    hash_payload_to_hex
-from packages.valory.skills.transaction_settlement_abci.rounds import \
-    TX_HASH_LENGTH
+    MechInteractionResponse,
+    MechMetadata,
+)
+from packages.valory.skills.mech_interact_abci.states.request import MechRequestRound
+from packages.valory.skills.transaction_settlement_abci.payload_tools import (
+    hash_payload_to_hex,
+)
+from packages.valory.skills.transaction_settlement_abci.rounds import TX_HASH_LENGTH
+
 
 METADATA_FILENAME = "metadata.json"
 V1_HEX_PREFIX = "f01"

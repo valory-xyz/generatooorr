@@ -25,11 +25,17 @@ from enum import Enum
 from typing import Any, List, Mapping, Optional, cast
 
 from packages.valory.skills.abstract_round_abci.base import (
-    BaseTxPayload, CollectionRound, CollectSameUntilThresholdRound)
+    BaseTxPayload,
+    CollectSameUntilThresholdRound,
+    CollectionRound,
+)
 from packages.valory.skills.mech_interact_abci.payloads import (
-    MechRequestPayload, MechResponsePayload)
-from packages.valory.skills.transaction_settlement_abci.rounds import \
-    SynchronizedData as TxSynchronizedData
+    MechRequestPayload,
+    MechResponsePayload,
+)
+from packages.valory.skills.transaction_settlement_abci.rounds import (
+    SynchronizedData as TxSynchronizedData,
+)
 
 
 class Event(Enum):

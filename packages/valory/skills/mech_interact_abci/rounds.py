@@ -22,16 +22,23 @@
 from typing import Dict, Set
 
 from packages.valory.skills.abstract_round_abci.base import (
-    AbciApp, AbciAppTransitionFunction, AppState, EventToTimeout, get_name)
+    AbciApp,
+    AbciAppTransitionFunction,
+    AppState,
+    EventToTimeout,
+    get_name,
+)
 from packages.valory.skills.mech_interact_abci.states.base import (
-    Event, SynchronizedData)
+    Event,
+    SynchronizedData,
+)
 from packages.valory.skills.mech_interact_abci.states.final_states import (
-    FinishedMechRequestRound, FinishedMechRequestSkipRound,
-    FinishedMechResponseRound)
-from packages.valory.skills.mech_interact_abci.states.request import \
-    MechRequestRound
-from packages.valory.skills.mech_interact_abci.states.response import \
-    MechResponseRound
+    FinishedMechRequestRound,
+    FinishedMechRequestSkipRound,
+    FinishedMechResponseRound,
+)
+from packages.valory.skills.mech_interact_abci.states.request import MechRequestRound
+from packages.valory.skills.mech_interact_abci.states.response import MechResponseRound
 
 
 class MechInteractAbciApp(AbciApp[Event]):

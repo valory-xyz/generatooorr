@@ -20,27 +20,28 @@
 """This module contains the shared state for the abci skill of GeneratooorrAbciApp."""
 
 from packages.valory.skills.abstract_round_abci.models import ApiSpecs
-from packages.valory.skills.abstract_round_abci.models import \
-    BenchmarkTool as BaseBenchmarkTool
-from packages.valory.skills.abstract_round_abci.models import \
-    Requests as BaseRequests
-from packages.valory.skills.abstract_round_abci.models import \
-    SharedState as BaseSharedState
-from packages.valory.skills.generatooorr_abci.composition import \
-    GeneratooorrAbciApp
-from packages.valory.skills.inbox_abci.models import \
-    Params as BaseInboxAbciParams
-from packages.valory.skills.mech_interact_abci.models import \
-    MechResponseSpecs as BaseMechResponseSpecs
-from packages.valory.skills.mech_interact_abci.models import \
-    Params as BaseMechInteractAbciParams
-from packages.valory.skills.mech_interact_abci.rounds import \
-    Event as MechInteractEvent
-from packages.valory.skills.outbox_abci.models import \
-    Params as BaseOutboxAbciParams
-from packages.valory.skills.reset_pause_abci.rounds import \
-    Event as ResetPauseEvent
-from packages.valory.skills.transaction_settlement_abci.models import TransactionParams as BaseTransactionParams
+from packages.valory.skills.abstract_round_abci.models import (
+    BenchmarkTool as BaseBenchmarkTool,
+)
+from packages.valory.skills.abstract_round_abci.models import Requests as BaseRequests
+from packages.valory.skills.abstract_round_abci.models import (
+    SharedState as BaseSharedState,
+)
+from packages.valory.skills.generatooorr_abci.composition import GeneratooorrAbciApp
+from packages.valory.skills.inbox_abci.models import Params as BaseInboxAbciParams
+from packages.valory.skills.mech_interact_abci.models import (
+    MechResponseSpecs as BaseMechResponseSpecs,
+)
+from packages.valory.skills.mech_interact_abci.models import (
+    Params as BaseMechInteractAbciParams,
+)
+from packages.valory.skills.mech_interact_abci.rounds import Event as MechInteractEvent
+from packages.valory.skills.outbox_abci.models import Params as BaseOutboxAbciParams
+from packages.valory.skills.reset_pause_abci.rounds import Event as ResetPauseEvent
+from packages.valory.skills.transaction_settlement_abci.models import (
+    TransactionParams as BaseTransactionParams,
+)
+
 
 MechInteractAbciParams = BaseMechInteractAbciParams
 InboxAbciParams = BaseInboxAbciParams
@@ -78,5 +79,7 @@ class SharedState(BaseSharedState):
         ] = self.context.params.round_timeout_seconds
 
 
-class Params(MechInteractAbciParams, InboxAbciParams, OutboxAbciParams, TransactionParams):
+class Params(
+    MechInteractAbciParams, InboxAbciParams, OutboxAbciParams, TransactionParams
+):
     """A model to represent params for multiple abci apps."""

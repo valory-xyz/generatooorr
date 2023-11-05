@@ -24,16 +24,16 @@ from typing import Any, Callable, Dict, Hashable, List, Mapping, Type
 
 import pytest
 
-from packages.valory.skills.abstract_round_abci.base import (AbstractRound,
-                                                             BaseTxPayload)
-from packages.valory.skills.abstract_round_abci.test_tools.rounds import \
-    BaseRoundTestClass
+from packages.valory.skills.abstract_round_abci.base import AbstractRound, BaseTxPayload
+from packages.valory.skills.abstract_round_abci.test_tools.rounds import (
+    BaseRoundTestClass,
+)
 from packages.valory.skills.mech_interact_abci.states.base import (
-    Event, SynchronizedData)
-from packages.valory.skills.mech_interact_abci.states.request import \
-    MechRequestRound
-from packages.valory.skills.mech_interact_abci.states.response import \
-    MechResponseRound
+    Event,
+    SynchronizedData,
+)
+from packages.valory.skills.mech_interact_abci.states.request import MechRequestRound
+from packages.valory.skills.mech_interact_abci.states.response import MechResponseRound
 
 
 @dataclass

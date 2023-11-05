@@ -23,12 +23,13 @@ import json
 from typing import Any, Dict, List, Optional
 
 from packages.valory.skills.abstract_round_abci.models import BaseParams
-from packages.valory.skills.abstract_round_abci.models import \
-    BenchmarkTool as BaseBenchmarkTool
-from packages.valory.skills.abstract_round_abci.models import \
-    Requests as BaseRequests
-from packages.valory.skills.abstract_round_abci.models import \
-    SharedState as BaseSharedState
+from packages.valory.skills.abstract_round_abci.models import (
+    BenchmarkTool as BaseBenchmarkTool,
+)
+from packages.valory.skills.abstract_round_abci.models import Requests as BaseRequests
+from packages.valory.skills.abstract_round_abci.models import (
+    SharedState as BaseSharedState,
+)
 from packages.valory.skills.inbox_abci.rounds import InboxAbciApp
 
 

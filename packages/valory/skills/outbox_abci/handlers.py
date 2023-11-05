@@ -28,27 +28,35 @@ from urllib.parse import urlparse
 
 from aea.protocols.base import Message
 
-from packages.valory.connections.http_server.connection import \
-    PUBLIC_ID as HTTP_SERVER_PUBLIC_ID
+from packages.valory.connections.http_server.connection import (
+    PUBLIC_ID as HTTP_SERVER_PUBLIC_ID,
+)
 from packages.valory.protocols.http.message import HttpMessage
-from packages.valory.skills.abstract_round_abci.handlers import \
-    ABCIRoundHandler as BaseABCIRoundHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    ContractApiHandler as BaseContractApiHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    HttpHandler as BaseHttpHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    IpfsHandler as BaseIpfsHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    LedgerApiHandler as BaseLedgerApiHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    SigningHandler as BaseSigningHandler
-from packages.valory.skills.abstract_round_abci.handlers import \
-    TendermintHandler as BaseTendermintHandler
-from packages.valory.skills.outbox_abci.dialogues import (HttpDialogue,
-                                                          HttpDialogues)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    ABCIRoundHandler as BaseABCIRoundHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    ContractApiHandler as BaseContractApiHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    HttpHandler as BaseHttpHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    IpfsHandler as BaseIpfsHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    LedgerApiHandler as BaseLedgerApiHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    SigningHandler as BaseSigningHandler,
+)
+from packages.valory.skills.abstract_round_abci.handlers import (
+    TendermintHandler as BaseTendermintHandler,
+)
+from packages.valory.skills.outbox_abci.dialogues import HttpDialogue, HttpDialogues
 from packages.valory.skills.outbox_abci.models import SharedState
 from packages.valory.skills.outbox_abci.rounds import SynchronizedData
+
 
 ABCIRoundHandler = BaseABCIRoundHandler
 SigningHandler = BaseSigningHandler

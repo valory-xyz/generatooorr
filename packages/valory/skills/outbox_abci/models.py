@@ -22,12 +22,13 @@
 from typing import Any
 
 from packages.valory.skills.abstract_round_abci.models import BaseParams
-from packages.valory.skills.abstract_round_abci.models import \
-    BenchmarkTool as BaseBenchmarkTool
-from packages.valory.skills.abstract_round_abci.models import \
-    Requests as BaseRequests
-from packages.valory.skills.abstract_round_abci.models import \
-    SharedState as BaseSharedState
+from packages.valory.skills.abstract_round_abci.models import (
+    BenchmarkTool as BaseBenchmarkTool,
+)
+from packages.valory.skills.abstract_round_abci.models import Requests as BaseRequests
+from packages.valory.skills.abstract_round_abci.models import (
+    SharedState as BaseSharedState,
+)
 from packages.valory.skills.outbox_abci.rounds import OutboxAbciApp
 
 
@@ -42,10 +43,17 @@ class Params(BaseParams):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize parameters."""
-        self.w3_inbox_project_id = self._ensure("w3_inbox_project_id", kwargs=kwargs, type_=str)
-        self.w3_notification_type = self._ensure("w3_notification_type", kwargs=kwargs, type_=str)
-        self.w3_notification_api_key = self._ensure("w3_notification_api_key", kwargs=kwargs, type_=str)
+        self.w3_inbox_project_id = self._ensure(
+            "w3_inbox_project_id", kwargs=kwargs, type_=str
+        )
+        self.w3_notification_type = self._ensure(
+            "w3_notification_type", kwargs=kwargs, type_=str
+        )
+        self.w3_notification_api_key = self._ensure(
+            "w3_notification_api_key", kwargs=kwargs, type_=str
+        )
         super().__init__(*args, **kwargs)
+
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
