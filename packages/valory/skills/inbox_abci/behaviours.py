@@ -21,7 +21,7 @@
 
 import json
 from abc import ABC
-from typing import Dict, Generator, Set, Type, cast
+from typing import Generator, Set, Type, cast
 
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
@@ -29,7 +29,7 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
     BaseBehaviour,
 )
 from packages.valory.skills.inbox_abci.handlers import InBox
-from packages.valory.skills.inbox_abci.models import Params, SharedState
+from packages.valory.skills.inbox_abci.models import Params
 from packages.valory.skills.inbox_abci.payloads import InboxPayload
 from packages.valory.skills.inbox_abci.rounds import (
     InboxAbciApp,

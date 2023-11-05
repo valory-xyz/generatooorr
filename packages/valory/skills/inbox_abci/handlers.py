@@ -20,10 +20,8 @@
 """This module contains the handlers for the skill of InboxAbciApp."""
 
 import json
-import re
-from datetime import datetime
 from enum import Enum
-from typing import Callable, Dict, List, Optional, Tuple, cast
+from typing import Callable, Dict, List, Optional, cast
 from urllib.parse import urlparse
 from uuid import uuid4
 
@@ -56,7 +54,6 @@ from packages.valory.skills.abstract_round_abci.handlers import (
     TendermintHandler as BaseTendermintHandler,
 )
 from packages.valory.skills.inbox_abci.dialogues import HttpDialogue, HttpDialogues
-from packages.valory.skills.inbox_abci.models import SharedState
 from packages.valory.skills.inbox_abci.rounds import SynchronizedData
 
 

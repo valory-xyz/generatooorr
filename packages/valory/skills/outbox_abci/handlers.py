@@ -19,19 +19,6 @@
 
 """This module contains the handlers for the skill of OutboxAbciApp."""
 
-import json
-import re
-from datetime import datetime
-from enum import Enum
-from typing import Callable, Dict, Optional, Tuple, cast
-from urllib.parse import urlparse
-
-from aea.protocols.base import Message
-
-from packages.valory.connections.http_server.connection import (
-    PUBLIC_ID as HTTP_SERVER_PUBLIC_ID,
-)
-from packages.valory.protocols.http.message import HttpMessage
 from packages.valory.skills.abstract_round_abci.handlers import (
     ABCIRoundHandler as BaseABCIRoundHandler,
 )
@@ -53,9 +40,6 @@ from packages.valory.skills.abstract_round_abci.handlers import (
 from packages.valory.skills.abstract_round_abci.handlers import (
     TendermintHandler as BaseTendermintHandler,
 )
-from packages.valory.skills.outbox_abci.dialogues import HttpDialogue, HttpDialogues
-from packages.valory.skills.outbox_abci.models import SharedState
-from packages.valory.skills.outbox_abci.rounds import SynchronizedData
 
 
 ABCIRoundHandler = BaseABCIRoundHandler

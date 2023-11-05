@@ -19,8 +19,7 @@
 
 """This module contains the shared state for the abci skill of InboxAbciApp."""
 
-import json
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from packages.valory.skills.abstract_round_abci.models import BaseParams
 from packages.valory.skills.abstract_round_abci.models import (

@@ -22,7 +22,7 @@
 import json
 from abc import ABC
 from enum import Enum
-from typing import Dict, FrozenSet, List, Optional, Set, Tuple, cast
+from typing import Dict, FrozenSet, List, Optional, Set, Tuple
 
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
@@ -83,8 +83,8 @@ class WaitRound(CollectSameUntilThresholdRound):
                 self.most_voted_payload,
             )
 
-            # If no requeest - WaitRound.no_request
-            # Else - {"address": "...", "prompt": "...", "tool": "...", "nonce": ...}
+            # If no requeest - WaitRound.no_request # noqa: E800
+            # Else - {"address": "...", "prompt": "...", "tool": "...", "nonce": ...} # noqa: E800
             if payload == WaitRound.no_request:
                 return self.synchronized_data, Event.NO_REQUEST
 
