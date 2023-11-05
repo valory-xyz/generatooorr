@@ -1,6 +1,7 @@
 .DS_STORE
 
 agent/
+temp/
 
 packages/open_aea/
 packages/valory/protocols/
