@@ -6,12 +6,12 @@ description: The chained abci for the generatooorr skill.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeifhr77mqqodygidrmgkq2bfvdiybgcb2boyatenlk3si3ieeryepa
-  behaviours.py: bafybeicqfbctvgqyggth32ise2y3lpcoan7baxm3co4x2nyaxn4gkxmzfa
-  composition.py: bafybeiegtlerjmcaxdztdcyus5ttqkt4uwsscr7xnsjpasdsemn6ektreq
-  dialogues.py: bafybeid6ntx5nmtkhuiml5pwt3drafvjejr7x4vu35gqekl4m6tgtxf6am
-  handlers.py: bafybeigtgbidjeotio2ca6vm5uz23zg3rjgproqyvufkdivbrlmwj2b7im
-  models.py: bafybeihwna2q3egxls6zvwyqsojj4lzvh2fsksohaufsv3436mdtbyo5wm
+  __init__.py: bafybeieegktb3lc2pl6v64khnqpaizjb5y66su5lokbrsyu5zzicccugie
+  behaviours.py: bafybeidettkqjqbpcvorswnnxhsgqn5j7tjyl3qemuv5ifo7cly245gh5i
+  composition.py: bafybeidtnc25o2hkaw5au73u6cd72uqny5hbsfq4dzaed4oqbas2e5mucy
+  dialogues.py: bafybeigpwuzku3we7axmxeamg7vn656maww6emuztau5pg3ebsoquyfdqm
+  handlers.py: bafybeic63srmrcogcbvcgzf54nwg2cbn2plfyrpbojjotrpyqqn456f6bq
+  models.py: bafybeifcdjymuedl54l6pkytgylkdz4gziodujuuvebwtog7anx3aemlim
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -19,10 +19,10 @@ protocols: []
 skills:
 - valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
 - valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
-- valory/inbox_abci:0.1.0:bafybeiembzutbvqknuckjbm6jndpbrl7ocjfdzw5uhadd5g4cum5oqu3vy
-- valory/mech_interact_abci:0.1.0:bafybeigspyuj6x5sp6d7hebuuwas32ycauj7u3qrpxk7fcn563hgucp73a
+- valory/inbox_abci:0.1.0:bafybeieazapmwri77ownig2tgku7ewiaeh6sv5mmgjwh7e53nwam5dgggu
+- valory/mech_interact_abci:0.1.0:bafybeidseofiffz76yby3v4xgjzghpsh4cwafrcbl3l2p2al4j76ycegv4
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/outbox_abci:0.1.0:bafybeifu6qaoh7rrkhaqh74buqoteksrsp4vp2n6lclk47cng3pe6fi2h4
+- valory/outbox_abci:0.1.0:bafybeia5rz6q52jgnwi36meav4vrelfy3k7kn4b5q2zeibjzjyyrubci74
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 behaviours:
   main:
