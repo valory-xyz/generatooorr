@@ -19,7 +19,6 @@
 
 """This module contains the shared state for the abci skill of OutboxAbciApp."""
 
-import json
 from typing import Any
 
 from packages.valory.skills.abstract_round_abci.models import BaseParams
@@ -41,6 +40,12 @@ class SharedState(BaseSharedState):
 class Params(BaseParams):
     """Parameters."""
 
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initialize parameters."""
+        self.w3_inbox_project_id = self._ensure("w3_inbox_project_id", kwargs=kwargs, type_=str)
+        self.w3_notification_type = self._ensure("w3_notification_type", kwargs=kwargs, type_=str)
+        self.w3_notification_api_key = self._ensure("w3_notification_api_key", kwargs=kwargs, type_=str)
+        super().__init__(*args, **kwargs)
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool

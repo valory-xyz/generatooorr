@@ -29,7 +29,7 @@ from packages.valory.skills.abstract_round_abci.base import (
     CollectSameUntilThresholdRound, DegenerateRound, EventToTimeout, get_name)
 from packages.valory.skills.mech_interact_abci.states.base import \
     MechInteractionResponse
-from packages.valory.skills.outbox_abci.payloads import TokenTrackPayload
+from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
 
 MAX_TOKEN_EVENT_RETRIES = 3
 
@@ -56,12 +56,17 @@ class SynchronizedData(BaseSynchronizedData):
         responses = json.loads(serialized)
         return [MechInteractionResponse(**response_item) for response_item in responses]
 
+    @property
+    def requests(self) -> Dict:
+        """Get the mech requests."""
+        return self.db.get("requests", {})
+
 
 # TODO: Implement as KeeperOnly round
 class PushNotificationRound(CollectSameUntilThresholdRound):
     """PushNotificationRound"""
 
-    payload_class = TokenTrackPayload
+    payload_class = PushNotificationPayload
     synchronized_data_class = SynchronizedData
     ERROR_PAYLOAD = {"error": True}
 

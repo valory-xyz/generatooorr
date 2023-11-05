@@ -21,16 +21,15 @@
 
 import json
 from abc import ABC
-from typing import Dict, Generator, Optional, Set, Tuple, Type, cast
+from typing import Dict, Generator, Set, Type, cast
 
-from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour, BaseBehaviour)
 from packages.valory.skills.mech_interact_abci.states.base import \
     MechInteractionResponse
-from packages.valory.skills.outbox_abci.models import Params, SharedState
-from packages.valory.skills.outbox_abci.payloads import TokenTrackPayload
+from packages.valory.skills.outbox_abci.models import Params
+from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
 from packages.valory.skills.outbox_abci.rounds import (OutboxAbciApp,
                                                        PushNotificationRound,
                                                        SynchronizedData)
@@ -61,44 +60,42 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
 
         https://docs.walletconnect.com/web3inbox/sending-notifications?send-client=curl
         """
-        self.context.logger.info(f"Pushing notification for {response}")
-        # notification_response = yield from self.get_http_response(
-        #     method="post",
-        #     url=f"https://notify.walletconnect.com/{self.params.w3_inbox_project_id}/notify",  # TODO: Define w3_inbox_project_id as param
-        #     headers={
-        #         "Content-Type": "application/json",
-        #         "Authorization": f"Bearer {self.params.w3_notify_api_key}'",
-        #     },
-        #     content=json.dumps(
-        #         {
-        #             "notification": {
-        #                 "type": "...",  # Notification type ID copied from Cloud
-        #                 "title": "Request processed",
-        #                 "body": response.data,  # TODO: Notification format
-        #             },
-        #             "accounts": ["eip155:1:0x"],  # CAIP-10 account ID
-        #         }
-        #     ),
-        # )
-        # self.context.logger.info(notification_response)
+        data = json.loads(response.data)
+        data["id"] = self.context.state.inbox.next_id
+        self.context.state.inbox.add_response(data)
+
+        address = self.synchronized_data.requests[response.nonce]
+        self.context.logger.info(f"Pushing notification for address {address} with noncee {response.nonce}")    
+        notification_response = yield from self.get_http_response(
+            method="post",
+            url=f"https://notify.walletconnect.com/{self.params.w3_inbox_project_id}/notify",
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {self.params.w3_notification_api_key}'
+            },
+            content=json.dumps({
+                    "notification": {
+                    "type": f"{self.params.w3_notification_type}",
+                    "title": "Another",
+                    "body": "Generated video with IPFS hash " + data["video"]
+                },
+                "accounts": [
+                    f"eip155:1:{address}"
+                ]
+            }).encode("utf-8")
+        )
+        self.context.logger.info(notification_response)
 
     def async_act(self) -> Generator:
         """Get a list of the new tokens."""
         for response in self.synchronized_data.mech_responses:
-            data = json.loads(response.data)
-            response_data = {
-                "id": self.context.state.inbox.next_id,
-                **data,
-            }
-            self.context.state.inbox.add_response(response_data)
             yield from self._push_from_response(response=response)
         with self.context.benchmark_tool.measure(
             self.behaviour_id,
         ).consensus():
-            payload = {"status": True}
+            payload = PushNotificationPayload(sender=self.context.agent_address, content=json.dumps({"status": True}))
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()
-
         self.set_done()
 
 
