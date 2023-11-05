@@ -59,11 +59,18 @@ ContractApiHandler = BaseContractApiHandler
 TendermintHandler = BaseTendermintHandler
 IpfsHandler = BaseIpfsHandler
 
-JSON_MIME_TYPE_HEADER = "Content-Type: application/json\nAccess-Control-Allow-Origin: *\n"
+
+JSON_MIME_HEADER = {"Content-Type": "application/json"}
+RESPONSE_HEADERS = {
+    "Server": "Generatooorr/0.1.0.rc01",
+    "Connection" : "Closed",
+    "Access-Control-Allow-Origin": "*",
+}
 CODE_TO_MESSAGE = {
     200: "Ok",
     404: "Not Found",
     400: "Bad Request",
+    401: "Unauthorized",
 }
 
 
@@ -73,6 +80,7 @@ class HttpResponseCode(Enum):
     OK = 200
     NOT_FOUND = 404
     BAD_REQUEST = 400
+    UNAUTHORIZED = 401
 
     @property
     def message(self) -> str:
@@ -92,19 +100,27 @@ class TypedResponse(TypedDict):
     """Typed response dict."""
 
     code: HttpResponseCode
-    data: Dict
-    headers: Optional[str]
+    data: Optional[Dict]
 
 
 class HttpApplication:
     """Http Server class."""
 
-    def __init__(self, inbox: "InBox") -> None:
+    def __init__(self, inbox: "InBox", auth: str) -> None:
         """Initialize object."""
         self.inbox = inbox
+        self.auth = auth
 
     def handle(self,message: HttpMessage) -> TypedResponse:
         """Handle incoming request."""
+        if message.method == "post":
+            # TOFIX: Use header parser from some package
+            headers = dict(map(lambda x:x.split(": ", maxsplit=1), message.headers.strip().split("\n")))
+            if headers.get("Authorization", "") != self.auth:
+                return TypedResponse(
+                    code=HttpResponseCode.UNAUTHORIZED,
+                    data={"status": "REJECTED", "message": "Invalid authentication"},
+                )
         url_meta = urlparse(message.url)
         handler: Callable[[HttpMessage, HttpDialogue], TypedResponse] = getattr(
             self, message.method + url_meta.path.replace("/", "_"), self._respond_404
@@ -117,7 +133,6 @@ class HttpApplication:
         return TypedResponse(
             code=HttpResponseCode.OK,
             data={"status": "CREATED", "id": "0x"},
-            headers=JSON_MIME_TYPE_HEADER,
         )
 
     def post_restore(self, message: HttpMessage) -> TypedResponse:
@@ -126,7 +141,6 @@ class HttpApplication:
         return TypedResponse(
             code=HttpResponseCode.OK,
             data={"status": "OK", "id": "0x"},
-            headers=JSON_MIME_TYPE_HEADER,
         )
 
     def get_responses(self, message: HttpMessage) -> TypedResponse:
@@ -134,7 +148,6 @@ class HttpApplication:
         return TypedResponse(
             code=HttpResponseCode.OK,
             data={"data": self.inbox.get_responses()},
-            headers=JSON_MIME_TYPE_HEADER,
         )
 
     def _respond_404(self, message: HttpMessage) -> TypedResponse:
@@ -147,7 +160,6 @@ class HttpApplication:
         )
 
 
-db = "/logs/db.json"
 
 class InBox:
     """InBox for requests."""
@@ -171,10 +183,10 @@ class InBox:
         request["nonce"] = uuid4().hex
         self._queue.append(request)
 
-    def add_response(self, response: Dict) -> None:
+    def add_response(self, response: Dict, db: Optional[str] = None) -> None:
         """Add response to processed list."""
         self._processed.append(response)
-        with open(db, "w") as file:
+        with open(db or "/logs/db.json", "w") as file:
             json.dump(self._processed, file)
     
     def get_responses(self) -> List[Dict]:
@@ -202,7 +214,10 @@ class HttpHandler(BaseHttpHandler):
         """Setup class."""
         super().setup()
         self.context.state.inbox = InBox()
-        self.app = HttpApplication(inbox=self.context.state.inbox)
+        self.app = HttpApplication(
+            inbox=self.context.state.inbox,
+            auth=self.context.params.inbox_auth,
+        )
 
     @property
     def synchronized_data(self) -> SynchronizedData:
@@ -210,6 +225,16 @@ class HttpHandler(BaseHttpHandler):
         return SynchronizedData(
             db=self.context.state.round_sequence.latest_synchronized_data.db
         )
+
+    @staticmethod
+    def response_headers(extra: Optional[Dict[str, str]] = None) -> str:
+        """Generate response headers string"""
+        header_str = ""
+        extra = extra or {}
+        for key, val in {**RESPONSE_HEADERS, **extra}.items():
+            header_str += f"{key}: {val}\n"
+        return header_str
+
 
     def handle(self, message: Message) -> None:
         """
@@ -248,15 +273,24 @@ class HttpHandler(BaseHttpHandler):
                 message.body,
             )
         )
+
         response = self.app.handle(message=message)
+        body = b""
+        extra = {}
+        data = response.get("data", {})
+        if len(data) > 0:
+            body = json.dumps(data).encode("utf-8")
+            extra = JSON_MIME_HEADER.copy()
+        headers = self.response_headers(extra=extra)
+        status = response["code"]
         http_response = dialogue.reply(
             performative=HttpMessage.Performative.RESPONSE,
             target_message=message,
             version=message.version,
-            status_code=response["code"].value,
-            status_text=response["code"].message,
-            headers=response.get("headers", "") + message.headers,
-            body=json.dumps(response["data"]).encode("utf-8"),
+            status_code=status.value,
+            status_text=status.message,
+            headers=headers,
+            body=body,
         )
 
         # Send response
