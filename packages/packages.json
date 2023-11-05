@@ -2,11 +2,11 @@
     "dev": {
         "contract/valory/mech/0.1.0": "bafybeigtrhkhl6hex5awwdfkcm2gbhfq2bw5aaquhivsj3b24exp67pnzi",
         "skill/valory/mech_interact_abci/0.1.0": "bafybeicbkfu2fmd7uk4sxgia5e2by76s6kpd7waqhuv4ykbht5qzy3bbsi",
-        "skill/valory/inbox_abci/0.1.0": "bafybeiftsdm7trlch2kftllbqvxes6yn3cg7gtbzc5ft2rjv6m52u24pdi",
+        "skill/valory/inbox_abci/0.1.0": "bafybeieazapmwri77ownig2tgku7ewiaeh6sv5mmgjwh7e53nwam5dgggu",
         "skill/valory/outbox_abci/0.1.0": "bafybeifl2uuqonoz5xxh7bmjqhe74dyi2uaqgrxg67sxfjg34h7ip4vut4",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeidlevhaafm5zzkkyeojzdtuxojlqpscnnun2uaepqo5wk3i3in35u",
-        "agent/valory/generatooorr/0.1.0": "bafybeibkwzmarvyxg5xmrdaltkkxcc466yrosbyek6h7au4yk3txzegecu",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeifbjftief7rzt2g2cdazaiwzvhatco23zinjzcluabwesogypjgtq"
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeifyjbk3vrsgxplmyjboabziwv46hidjrrqcncvzdz4l2vxps7v3je",
+        "agent/valory/generatooorr/0.1.0": "bafybeifw53zamtlohmklymnwcpj3kothuiiveuycj5otnxakavdutht3gi",
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeihzk6a5ykq7hgysw2qsnfk5r2zr4aomyht2r2fh26h3fyrcywmx34"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",
