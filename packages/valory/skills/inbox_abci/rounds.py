@@ -76,7 +76,7 @@ class WaitRound(CollectSameUntilThresholdRound):
             )
 
             # If no requeest - WaitRound.no_request
-            # Else - {"address": "...", "prompt": "...", "tool": "..."}
+            # Else - {"address": "...", "prompt": "...", "tool": "...", "nonce": ...}
             if payload == WaitRound.no_request:
                 return self.synchronized_data, Event.NO_REQUEST
 
@@ -85,7 +85,7 @@ class WaitRound(CollectSameUntilThresholdRound):
                 synchronized_data_class=SynchronizedData,
                 **{
                     get_name(SynchronizedData.mech_requests): json.dumps([payload]),
-                    get_name(SynchronizedData.requests): {address: payload},
+                    get_name(SynchronizedData.requests): {payload["nonce"]: address},
                 }
             )
             return (synchronized_data, Event.DONE)
