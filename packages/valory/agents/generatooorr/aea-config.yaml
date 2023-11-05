@@ -32,12 +32,12 @@ skills:
 - valory/abstract_abci:0.1.0:bafybeih6ilyszil7opntt3tkasryghu7j2qj2m5txwoo4tsdsvkuxas7di
 - valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
 - valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
-- valory/inbox_abci:0.1.0:bafybeihoxvwp3fmxrgrrcimlqtntyn3wfpbwosam27oycbelln46uncw6u
+- valory/inbox_abci:0.1.0:bafybeicev44gro24rzol34m6wzdovt7fvhtfsaqpfox25uwdf3jljcxtci
 - valory/mech_interact_abci:0.1.0:bafybeigspyuj6x5sp6d7hebuuwas32ycauj7u3qrpxk7fcn563hgucp73a
-- valory/outbox_abci:0.1.0:bafybeihsrqlgk3fh5h5oaf4bjghk5t76uatqrwbzjkjjbdtrs3vmiw2dfy
+- valory/outbox_abci:0.1.0:bafybeibwdhjfyh4w5rt2zxmtbjmfavsatyfvfxmvfhtrjzvpowu3fjnxcu
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/generatooorr_abci:0.1.0:bafybeiahio4mrgqmzuzvuebzisknnvfscxotdibz2fxm5tvrruy3x3gaqu
+- valory/generatooorr_abci:0.1.0:bafybeihumzeuuqzh5bvxgirmyyeuvxmxm67yj3v32gghtzqha4idw2fk7a
 default_ledger: ethereum
 required_ledgers:
 - ethereum
