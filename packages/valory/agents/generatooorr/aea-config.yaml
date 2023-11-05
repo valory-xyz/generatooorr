@@ -2,21 +2,22 @@ agent_name: generatooorr
 author: valory
 version: 0.1.0
 license: Apache-2.0
-description: The impact evaluator agent.
+description: Generatooorr agent
 aea_version: '>=1.19.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicakmzg3ku2ki7oko3ovkbg3jhqdof2ite2ssnxb67xd6jxccl4te
 fingerprint_ignore_patterns: []
 connections:
-- valory/http_server:0.22.0:bafybeie3d6tj2kzewced4nnttxdvr7njue2ortvawmwdt67gwf4tcuosom
 - valory/abci:0.1.0:bafybeibiwiza4rqma5pzeoucndsibnu2pvune6cm37mpnvf5ilkrqyvg44
 - valory/http_client:0.23.0:bafybeifgeqgryx6b3s6eseyzyezygmeitcpt3tkor2eiycozoi6clgdrny
+- valory/http_server:0.22.0:bafybeie3d6tj2kzewced4nnttxdvr7njue2ortvawmwdt67gwf4tcuosom
+- valory/ipfs:0.1.0:bafybeigfmqvlzbp67fttccpl4hsu3zaztbxv6vd7ikzra2hfppfkalgpji
 - valory/ledger:0.19.0:bafybeigdckv3e6bz6kfloz4ucqrsufft6k4jp6bwkbbcvh4fxvgbmzq3dm
 - valory/p2p_libp2p_client:0.1.0:bafybeihge56dn3xep2dzomu7rtvbgo4uc2qqh7ljl3fubqdi2lq44gs5lq
 contracts:
-- valory/mech:0.1.0:bafybeihfwkrvn67racrxl7oqtbfph6girvwrezajv3hfrmdjhcqdoerlu4
 - valory/gnosis_safe:0.1.0:bafybeiaiwsdkahhluledg3n4gmejht6oxi7zbfkqruxqe4yj3anbb2x7yi
 - valory/gnosis_safe_proxy_factory:0.1.0:bafybeihhph53ahspmfvblvlmpz3vmcnhnm2bzy3547k3vpezgty4xfhyvu
+- valory/mech:0.1.0:bafybeihfwkrvn67racrxl7oqtbfph6girvwrezajv3hfrmdjhcqdoerlu4
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/service_registry:0.1.0:bafybeiatuyvnip3gzzc26oieudmkgdkvil3nerzbfa2j7woi4sbusgxtye
 protocols:
@@ -31,13 +32,13 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeih6ilyszil7opntt3tkasryghu7j2qj2m5txwoo4tsdsvkuxas7di
 - valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
-- valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
-- valory/inbox_abci:0.1.0:bafybeicev44gro24rzol34m6wzdovt7fvhtfsaqpfox25uwdf3jljcxtci
+- valory/generatooorr_abci:0.1.0:bafybeiar2vkfx45rvjqahqukcwwz6smqvsm7f5f6fgxxc4ze4kfqr7n4gy
+- valory/inbox_abci:0.1.0:bafybeiembzutbvqknuckjbm6jndpbrl7ocjfdzw5uhadd5g4cum5oqu3vy
 - valory/mech_interact_abci:0.1.0:bafybeigspyuj6x5sp6d7hebuuwas32ycauj7u3qrpxk7fcn563hgucp73a
-- valory/outbox_abci:0.1.0:bafybeibwdhjfyh4w5rt2zxmtbjmfavsatyfvfxmvfhtrjzvpowu3fjnxcu
+- valory/outbox_abci:0.1.0:bafybeifu6qaoh7rrkhaqh74buqoteksrsp4vp2n6lclk47cng3pe6fi2h4
+- valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/generatooorr_abci:0.1.0:bafybeihumzeuuqzh5bvxgirmyyeuvxmxm67yj3v32gghtzqha4idw2fk7a
 default_ledger: ethereum
 required_ledgers:
 - ethereum
@@ -113,6 +114,7 @@ models:
       log_dir: /logs
   params:
     args:
+      inbox_auth: ${str:inbox_auth}
       broadcast_to_server: false
       cleanup_history_depth: 1
       cleanup_history_depth_current: null
@@ -174,6 +176,9 @@ models:
       default_chain_id: ${str:ethereum}
       use_slashing: ${bool:false}
       use_termination: ${bool:false}
+      w3_inbox_project_id: ${str:w3_inbox_project_id}
+      w3_notification_type: ${str:w3_notification_type}
+      w3_notification_api_key: ${str:w3_notification_api_key}
 ---
 public_id: valory/http_server:0.22.0:bafybeicblltx7ha3ulthg7bzfccuqqyjmihhrvfeztlgrlcoxhr7kf6nbq
 type: connection

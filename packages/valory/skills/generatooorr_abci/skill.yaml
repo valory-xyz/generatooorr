@@ -19,10 +19,10 @@ protocols: []
 skills:
 - valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
 - valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
-- valory/inbox_abci:0.1.0:bafybeicev44gro24rzol34m6wzdovt7fvhtfsaqpfox25uwdf3jljcxtci
+- valory/inbox_abci:0.1.0:bafybeiembzutbvqknuckjbm6jndpbrl7ocjfdzw5uhadd5g4cum5oqu3vy
 - valory/mech_interact_abci:0.1.0:bafybeigspyuj6x5sp6d7hebuuwas32ycauj7u3qrpxk7fcn563hgucp73a
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/outbox_abci:0.1.0:bafybeibwdhjfyh4w5rt2zxmtbjmfavsatyfvfxmvfhtrjzvpowu3fjnxcu
+- valory/outbox_abci:0.1.0:bafybeifu6qaoh7rrkhaqh74buqoteksrsp4vp2n6lclk47cng3pe6fi2h4
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 behaviours:
   main:

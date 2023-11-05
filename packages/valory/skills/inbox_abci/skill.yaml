@@ -9,10 +9,10 @@ fingerprint:
   __init__.py: bafybeif7sbhifubfrmx7bcblnsm3evpoi34yfuawmib2pynlr4ngvzva64
   behaviours.py: bafybeidyarqbhrpiox2viklb7jm5q6p65win2syhyo45xttme4pgckfmoe
   dialogues.py: bafybeia5acazykyxhlxs6bets4qqthrbywycm7i4q5o5jmil6zvkv7aouu
-  handlers.py: bafybeian7nynuxkjscm54a5oc6u7z7ih3rzxk24ovjfxj5exl4vd67mztu
-  models.py: bafybeiad2fcmjv6iwi2w4d2dpmaympgvp5ferjuxzc4aaotezofkj5fzla
+  handlers.py: bafybeibkjumum2iqryq6soonoofr7vsgygs3rpm4nhooaoz7zmbrmik5iq
+  models.py: bafybeiehxu7fzj7jdioo3afr3xf3pftdq2uda7ortpc6toiilukjikuzku
   payloads.py: bafybeigkkjidebtlkdy3rwkogytnu2egfowrbos3l53c534racg6trkxgu
-  rounds.py: bafybeidlja5rrphugmw6mt3aogfvbhfjc6cbvzoz4zanxovcelbl5qaooa
+  rounds.py: bafybeiffe454a3hzmvnaxfbdex3vvtkadpvuebixxi4ipwdq3hnnyssk4a
 fingerprint_ignore_patterns: []
 connections:
 - valory/http_server:0.22.0:bafybeie3d6tj2kzewced4nnttxdvr7njue2ortvawmwdt67gwf4tcuosom
@@ -69,6 +69,7 @@ models:
     class_name: LedgerApiDialogues
   params:
     args:
+      inbox_auth: inbox_auth
       multisend_address: '0x0000000000000000000000000000000000000000'
       termination_sleep: 900
       keeper_allowed_retries: 3
@@ -97,10 +98,6 @@ models:
       max_healthcheck: 120
       reset_pause_duration: 10
       on_chain_service_id: null
-      points_to_image_hashes: '{"0": "bafybeiabtdl53v2a3irrgrg7eujzffjallpymli763wvhv6gceurfmcemm",
-        "100": "bafybeid46w6yzbehir7ackcnsyuasdkun5aq7jnckt4sknvmiewpph776q", "50000":
-        "bafybeigbxlwzljbxnlwteupmt6c6k7k2m4bbhunvxxa53dc7niuedilnr4", "100000": "bafybeiawxpq4mqckbau3mjwzd3ic2o7ywlhp6zqo7jnaft26zeqm3xsjjy",
-        "150000": "bafybeie6k53dupf7rf6622rzfxu3dmlv36hytqrmzs5yrilxwcrlhrml2m"}'
       request_retry_delay: 1.0
       request_timeout: 10.0
       reset_tendermint_after: 2

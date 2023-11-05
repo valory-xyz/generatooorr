@@ -2,11 +2,11 @@
     "dev": {
         "contract/valory/mech/0.1.0": "bafybeihfwkrvn67racrxl7oqtbfph6girvwrezajv3hfrmdjhcqdoerlu4",
         "skill/valory/mech_interact_abci/0.1.0": "bafybeigspyuj6x5sp6d7hebuuwas32ycauj7u3qrpxk7fcn563hgucp73a",
-        "skill/valory/inbox_abci/0.1.0": "bafybeicev44gro24rzol34m6wzdovt7fvhtfsaqpfox25uwdf3jljcxtci",
-        "skill/valory/outbox_abci/0.1.0": "bafybeibwdhjfyh4w5rt2zxmtbjmfavsatyfvfxmvfhtrjzvpowu3fjnxcu",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeihumzeuuqzh5bvxgirmyyeuvxmxm67yj3v32gghtzqha4idw2fk7a",
-        "agent/valory/generatooorr/0.1.0": "bafybeihopggit27qwpebgepsihug7vlhixzyr33dk6regj73ysup4l44je",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeidqpozzgwvk6sba6zzq6pcwroypnch4hydqlnb4i2co6ip3zn7vpm"
+        "skill/valory/inbox_abci/0.1.0": "bafybeiembzutbvqknuckjbm6jndpbrl7ocjfdzw5uhadd5g4cum5oqu3vy",
+        "skill/valory/outbox_abci/0.1.0": "bafybeifu6qaoh7rrkhaqh74buqoteksrsp4vp2n6lclk47cng3pe6fi2h4",
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeiar2vkfx45rvjqahqukcwwz6smqvsm7f5f6fgxxc4ze4kfqr7n4gy",
+        "agent/valory/generatooorr/0.1.0": "bafybeiboqde4f5ezn5ifwsqxuhbhbe7pvhpuhhycc5dzjjy57h5g65bsza",
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeidpw2xyrq3h6kixnx72uin4iwxrzcailmmq6j76vj4ovqbbtl7lem"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",
