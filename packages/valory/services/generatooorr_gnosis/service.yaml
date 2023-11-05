@@ -40,6 +40,10 @@ type: skill
         serious_slash_unit_amount: ${SERIOUS_SLASH_UNIT_AMOUNT:int:8000000000000000}
         agent_registry_address: ${AGENT_REGISTRY_ADDRESS:str:0x84B4DA67B37B1EA1dea9c7044042C1d2297b80a0}
         agent_id: ${AGENT_ID:int:1}
+        w3_inbox_project_id: ${PROJECT_ID:str:w3_inbox_project_id}
+        w3_notification_type: ${NOTIFICATION_TYPE:str:w3_notification_type}
+        w3_notification_api_key: ${NOTIFICATION_API_KEY:str:w3_notification_api_key}
+        inbox_auth: ${INBOX_AUTH:str:inbox_auth}
 ---
 public_id: valory/ledger:0.19.0
 type: connection
