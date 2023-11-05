@@ -59,7 +59,7 @@ ContractApiHandler = BaseContractApiHandler
 TendermintHandler = BaseTendermintHandler
 IpfsHandler = BaseIpfsHandler
 
-JSON_MIME_TYPE_HEADER = "Content-Type: application/json\n"
+JSON_MIME_TYPE_HEADER = "Content-Type: application/json\nAccess-Control-Allow-Origin: *\n"
 CODE_TO_MESSAGE = {
     200: "Ok",
     404: "Not Found",
@@ -120,6 +120,15 @@ class HttpApplication:
             headers=JSON_MIME_TYPE_HEADER,
         )
 
+    def post_restore(self, message: HttpMessage) -> TypedResponse:
+        """Handle /restore"""
+        self.inbox.restore(json.loads(message.body.decode()))
+        return TypedResponse(
+            code=HttpResponseCode.OK,
+            data={"status": "OK", "id": "0x"},
+            headers=JSON_MIME_TYPE_HEADER,
+        )
+
     def get_responses(self, message: HttpMessage) -> TypedResponse:
         """Handle GET /responses"""
         return TypedResponse(
@@ -137,6 +146,8 @@ class HttpApplication:
             },
         )
 
+
+db = "/logs/db.json"
 
 class InBox:
     """InBox for requests."""
@@ -163,10 +174,22 @@ class InBox:
     def add_response(self, response: Dict) -> None:
         """Add response to processed list."""
         self._processed.append(response)
+        with open(db, "w") as file:
+            json.dump(self._processed, file)
     
     def get_responses(self) -> List[Dict]:
         """Return the available responses."""
         return self._processed
+
+    def restore(self, processed: List) -> None:
+        """Restore responses"""
+        self._processed = processed
+
+    @property
+    def next_id(self) -> int:
+        """Get the next response id"""
+        return len(self._processed) + 1
+
 
 class HttpHandler(BaseHttpHandler):
     """This implements the echo handler."""

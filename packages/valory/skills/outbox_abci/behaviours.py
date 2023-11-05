@@ -85,7 +85,12 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
     def async_act(self) -> Generator:
         """Get a list of the new tokens."""
         for response in self.synchronized_data.mech_responses:
-            self.context.state.inbox.add_response(json.loads(response.data))
+            data = json.loads(response.data)
+            response_data = {
+                "id": self.context.state.inbox.next_id,
+                **data,
+            }
+            self.context.state.inbox.add_response(response_data)
             yield from self._push_from_response(response=response)
         with self.context.benchmark_tool.measure(
             self.behaviour_id,
