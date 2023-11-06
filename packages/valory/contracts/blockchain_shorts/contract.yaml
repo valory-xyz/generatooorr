@@ -1,0 +1,17 @@
+name: blockchain_shorts
+author: valory
+version: 0.1.0
+type: contract
+description: The scaffold contract scaffolds a contract to be implemented by the developer.
+license: Apache-2.0
+aea_version: '>=1.0.0, <2.0.0'
+fingerprint:
+  __init__.py: bafybeieeus2bbbexmthy4pnsdtgen4flxzk3ao5ekjbocvmrkhhszffbgu
+  build/BlockchainShorts.json: bafybeibov6aqkoriod4i4axzvvq6eyxg4kpf4h6mbooruqedxb5hxajd2a
+  contract.py: bafybeia77nkoii7yb6umxobsqveme5muqus72iz4ujnllkkpycnl7xyxiy
+fingerprint_ignore_patterns: []
+class_name: BlockchainShortsContract
+contract_interface_paths:
+  ethereum: build/BlockchainShorts.json
+dependencies: {}
+contracts: []
