@@ -30,6 +30,7 @@ from packages.valory.skills.inbox_abci.behaviours import InboxAbciRoundBehaviour
 from packages.valory.skills.mech_interact_abci.behaviours.round_behaviour import (
     MechInteractRoundBehaviour,
 )
+from packages.valory.skills.nft_mint_abci.behaviours import NftMintAbciRoundBehaviour
 from packages.valory.skills.outbox_abci.behaviours import OutboxAbciRoundBehaviour
 from packages.valory.skills.registration_abci.behaviours import (
     AgentRegistrationRoundBehaviour,
@@ -54,5 +55,6 @@ class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):
         *MechInteractRoundBehaviour.behaviours,
         *TransactionSettlementRoundBehaviour.behaviours,
         *OutboxAbciRoundBehaviour.behaviours,
+        *NftMintAbciRoundBehaviour.behaviours,
         *ResetPauseABCIConsensusBehaviour.behaviours,
     }

@@ -6,7 +6,8 @@
         "skill/valory/outbox_abci/0.1.0": "bafybeifl2uuqonoz5xxh7bmjqhe74dyi2uaqgrxg67sxfjg34h7ip4vut4",
         "skill/valory/generatooorr_abci/0.1.0": "bafybeifyjbk3vrsgxplmyjboabziwv46hidjrrqcncvzdz4l2vxps7v3je",
         "agent/valory/generatooorr/0.1.0": "bafybeifw53zamtlohmklymnwcpj3kothuiiveuycj5otnxakavdutht3gi",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeihzk6a5ykq7hgysw2qsnfk5r2zr4aomyht2r2fh26h3fyrcywmx34"
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeihzk6a5ykq7hgysw2qsnfk5r2zr4aomyht2r2fh26h3fyrcywmx34",
+        "contract/valory/blockchain_shorts/0.1.0": "bafybeih7wth3jl26sx5nfw4brc4wmlacyezxsp5s3zedvdw7bcwritdsqa"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",

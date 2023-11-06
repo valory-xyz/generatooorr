@@ -25,6 +25,7 @@ import packages.valory.skills.mech_interact_abci.rounds as MechInteractAbci
 import packages.valory.skills.mech_interact_abci.states.final_states as MechFinalStates
 import packages.valory.skills.mech_interact_abci.states.request as MechRequestStates
 import packages.valory.skills.mech_interact_abci.states.response as MechResponseStates
+import packages.valory.skills.nft_mint_abci.rounds as NftMintAbci
 import packages.valory.skills.outbox_abci.rounds as OutboxAbci
 import packages.valory.skills.registration_abci.rounds as RegistrationAbci
 import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
@@ -41,7 +42,10 @@ abci_app_transition_mapping: AbciAppTransitionMapping = {
     MechFinalStates.FinishedMechRequestRound: TxSettlementAbci.RandomnessTransactionSubmissionRound,
     TxSettlementAbci.FinishedTransactionSubmissionRound: MechResponseStates.MechResponseRound,
     TxSettlementAbci.FailedRound: MechRequestStates.MechRequestRound,
-    MechFinalStates.FinishedMechResponseRound: OutboxAbci.PushNotificationRound,
+    MechFinalStates.FinishedMechResponseRound: NftMintAbci.NftMintRound,
+    NftMintAbci.FinishedNftMintRound: TxSettlementAbci.RandomnessTransactionSubmissionRound,
+    TxSettlementAbci.FinishedTransactionSubmissionRound: OutboxAbci.PushNotificationRound,
+    OutboxAbci.FinishedPushNotificationRound: ResetAndPauseAbci.ResetAndPauseRound,
     ResetAndPauseAbci.FinishedResetAndPauseRound: InboxAbci.WaitRound,
     ResetAndPauseAbci.FinishedResetAndPauseErrorRound: ResetAndPauseAbci.ResetAndPauseRound,
 }
