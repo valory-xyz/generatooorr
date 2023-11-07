@@ -26,6 +26,10 @@ class FinishedMechRequestRound(DegenerateRound):
     """FinishedMechRequestRound"""
 
 
+class FinishedMechTxSubmitterRound(DegenerateRound):
+    """FinishedMechTxSubmitterRound"""
+
+
 class FinishedMechRequestSkipRound(DegenerateRound):
     """FinishedMechRequestSkipRound"""
 
