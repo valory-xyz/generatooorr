@@ -32,15 +32,16 @@ from packages.valory.skills.abstract_round_abci.base import (
     CollectSameUntilThresholdRound,
     DegenerateRound,
     EventToTimeout,
+    get_name,
 )
 from packages.valory.skills.mech_interact_abci.states.base import (
     MechInteractionResponse,
 )
 from packages.valory.skills.nft_mint_abci.payloads import NftMintPayload
-from packages.valory.skills.abstract_round_abci.base import get_name
 
 
 MAX_TOKEN_EVENT_RETRIES = 3
+_NO_TX_ROUND = "no_tx"
 
 
 class Event(Enum):
@@ -70,6 +71,21 @@ class SynchronizedData(BaseSynchronizedData):
         responses = json.loads(serialized)
         return [MechInteractionResponse(**response_item) for response_item in responses]
 
+    @property
+    def final_tx_hash(self) -> str:
+        """Get the verified tx hash."""
+        return cast(str, self.db.get_strict("final_tx_hash"))
+
+    @property
+    def metadata_hash(self) -> str:
+        """Get the verified tx hash."""
+        return cast(str, self.db.get_strict("final_tx_hash"))
+
+    @property
+    def token_id(self) -> int:
+        """Get the verified tx hash."""
+        return cast(int, self.db.get_strict("token_id"))
+
 
 class NftMintRound(CollectSameUntilThresholdRound):
     """NftMintRound"""
@@ -77,27 +93,26 @@ class NftMintRound(CollectSameUntilThresholdRound):
     payload_class = NftMintPayload
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
-    no_majority_event = Event.NO_MAJORITY
-    collection_key = "content"
 
-    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Enum]]:
-        """End block."""
-        # TODO: incomplete implementation
-        if self.threshold_reached and any(
-            [val is not None for val in self.most_voted_payload_values]
-        ):
-            return (
-                self.synchronized_data.update(
-                    synchronized_data_class=self.synchronized_data_class,
-                    **{
-                        get_name(
-                            SynchronizedData.most_voted_tx_hash
-                        ): self.most_voted_payload
-                    },
-                ),
-                Event.DONE,
+    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
+        """Process the end of the block."""
+        if self.threshold_reached:
+            payload = json.loads(self.most_voted_payload)
+            synchronized_data = self.synchronized_data.update(
+                synchronized_data_class=SynchronizedData,
+                **{
+                    get_name(SynchronizedData.most_voted_tx_hash): payload["tx_hash"],
+                    get_name(SynchronizedData.metadata_hash): payload["metadata_hash"],
+                    "tx_submitter": self.auto_round_id(),
+                }
             )
+            return synchronized_data, Event.DONE
+        if not self.is_majority_possible(
+            self.collection, self.synchronized_data.nb_participants
+        ):
+            return self.synchronized_data, Event.NO_MAJORITY
         return None
+
 
 class VerifyMintRound(CollectSameUntilThresholdRound):
     """VerifyMintRound"""
@@ -105,30 +120,27 @@ class VerifyMintRound(CollectSameUntilThresholdRound):
     payload_class = NftMintPayload
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
-    no_majority_event = Event.NO_MAJORITY
-    collection_key = "content"
 
-    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Enum]]:
-        """End block."""
-        # TODO: incomplete implementation
-        if self.threshold_reached and any(
-            [val is not None for val in self.most_voted_payload_values]
-        ):
-            return (
-                self.synchronized_data.update(
-                    synchronized_data_class=self.synchronized_data_class,
-                    **{
-                        get_name(
-                            SynchronizedData.most_voted_tx_hash
-                        ): self.most_voted_payload
-                    },
-                ),
-                Event.DONE,
+    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
+        """Process the end of the block."""
+        if self.threshold_reached:
+            synchronized_data = self.synchronized_data.update(
+                synchronized_data_class=SynchronizedData,
+                **{
+                    get_name(SynchronizedData.token_id): self.most_voted_payload,
+                }
             )
+            return synchronized_data, Event.DONE
+        if not self.is_majority_possible(
+            self.collection, self.synchronized_data.nb_participants
+        ):
+            return self.synchronized_data, Event.NO_MAJORITY
         return None
+
 
 class FinishedNftMintRound(DegenerateRound, ABC):
     """FinishedNftMintRound"""
+
 
 class FinishedVerifyMintRound(DegenerateRound, ABC):
     """FinishedVerifyMintRound"""
@@ -145,13 +157,13 @@ class NftMintAbciApp(AbciApp[Event]):
             Event.NO_MAJORITY: NftMintRound,
             Event.ROUND_TIMEOUT: NftMintRound,
         },
-        FinishedNftMintRound: {},
         VerifyMintRound: {
             Event.DONE: FinishedVerifyMintRound,
             Event.NO_MAJORITY: VerifyMintRound,
             Event.ROUND_TIMEOUT: VerifyMintRound,
         },
-        FinishedVerifyMintRound: {}
+        FinishedNftMintRound: {},
+        FinishedVerifyMintRound: {},
     }
     final_states: Set[AppState] = {
         FinishedNftMintRound,
@@ -165,7 +177,9 @@ class NftMintAbciApp(AbciApp[Event]):
         VerifyMintRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
-        FinishedNftMintRound: set(),
-        FinishedVerifyMintRound: set()
+        FinishedNftMintRound: {
+            "most_voted_tx_hash",
+        },
+        FinishedVerifyMintRound: set(),
     }
     cross_period_persisted_keys: FrozenSet[str] = frozenset([])

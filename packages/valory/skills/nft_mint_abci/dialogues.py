@@ -19,12 +19,6 @@
 
 """This module contains the dialogues of the NftMintAbciApp."""
 
-from typing import Any
-
-from aea.protocols.base import Address, Message
-from aea.protocols.dialogue.base import Dialogue as BaseDialogue
-from aea.skills.base import Model
-
 from packages.valory.protocols.http.dialogues import HttpDialogue as BaseHttpDialogue
 from packages.valory.protocols.http.dialogues import HttpDialogues as BaseHttpDialogues
 from packages.valory.skills.abstract_round_abci.dialogues import (

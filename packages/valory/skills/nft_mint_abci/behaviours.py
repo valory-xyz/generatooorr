@@ -21,39 +21,38 @@
 
 import json
 from abc import ABC
-from typing import Generator, Set, Type, cast, List, Dict, Optional
+from typing import Dict, Generator, List, Optional, Set, Type, cast
 
-from packages.valory.contracts.gnosis_safe.contract import (
-    SafeOperation,
-)
-from packages.valory.skills.abstract_round_abci.base import AbstractRound
-from packages.valory.skills.abstract_round_abci.behaviours import (
-    AbstractRoundBehaviour,
-    BaseBehaviour,
-)
-from packages.valory.skills.mech_interact_abci.states.base import (
-    MechInteractionResponse,
-)
-from packages.valory.skills.nft_mint_abci.models import Params
-from packages.valory.skills.nft_mint_abci.payloads import NftMintPayload
-from packages.valory.skills.nft_mint_abci.rounds import (
-    NftMintAbciApp,
-    NftMintRound,
-    SynchronizedData,
-)
 from packages.valory.contracts.blockchain_shorts.contract import (
     BlockchainShortsContract,
 )
-from packages.valory.protocols.contract_api import ContractApiMessage
-from packages.valory.skills.abstract_round_abci.base import get_name
-from packages.valory.skills.transaction_settlement_abci.payload_tools import (
-    hash_payload_to_hex,
-)
+from packages.valory.contracts.gnosis_safe.contract import SafeOperation
 from packages.valory.contracts.multisend.contract import (
     MultiSendContract,
     MultiSendOperation,
 )
+from packages.valory.protocols.contract_api import ContractApiMessage
+from packages.valory.skills.abstract_round_abci.base import AbstractRound, get_name
+from packages.valory.skills.abstract_round_abci.behaviours import (
+    AbstractRoundBehaviour,
+    BaseBehaviour,
+)
 from packages.valory.skills.abstract_round_abci.io_.store import SupportedFiletype
+from packages.valory.skills.nft_mint_abci.models import Params
+from packages.valory.skills.nft_mint_abci.payloads import (
+    NftMintPayload,
+    VerifyMintPayload,
+)
+from packages.valory.skills.nft_mint_abci.rounds import (
+    NftMintAbciApp,
+    NftMintRound,
+    SynchronizedData,
+    VerifyMintRound,
+)
+from packages.valory.skills.transaction_settlement_abci.payload_tools import (
+    hash_payload_to_hex,
+)
+
 
 SAFE_TX_GAS = 0
 ETHER_VALUE = 0
@@ -138,7 +137,16 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
         if tx_hash is None:
             return
         with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
-            payload = NftMintPayload(sender=self.context.agent_address, content=tx_hash)
+            payload = NftMintPayload(
+                sender=self.context.agent_address,
+                content=json.dumps(
+                    dict(
+                        tx_hash=tx_hash,
+                        metadata_hash=ipfs_hash,
+                    ),
+                    sort_keys=True,
+                ),
+            )
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()
         self.set_done()
@@ -196,7 +204,46 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
 
 class VerifyMintBehaviour(NftMintAbciBaseBehaviour):
     """VerifyMintBehaviour"""
-    
+
+    matching_round: Type[AbstractRound] = VerifyMintRound
+
+    def _get_token_id(
+        self,
+        tx_hash: str,
+        metadata_hash: str,
+    ) -> Generator[None, None, Optional[int]]:
+        """Get token ID"""
+        response = yield from self.get_contract_api_response(
+            performative=ContractApiMessage.Performative.GET_STATE,
+            contract_address=self.params.conditional_tokens_contract,
+            contract_id=str(BlockchainShortsContract.contract_id),
+            contract_callable=get_name(BlockchainShortsContract.get_token_id_from_hash),
+            tx_hash=tx_hash,
+            metadata_hash=metadata_hash,
+        )
+        if response.performative != ContractApiMessage.Performative.STATE:
+            self.context.logger.warning(
+                f"get_token_id_from_hash unsuccessful!: {response}"
+            )
+            return None
+        return response.state.body["token_id"]
+
+    def async_act(self) -> Generator:
+        """Verify NFT mint."""
+        token_id = yield from self._get_token_id(
+            tx_hash=self.synchronized_data.final_tx_hash,
+            metadata_hash=self.synchronized_data.metadata_hash,
+        )
+        if token_id is None:
+            return
+        with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
+            payload = VerifyMintPayload(
+                sender=self.context.agent_address,
+                token_id=token_id,
+            )
+            yield from self.send_a2a_transaction(payload)
+            yield from self.wait_until_round_end()
+
 
 class NftMintAbciRoundBehaviour(AbstractRoundBehaviour):
     """NftMintAbciRoundBehaviour"""
@@ -205,4 +252,5 @@ class NftMintAbciRoundBehaviour(AbstractRoundBehaviour):
     abci_app_cls = NftMintAbciApp
     behaviours: Set[Type[BaseBehaviour]] = [
         MintNftBehaviour,
+        VerifyMintBehaviour,
     ]

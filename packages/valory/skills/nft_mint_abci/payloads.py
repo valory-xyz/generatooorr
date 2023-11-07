@@ -29,3 +29,10 @@ class NftMintPayload(BaseTxPayload):
     """Represent a transaction payload for the TokenTrackRound."""
 
     content: str
+
+
+@dataclass(frozen=True)
+class VerifyMintPayload(BaseTxPayload):
+    """Represent a transaction payload for the TokenTrackRound."""
+
+    token_id: int
