@@ -91,7 +91,7 @@ class BlockchainShortsContract(Contract):
         owner: str,
         ipfs_hash: str,
         **kwargs: Any
-    ) -> JSONLike[str, bytes]:
+    ) -> JSONLike:
         """Gets the encoded arguments for a request tx, which should only be called via the multisig."""
 
         contract_instance = cls.get_instance(ledger_api, contract_address)
@@ -99,3 +99,27 @@ class BlockchainShortsContract(Contract):
             "create", args=(ledger_api.api.to_checksum_address(owner), ipfs_hash)
         )
         return {"data": bytes.fromhex(encoded_data[2:])}
+
+    @classmethod
+    def get_token_id_from_hash(
+        cls,
+        ledger_api: LedgerApi,
+        contract_address: str,
+        tx_hash: str,
+        metadata_hash: str,
+    ) -> JSONLike:
+        """
+        Process the mint receipt.
+
+        :param ledger_api: the ledger apis.
+        :param contract_address: the contract address.
+        :param tx_hash: the hash of a slash tx to be processed.
+        :return: a dictionary with the timestamp of the slashing and the `OperatorSlashed` events.
+        """
+        contract = cls.get_instance(ledger_api, contract_address)
+        receipt = ledger_api.api.eth.get_transaction_receipt(tx_hash)
+        logs = contract.events.CreateBlockchainShort().process_receipt(receipt)
+        for log in logs:
+            if log["args"]["hash"].hex() == metadata_hash:
+                return {"token_id": log["args"]["id"]}
+        return {"token_id": None}
