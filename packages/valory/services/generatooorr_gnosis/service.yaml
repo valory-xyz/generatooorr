@@ -7,7 +7,7 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeihoplqp3y2k6y4anmmtw4jfnvxuul36hurubnn2mdyxyuoaewibaa
 fingerprint_ignore_patterns: []
-agent: valory/generatooorr:0.1.0:bafybeifw53zamtlohmklymnwcpj3kothuiiveuycj5otnxakavdutht3gi
+agent: valory/generatooorr:0.1.0:bafybeier4q3cigcrbqexael5mc524l2dw3bbzxnlaj4zfoe2lvfyan5vnm
 number_of_agents: 1
 deployment:
   agent:
@@ -25,6 +25,7 @@ type: skill
           all_participants: ${ALL_PARTICIPANTS:list:["0x339b3295C01c1b54F8A36746F700b5ADEC413795"]}
           safe_contract_address: ${SAFE_CONTRACT_ADDRESS:str:0x74db17b32Db70F166376310dF071fe9747C0F4DE}
           consensus_threshold: ${CONSENSUS_THRESHOLD:int:null}
+        blockchain_shorts_contract: ${BLOCKCHAIN_SHORTS_CONTRACT:str:'0xd2ff4Cf0927c3cFbF3BB27391044dBaf6f4ca7b9'}
         share_tm_config_on_startup: ${USE_ACN:bool:false}
         tendermint_com_url: ${TENDERMINT_COM_URL:str:http://localhost:8080}
         tendermint_url: ${TENDERMINT_URL:str:http://localhost:26657}
