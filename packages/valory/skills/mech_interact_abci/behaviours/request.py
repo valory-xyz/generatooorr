@@ -20,6 +20,7 @@
 """This module contains the request state of the mech interaction abci app."""
 
 import json
+from abc import ABC
 from dataclasses import asdict
 from pathlib import Path
 from tempfile import mkdtemp
@@ -37,6 +38,7 @@ from packages.valory.contracts.gnosis_safe.contract import (
 from packages.valory.contracts.multisend.contract import MultiSendContract
 from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import get_name
+from packages.valory.skills.abstract_round_abci.behaviours import BaseBehaviour
 from packages.valory.skills.abstract_round_abci.io_.store import SupportedFiletype
 from packages.valory.skills.mech_interact_abci.behaviours.base import (
     DataclassEncoder,
@@ -49,7 +51,10 @@ from packages.valory.skills.mech_interact_abci.states.base import (
     MechInteractionResponse,
     MechMetadata,
 )
-from packages.valory.skills.mech_interact_abci.states.request import MechRequestRound
+from packages.valory.skills.mech_interact_abci.states.request import (
+    MechRequestRound,
+    MechTxSubmitterRound,
+)
 from packages.valory.skills.transaction_settlement_abci.payload_tools import (
     hash_payload_to_hex,
 )
@@ -314,3 +319,20 @@ class MechRequestBehaviour(MechInteractBaseBehaviour):
                     *serialized_data,
                 )
         yield from self.finish_behaviour(payload)
+
+
+class MechRequestTxSelectorBehaviour(BaseBehaviour, ABC):
+    """
+    The post transaction settlement behaviour.
+
+    This behaviour is executed after a tx is settled,
+    via the transaction_settlement_abci.
+    """
+
+    matching_round = MechTxSubmitterRound
+
+    def async_act(self) -> Generator:
+        """Simply log that a tx is settled and wait for round end."""
+        self.context.logger.info("Tx Multiplexer -> Select mech TX request")
+        yield from self.wait_until_round_end()
+        self.set_done()

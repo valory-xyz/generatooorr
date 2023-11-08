@@ -32,10 +32,11 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeih6ilyszil7opntt3tkasryghu7j2qj2m5txwoo4tsdsvkuxas7di
 - valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
-- valory/generatooorr_abci:0.1.0:bafybeibg7h27rfxpeiglajb6cxlqn5zqewg3xj3uwtxgpehookol4t3dbm
-- valory/inbox_abci:0.1.0:bafybeieazapmwri77ownig2tgku7ewiaeh6sv5mmgjwh7e53nwam5dgggu
-- valory/mech_interact_abci:0.1.0:bafybeicbkfu2fmd7uk4sxgia5e2by76s6kpd7waqhuv4ykbht5qzy3bbsi
-- valory/outbox_abci:0.1.0:bafybeicztgulfd6lmy467cx6eh4qh7iquhznq4v5ocj4urix4bvbe7hy2i
+- valory/generatooorr_abci:0.1.0:bafybeigpl6c4s37v7qi2dkdrg2rau2nliy2dfhxdeylizdeljalwweeici
+- valory/inbox_abci:0.1.0:bafybeibhtiefyhc5r6ahd5ql2nbvtnl6fhljocohq47zfazmyu4mscoinm
+- valory/mech_interact_abci:0.1.0:bafybeie36v4sdhh4tmdhlgtrtmaynrvjyfwgoylz65hxpqicj6o2nfbywu
+- valory/nft_mint_abci:0.1.0:bafybeibmguegpifda7g5eopwobnv5rd3e53p52avnbdsx34dhk2hxfpaca
+- valory/outbox_abci:0.1.0:bafybeid24lraadfdmzsvrcdklrt66nan2aemawythirltqrohmt5cwr2ae
 - valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
 - valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
 - valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
@@ -115,7 +116,8 @@ models:
   params:
     args:
       inbox_auth: ${str:inbox_auth}
-      broadcast_to_server: false
+      broadcast_to_server: ${bool:false}
+      blockchain_shorts_contract: ${str:'0x0000000000000000000000000000000000000000'}
       cleanup_history_depth: 1
       cleanup_history_depth_current: null
       drand_public_key: 868f005eb8e6e4ca0a47c8a77ceaa5309a47978a7c71bc5cce96366b5d7a569937c529eeda66c7293784a9402801af31
