@@ -82,7 +82,6 @@ class WaitRound(CollectSameUntilThresholdRound):
             payload = json.loads(
                 self.most_voted_payload,
             )
-
             # If no requeest - WaitRound.no_request # noqa: E800
             # Else - {"address": "...", "prompt": "...", "tool": "...", "nonce": ...} # noqa: E800
             if payload == WaitRound.no_request:

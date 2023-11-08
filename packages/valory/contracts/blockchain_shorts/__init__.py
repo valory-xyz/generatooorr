@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
 #
-#   Copyright 2023 Valory AG
+#   Copyright 2023 valory
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -17,22 +17,4 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the final states of the mech interact abci app."""
-
-from packages.valory.skills.abstract_round_abci.base import DegenerateRound
-
-
-class FinishedMechRequestRound(DegenerateRound):
-    """FinishedMechRequestRound"""
-
-
-class FinishedMechTxSubmitterRound(DegenerateRound):
-    """FinishedMechTxSubmitterRound"""
-
-
-class FinishedMechRequestSkipRound(DegenerateRound):
-    """FinishedMechRequestSkipRound"""
-
-
-class FinishedMechResponseRound(DegenerateRound):
-    """FinishedMechResponseRound"""
+"""This module contains the support resources for the scaffold contract."""

@@ -25,6 +25,7 @@ from packages.valory.skills.abstract_round_abci.behaviour_utils import BaseBehav
 from packages.valory.skills.abstract_round_abci.behaviours import AbstractRoundBehaviour
 from packages.valory.skills.mech_interact_abci.behaviours.request import (
     MechRequestBehaviour,
+    MechRequestTxSelectorBehaviour,
 )
 from packages.valory.skills.mech_interact_abci.behaviours.response import (
     MechResponseBehaviour,
@@ -37,4 +38,8 @@ class MechInteractRoundBehaviour(AbstractRoundBehaviour):
 
     initial_behaviour_cls = MechRequestBehaviour
     abci_app_cls = MechInteractAbciApp  # type: ignore
-    behaviours: Set[Type[BaseBehaviour]] = {MechRequestBehaviour, MechResponseBehaviour}
+    behaviours: Set[Type[BaseBehaviour]] = {
+        MechRequestBehaviour,
+        MechRequestTxSelectorBehaviour,
+        MechResponseBehaviour,
+    }

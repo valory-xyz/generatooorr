@@ -19,17 +19,24 @@
 
 """This package contains round behaviours of ContributionSkillAbci."""
 
-from typing import Set, Type
+from abc import ABC
+from typing import Generator, Set, Type, cast
 
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
 from packages.valory.skills.generatooorr_abci.composition import GeneratooorrAbciApp
+from packages.valory.skills.generatooorr_abci.tx_multiplexer import (
+    SynchronizedData,
+    TxMultiplexerRound,
+    TxSettlementMultiplexerAbci,
+)
 from packages.valory.skills.inbox_abci.behaviours import InboxAbciRoundBehaviour
 from packages.valory.skills.mech_interact_abci.behaviours.round_behaviour import (
     MechInteractRoundBehaviour,
 )
+from packages.valory.skills.nft_mint_abci.behaviours import NftMintAbciRoundBehaviour
 from packages.valory.skills.outbox_abci.behaviours import OutboxAbciRoundBehaviour
 from packages.valory.skills.registration_abci.behaviours import (
     AgentRegistrationRoundBehaviour,
@@ -43,6 +50,40 @@ from packages.valory.skills.transaction_settlement_abci.behaviours import (
 )
 
 
+class TxMultiplexerBehaviour(BaseBehaviour, ABC):
+    """
+    The post transaction settlement behaviour.
+
+    This behaviour is executed after a tx is settled,
+    via the transaction_settlement_abci.
+    """
+
+    matching_round = TxMultiplexerRound
+
+    @property
+    def synchronized_data(self) -> SynchronizedData:
+        """Return the synchronized data."""
+        return cast(SynchronizedData, super().synchronized_data)
+
+    def async_act(self) -> Generator:
+        """Simply log that a tx is settled and wait for round end."""
+        self.context.logger.info(
+            f"The transaction submitted by {self.synchronized_data.tx_submitter} was successfully settled."
+        )
+        yield from self.wait_until_round_end()
+        self.set_done()
+
+
+class TxMultiplexerRoundBehaviour(AbstractRoundBehaviour):
+    """The post tx settlement full behaviour."""
+
+    initial_behaviour_cls = TxMultiplexerBehaviour
+    abci_app_cls = TxSettlementMultiplexerAbci
+    behaviours: Set[Type[BaseBehaviour]] = {
+        TxMultiplexerBehaviour,
+    }
+
+
 class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):
     """Class to define the behaviours this AbciApp has."""
 
@@ -54,5 +95,7 @@ class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):
         *MechInteractRoundBehaviour.behaviours,
         *TransactionSettlementRoundBehaviour.behaviours,
         *OutboxAbciRoundBehaviour.behaviours,
+        *NftMintAbciRoundBehaviour.behaviours,
+        *TxMultiplexerRoundBehaviour.behaviours,
         *ResetPauseABCIConsensusBehaviour.behaviours,
     }

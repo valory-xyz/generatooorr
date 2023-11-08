@@ -17,22 +17,9 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the final states of the mech interact abci app."""
+"""This module contains the implementation of the default skill."""
 
-from packages.valory.skills.abstract_round_abci.base import DegenerateRound
-
-
-class FinishedMechRequestRound(DegenerateRound):
-    """FinishedMechRequestRound"""
+from aea.configurations.base import PublicId
 
 
-class FinishedMechTxSubmitterRound(DegenerateRound):
-    """FinishedMechTxSubmitterRound"""
-
-
-class FinishedMechRequestSkipRound(DegenerateRound):
-    """FinishedMechRequestSkipRound"""
-
-
-class FinishedMechResponseRound(DegenerateRound):
-    """FinishedMechResponseRound"""
+PUBLIC_ID = PublicId.from_str("valory/nft_mint_abci:0.1.0")

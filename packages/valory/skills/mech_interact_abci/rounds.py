@@ -33,11 +33,14 @@ from packages.valory.skills.mech_interact_abci.states.base import (
     SynchronizedData,
 )
 from packages.valory.skills.mech_interact_abci.states.final_states import (
-    FinishedMechRequestRound,
     FinishedMechRequestSkipRound,
     FinishedMechResponseRound,
+    FinishedMechTxSubmitterRound,
 )
-from packages.valory.skills.mech_interact_abci.states.request import MechRequestRound
+from packages.valory.skills.mech_interact_abci.states.request import (
+    MechRequestRound,
+    MechTxSubmitterRound,
+)
 from packages.valory.skills.mech_interact_abci.states.response import MechResponseRound
 
 
@@ -45,27 +48,34 @@ class MechInteractAbciApp(AbciApp[Event]):
     """MechInteractAbciApp"""
 
     initial_round_cls: AppState = MechRequestRound
-    initial_states: Set[AppState] = {MechRequestRound, MechResponseRound}
+    initial_states: Set[AppState] = {
+        MechRequestRound,
+        MechTxSubmitterRound,
+        MechResponseRound,
+    }
     transition_function: AbciAppTransitionFunction = {
         MechRequestRound: {
-            Event.DONE: FinishedMechRequestRound,
+            Event.DONE: MechTxSubmitterRound,
             Event.SKIP_REQUEST: FinishedMechRequestSkipRound,
             Event.NO_MAJORITY: MechRequestRound,
             Event.ROUND_TIMEOUT: MechRequestRound,
+        },
+        MechTxSubmitterRound: {
+            Event.DONE: FinishedMechTxSubmitterRound,
         },
         MechResponseRound: {
             Event.DONE: FinishedMechResponseRound,
             Event.NO_MAJORITY: MechResponseRound,
             Event.ROUND_TIMEOUT: MechResponseRound,
         },
-        FinishedMechRequestRound: {},
         FinishedMechResponseRound: {},
         FinishedMechRequestSkipRound: {},
+        FinishedMechTxSubmitterRound: {},
     }
     final_states: Set[AppState] = {
-        FinishedMechRequestRound,
         FinishedMechResponseRound,
         FinishedMechRequestSkipRound,
+        FinishedMechTxSubmitterRound,
     }
     event_to_timeout: EventToTimeout = {
         Event.ROUND_TIMEOUT: 30.0,
@@ -78,12 +88,13 @@ class MechInteractAbciApp(AbciApp[Event]):
         # we should be able to include `SynchronizedData.final_tx_hash` in the set below,
         # however, we can't, because the checks incorrectly report that "db pre and post conditions intersect"
         MechResponseRound: set(),
+        MechTxSubmitterRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
-        FinishedMechRequestRound: {
+        FinishedMechRequestSkipRound: set(),
+        FinishedMechResponseRound: set(get_name(SynchronizedData.mech_responses)),
+        FinishedMechTxSubmitterRound: {
             get_name(SynchronizedData.most_voted_tx_hash),
             get_name(SynchronizedData.mech_price),
         },
-        FinishedMechRequestSkipRound: set(),
-        FinishedMechResponseRound: set(get_name(SynchronizedData.mech_responses)),
     }

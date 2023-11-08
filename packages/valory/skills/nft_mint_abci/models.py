@@ -17,22 +17,28 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the final states of the mech interact abci app."""
+"""This module contains the shared state for the abci skill of NftMintAbciApp."""
 
-from packages.valory.skills.abstract_round_abci.base import DegenerateRound
-
-
-class FinishedMechRequestRound(DegenerateRound):
-    """FinishedMechRequestRound"""
-
-
-class FinishedMechTxSubmitterRound(DegenerateRound):
-    """FinishedMechTxSubmitterRound"""
-
-
-class FinishedMechRequestSkipRound(DegenerateRound):
-    """FinishedMechRequestSkipRound"""
+from packages.valory.skills.abstract_round_abci.models import BaseParams
+from packages.valory.skills.abstract_round_abci.models import (
+    BenchmarkTool as BaseBenchmarkTool,
+)
+from packages.valory.skills.abstract_round_abci.models import Requests as BaseRequests
+from packages.valory.skills.abstract_round_abci.models import (
+    SharedState as BaseSharedState,
+)
+from packages.valory.skills.nft_mint_abci.rounds import NftMintAbciApp
 
 
-class FinishedMechResponseRound(DegenerateRound):
-    """FinishedMechResponseRound"""
+class SharedState(BaseSharedState):
+    """Keep the current shared state of the skill."""
+
+    abci_app_cls = NftMintAbciApp
+
+
+class Params(BaseParams):
+    """Parameters."""
+
+
+Requests = BaseRequests
+BenchmarkTool = BaseBenchmarkTool

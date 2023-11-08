@@ -17,22 +17,22 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the final states of the mech interact abci app."""
+"""This module contains the transaction payloads of the NftMintAbciApp."""
 
-from packages.valory.skills.abstract_round_abci.base import DegenerateRound
+from dataclasses import dataclass
 
-
-class FinishedMechRequestRound(DegenerateRound):
-    """FinishedMechRequestRound"""
+from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
 
 
-class FinishedMechTxSubmitterRound(DegenerateRound):
-    """FinishedMechTxSubmitterRound"""
+@dataclass(frozen=True)
+class NftMintPayload(BaseTxPayload):
+    """Represent a transaction payload for the TokenTrackRound."""
+
+    content: str
 
 
-class FinishedMechRequestSkipRound(DegenerateRound):
-    """FinishedMechRequestSkipRound"""
+@dataclass(frozen=True)
+class VerifyMintPayload(BaseTxPayload):
+    """Represent a transaction payload for the TokenTrackRound."""
 
-
-class FinishedMechResponseRound(DegenerateRound):
-    """FinishedMechResponseRound"""
+    token_id: int

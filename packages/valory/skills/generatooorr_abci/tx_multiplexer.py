@@ -1,0 +1,118 @@
+# -*- coding: utf-8 -*-
+# ------------------------------------------------------------------------------
+#
+#   Copyright 2022-2023 Valory AG
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#
+# ------------------------------------------------------------------------------
+"""This package contains the rounds of TxSettlementMultiplexerAbci."""
+
+from enum import Enum
+from typing import Dict, Optional, Set, Tuple, cast
+
+from packages.valory.skills.abstract_round_abci.base import (
+    AbciApp,
+    AbciAppTransitionFunction,
+    AppState,
+    BaseSynchronizedData,
+    CollectSameUntilThresholdRound,
+    DegenerateRound,
+)
+from packages.valory.skills.mech_interact_abci.states.request import (
+    MechTxSubmitterRound,
+)
+from packages.valory.skills.nft_mint_abci.rounds import NftMintRound
+
+
+_NO_TX_ROUND = "no_tx"
+
+
+class Event(Enum):
+    """Multiplexing events."""
+
+    DONE = "done"
+    MECH_TX = "mech_tx"
+    NFT_TX = "nft_tx"
+
+
+class SynchronizedData(BaseSynchronizedData):
+    """
+    Class to represent the synchronized data.
+
+    This data is replicated by the tendermint application.
+    """
+
+    @property
+    def tx_submitter(self) -> str:
+        """Get the round that submitted a tx to transaction_settlement_abci."""
+        return cast(str, self.db.get_strict("tx_submitter"))
+
+
+class TxMultiplexerRound(CollectSameUntilThresholdRound):
+    """A round that will be called after tx settlement is done."""
+
+    payload_class = _NO_TX_ROUND
+    payload_attribute = _NO_TX_ROUND
+    synchronized_data_class = SynchronizedData
+
+    round_id_to_event: Dict[str, Event] = {
+        MechTxSubmitterRound.auto_round_id(): Event.MECH_TX,
+        NftMintRound.auto_round_id(): Event.NFT_TX,
+    }
+
+    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Enum]]:
+        """
+        The end block.
+
+        This is a dummy round, no consensus is necessary here.
+        There is no need to send a tx through, nor to check for majority.
+        We simply use this round to check which round submitted the tx,
+        and move to the next state in accordance to that.
+        """
+        sync_data = cast(SynchronizedData, self.synchronized_data)
+        return sync_data, self.round_id_to_event[sync_data.tx_submitter]
+
+
+class FinishedMechTxRound(DegenerateRound):
+    """Finished allowlist update round."""
+
+
+class FinishedNFTMintTxRound(DegenerateRound):
+    """Finished weight update round."""
+
+
+class TxSettlementMultiplexerAbci(AbciApp[Event]):
+    """ABCI app to multiplex the transaction settlement skill."""
+
+    initial_round_cls: AppState = TxMultiplexerRound
+    initial_states: Set[AppState] = {TxMultiplexerRound}
+    transition_function: AbciAppTransitionFunction = {
+        TxMultiplexerRound: {
+            Event.MECH_TX: FinishedMechTxRound,
+            Event.NFT_TX: FinishedNFTMintTxRound,
+        },
+        FinishedMechTxRound: {},
+        FinishedNFTMintTxRound: {},
+    }
+    final_states: Set[AppState] = {
+        FinishedMechTxRound,
+        FinishedNFTMintTxRound,
+    }
+    db_pre_conditions: Dict[AppState, Set[str]] = {
+        TxMultiplexerRound: set(),
+    }
+    db_post_conditions: Dict[AppState, Set[str]] = {
+        FinishedMechTxRound: set(),
+        FinishedNFTMintTxRound: set(),
+    }

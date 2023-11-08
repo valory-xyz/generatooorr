@@ -28,9 +28,6 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.valory.skills.mech_interact_abci.states.base import (
-    MechInteractionResponse,
-)
 from packages.valory.skills.outbox_abci.models import Params
 from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
 from packages.valory.skills.outbox_abci.rounds import (
@@ -59,16 +56,16 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
 
     matching_round: Type[AbstractRound] = PushNotificationRound
 
-    def _push_from_response(self, response: MechInteractionResponse) -> Generator:
+    def _push_from_response(self) -> Generator:
         """
         Push notification from mech interaction response.
 
         https://docs.walletconnect.com/web3inbox/sending-notifications?send-client=curl
         """
+        response = self.synchronized_data.mech_responses[0]
         data = json.loads(response.data)
         data["id"] = self.context.state.inbox.next_id
         self.context.state.inbox.add_response(data)
-
         address = self.synchronized_data.requests[response.nonce]
         self.context.logger.info(
             f"Pushing notification for address {address} with noncee {response.nonce}"
@@ -85,7 +82,7 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
                     "notification": {
                         "type": f"{self.params.w3_notification_type}",
                         "title": "Another",
-                        "body": "Generated video with IPFS hash " + data["video"],
+                        "body": f"Minted NFT with token ID {self.synchronized_data.token_id}",
                     },
                     "accounts": [f"eip155:1:{address}"],
                 }
@@ -95,8 +92,7 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
 
     def async_act(self) -> Generator:
         """Get a list of the new tokens."""
-        for response in self.synchronized_data.mech_responses:
-            yield from self._push_from_response(response=response)
+        yield from self._push_from_response()
         with self.context.benchmark_tool.measure(
             self.behaviour_id,
         ).consensus():
