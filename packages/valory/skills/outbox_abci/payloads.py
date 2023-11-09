@@ -28,4 +28,4 @@ from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
 class PushNotificationPayload(BaseTxPayload):
     """Represent a transaction payload for the TokenTrackRound."""
 
-    content: str
+    success: bool

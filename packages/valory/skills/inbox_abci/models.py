@@ -46,6 +46,7 @@ class Params(BaseParams):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize parameters."""
         self.inbox_auth = self._ensure("inbox_auth", kwargs=kwargs, type_=str)
+        self.db_path = self._ensure("db_path", kwargs=kwargs, type_=str)
         super().__init__(*args, **kwargs)
 
 

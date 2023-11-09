@@ -93,14 +93,6 @@ class HttpResponseCode(Enum):
         return CODE_TO_MESSAGE[self.value]
 
 
-class HttpMethod(Enum):
-    """Http methods"""
-
-    GET = "get"
-    HEAD = "head"
-    POST = "post"
-
-
 class TypedResponse(TypedDict):
     """Typed response dict."""
 
@@ -123,7 +115,7 @@ class HttpApplication:
             headers = dict(
                 map(
                     lambda x: x.split(": ", maxsplit=1),
-                    message.headers.strip().split("\n"),
+                    [line for line in message.headers.strip().split("\n") if ": " in line],
                 )
             )
             if headers.get("Authorization", "") != self.auth:
@@ -133,7 +125,7 @@ class HttpApplication:
                 )
         url_meta = urlparse(message.url)
         handler: Callable[[HttpMessage, HttpDialogue], TypedResponse] = getattr(
-            self, message.method + url_meta.path.replace("/", "_"), self._respond_404
+            self, message.method.lower() + url_meta.path.replace("/", "_"), self._respond_404
         )
         return handler(message)
 
@@ -161,7 +153,7 @@ class HttpApplication:
         )
 
     def _respond_404(self, message: HttpMessage) -> TypedResponse:
-        """Send an OK response with the provided data"""
+        """Respond with a 404 Not Found error for the requested route."""
         return TypedResponse(
             code=HttpResponseCode.NOT_FOUND,
             data={
@@ -195,8 +187,12 @@ class InBox:
     def add_response(self, response: Dict, db: Optional[str] = None) -> None:
         """Add response to processed list."""
         self._processed.append(response)
-        with open(db or "/logs/db.json", "w") as file:
-            json.dump(self._processed, file)
+        db_path = db or self.context.params.default_db_path
+        try:
+            with open(db_path, "w") as file:
+                json.dump(self._processed, file)
+        except IOError as e:
+            self.context.logger.error(f"An error occurred while writing response `{response}` to the database file: {e}")
 
     def get_responses(self) -> List[Dict]:
         """Return the available responses."""
@@ -210,6 +206,8 @@ class InBox:
     def next_id(self) -> int:
         """Get the next response id"""
         return len(self._processed) + 1
+
+    # TODO: `_processed` can grow forever
 
 
 class HttpHandler(BaseHttpHandler):
