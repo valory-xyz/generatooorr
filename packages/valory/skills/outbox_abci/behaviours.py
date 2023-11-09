@@ -55,8 +55,11 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
     """PushNotificationBehaviour"""
 
     matching_round: Type[AbstractRound] = PushNotificationRound
+    retry_count: int = 0
 
-    def _push_from_response(self) -> Generator:
+    # TODO: this won't work for more than one agent as then all of them will send the same notification.
+
+    def _push_from_response(self, retry: int) -> Generator:
         """
         Push notification from mech interaction response.
 
@@ -81,23 +84,33 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
                 {
                     "notification": {
                         "type": f"{self.params.w3_notification_type}",
-                        "title": "Another",
-                        "body": f"Minted NFT with token ID {self.synchronized_data.token_id}",
+                        "title": "Another short? WTF!",
+                        "body": f"Your recently requested short has arrived! Minted NFT with token ID {self.synchronized_data.token_id}",
                     },
                     "accounts": [f"eip155:1:{address}"],
                 }
             ).encode("utf-8"),
         )
-        self.context.logger.info(notification_response)
+        self.context.logger.info(f"Notification response for {address} and token {self.synchronized_data.token_id}: {notification_response}")
+        try:
+            response = json.loads(notification_response)
+            if "sent" in response and len(response["sent"]) > 0:
+                return True, retry
+        return False, retry
 
     def async_act(self) -> Generator:
         """Get a list of the new tokens."""
-        yield from self._push_from_response()
+        success, retry = yield from self._push_from_response(self.retry_count)
+        if not success and retry < self.retry_count:
+            retry += 1
+            return
+        if not success and retry >= self.retry_count:
+            self.logger.error("Retries exceeded, not retrying notification!")
         with self.context.benchmark_tool.measure(
             self.behaviour_id,
         ).consensus():
             payload = PushNotificationPayload(
-                sender=self.context.agent_address, content=json.dumps({"status": True})
+                sender=self.context.agent_address, success=status
             )
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()

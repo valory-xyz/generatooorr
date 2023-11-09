@@ -79,6 +79,9 @@ class WaitRound(CollectSameUntilThresholdRound):
     def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
         """Process the end of the block."""
         if self.threshold_reached:
+            # TODO: suboptimal to use json encoding. You then don't get the framework
+            # mechanisms that ensure message integrity for free. In a multi-agent
+            # system this could fail in many ways (not json, not right fields, etc etc)
             payload = json.loads(
                 self.most_voted_payload,
             )

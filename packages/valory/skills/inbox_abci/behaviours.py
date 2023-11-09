@@ -53,7 +53,7 @@ class InboxAbciBaseBehaviour(BaseBehaviour, ABC):
 
     @property
     def inbox(self) -> InBox:
-        """Return the params."""
+        """Return the inbox."""
         return cast(InBox, self.context.state.inbox)
 
 

@@ -69,6 +69,7 @@ models:
     class_name: LedgerApiDialogues
   params:
     args:
+      db_path: '/logs/db.json'
       inbox_auth: inbox_auth
       multisend_address: '0x0000000000000000000000000000000000000000'
       termination_sleep: 900

@@ -123,6 +123,8 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
             image=data["image"],
             video=data["video"],
         )
+        if ipfs_hash is None:
+            return
         mint_tx = yield from self._prepare_mint_mstx(
             owner=owner,
             ipfs_hash=ipfs_hash,
