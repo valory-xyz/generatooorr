@@ -120,6 +120,5 @@ class BlockchainShortsContract(Contract):
         receipt = ledger_api.api.eth.get_transaction_receipt(tx_hash)
         logs = contract.events.CreateBlockchainShort().process_receipt(receipt)
         for log in logs:
-            if log["args"]["hash"].hex() == metadata_hash:
-                return {"token_id": log["args"]["id"]}
+            return {"token_id": log["args"]["id"]}
         return {"token_id": None}

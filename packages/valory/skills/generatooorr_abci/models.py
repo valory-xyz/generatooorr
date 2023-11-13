@@ -41,12 +41,15 @@ from packages.valory.skills.reset_pause_abci.rounds import Event as ResetPauseEv
 from packages.valory.skills.transaction_settlement_abci.models import (
     TransactionParams as BaseTransactionParams,
 )
-
+from packages.valory.skills.nft_mint_abci.models import (
+    Params as BaseNFTMintParams,
+)
 
 MechInteractAbciParams = BaseMechInteractAbciParams
 InboxAbciParams = BaseInboxAbciParams
 OutboxAbciParams = BaseOutboxAbciParams
 TransactionParams = BaseTransactionParams
+NFTMintParams = BaseNFTMintParams
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
@@ -80,6 +83,6 @@ class SharedState(BaseSharedState):
 
 
 class Params(
-    MechInteractAbciParams, InboxAbciParams, OutboxAbciParams, TransactionParams
+    NFTMintParams, MechInteractAbciParams, InboxAbciParams, OutboxAbciParams, TransactionParams
 ):
     """A model to represent params for multiple abci apps."""

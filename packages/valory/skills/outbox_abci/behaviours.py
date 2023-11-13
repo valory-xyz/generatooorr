@@ -63,7 +63,7 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
         https://docs.walletconnect.com/web3inbox/sending-notifications?send-client=curl
         """
         response = self.synchronized_data.mech_responses[0]
-        data = json.loads(response.data)
+        data = json.loads(response.result)
         data["id"] = self.context.state.inbox.next_id
         self.context.state.inbox.add_response(data)
         address = self.synchronized_data.requests[response.nonce]

@@ -18,6 +18,7 @@
 # ------------------------------------------------------------------------------
 
 """This module contains the shared state for the abci skill of NftMintAbciApp."""
+from typing import Any
 
 from packages.valory.skills.abstract_round_abci.models import BaseParams
 from packages.valory.skills.abstract_round_abci.models import (
@@ -38,6 +39,11 @@ class SharedState(BaseSharedState):
 
 class Params(BaseParams):
     """Parameters."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initialize the params"""
+        self.blockchain_shorts_contract = self._ensure("blockchain_shorts_contract", kwargs, str)
+        super().__init__(*args, **kwargs)
 
 
 Requests = BaseRequests
