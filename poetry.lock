@@ -2069,13 +2069,13 @@ web3 = ">=6.0.0,<7"
 
 [[package]]
 name = "open-aea-test-autonomy"
-version = "0.13.3"
+version = "0.13.4"
 description = "Plugin containing test tools for open-autonomy packages."
 optional = false
 python-versions = "*"
 files = [
-    {file = "open-aea-test-autonomy-0.13.3.tar.gz", hash = "sha256:2156be8e5f3e00ece4924950e5a14f66e3203ef899905f4b2da50f199f9c461c"},
-    {file = "open_aea_test_autonomy-0.13.3-py3-none-any.whl", hash = "sha256:a1607b79e8ab9e658d9bf4e6d96d459dca6d82f1a07fb4eca6f594c45d3184cd"},
+    {file = "open-aea-test-autonomy-0.13.4.tar.gz", hash = "sha256:27a8165613c8466f4002851f6206a4edf83c504130c565e336278a769aca1902"},
+    {file = "open_aea_test_autonomy-0.13.4-py3-none-any.whl", hash = "sha256:30216e80fc7034a3ce06f2cc8bb334a021531d80d339f8771302ba408a1a36c9"},
 ]
 
 [package.dependencies]
@@ -2086,13 +2086,13 @@ pytest = "7.2.1"
 
 [[package]]
 name = "open-autonomy"
-version = "0.13.3"
+version = "0.13.4"
 description = "A framework for the creation of autonomous agent services."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "open-autonomy-0.13.3.tar.gz", hash = "sha256:222866239f586fe35b745ee92e566fc8f5a0cb1b453098eb35240275a042572b"},
-    {file = "open_autonomy-0.13.3-py3-none-any.whl", hash = "sha256:f34533d3dfcfd1a7e9a8fda9c0ec52cf64eacb93dd12f948b2a80eae5c6f166e"},
+    {file = "open-autonomy-0.13.4.tar.gz", hash = "sha256:651a056e229722184b6a2cd414dc9586caf585326bc61555479134bb477954ed"},
+    {file = "open_autonomy-0.13.4-py3-none-any.whl", hash = "sha256:bd3183c703d6d7a0251f771e541e4bedd5093d8304fa58bd0c89a8191e0974d4"},
 ]
 
 [package.dependencies]
@@ -2104,7 +2104,10 @@ hexbytes = "*"
 jsonschema = ">=4.16.0,<=4.19.0"
 open-aea = {version = "1.41.0.post1", extras = ["all"]}
 open-aea-cli-ipfs = "1.41.0.post1"
-pytest = "7.2.1"
+pytest = [
+    {version = "7.2.1"},
+    {version = ">=7.0.0,<7.3.0", optional = true, markers = "extra == \"all\""},
+]
 python-dotenv = ">=0.14.0,<0.18.0"
 texttable = "1.6.7"
 valory-docker-compose = "1.29.3"
@@ -3456,4 +3459,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "<4,>=3.8"
-content-hash = "41c91c6e7f51150bf01d60d655e0d9db8597a89a5bd34f08c3c0f1e6ee92b8eb"
+content-hash = "852267ead46c1566f1dee4e74839adbc3e19719c9411ac4b2f966b27de6a84b5"
