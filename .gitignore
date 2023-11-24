@@ -3,6 +3,7 @@
 
 agent/
 temp/
+__pycache__
 
 packages/open_aea
 packages/valory/protocols

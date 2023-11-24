@@ -21,3 +21,6 @@ protobuf = ">=4.21.0,<4.25.0"
 web3 = ">=6.0.0,<7"
 tomte = {version = "==0.2.13", extras = ["tests", "cli", "tox"]}
 
+[tool.poetry.group.dev.dependencies]
+tomte = {version = "0.2.13", extras = ["cli", "tests"]}
+

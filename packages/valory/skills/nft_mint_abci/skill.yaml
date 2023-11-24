@@ -18,7 +18,7 @@ connections: []
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeiaiwsdkahhluledg3n4gmejht6oxi7zbfkqruxqe4yj3anbb2x7yi
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
-- valory/blockchain_shorts:0.1.0:bafybeiafx3awiouxcwa4kqprdsn524qrqibelowg3zir4ge3jo2rcopa6i
+- valory/blockchain_shorts:0.1.0:bafybeibq32wtsqoyeoxpkf4anviusf6pnz2pqin4xwlkqfyf2tzik5o4we
 protocols:
 - valory/contract_api:1.0.0:bafybeialhbjvwiwcnqq3ysxcyemobcbie7xza66gaofcvla5njezkvhcka
 - valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe

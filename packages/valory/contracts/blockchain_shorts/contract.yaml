@@ -6,9 +6,9 @@ description: The scaffold contract scaffolds a contract to be implemented by the
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeieeus2bbbexmthy4pnsdtgen4flxzk3ao5ekjbocvmrkhhszffbgu
+  __init__.py: bafybeicqln5tyudb5bzg27wale3xjvuliat6ipn6hntg5pqtnllex4pyre
   build/BlockchainShorts.json: bafybeibov6aqkoriod4i4axzvvq6eyxg4kpf4h6mbooruqedxb5hxajd2a
-  contract.py: bafybeihk4f4zsucsis7ynde4vfoi5d6hryfsw4m3eityn5uqsec3ak63wu
+  contract.py: bafybeifyytdqbjhjzvx7onshr5j7mf3volha5irb637n4lxzab7lzqwfve
 fingerprint_ignore_patterns: []
 class_name: BlockchainShortsContract
 contract_interface_paths:
