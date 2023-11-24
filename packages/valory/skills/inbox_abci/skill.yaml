@@ -140,5 +140,7 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies: {}
+dependencies:
+  typing_extensions:
+    version: '>=3.10.0.2'
 is_abstract: true

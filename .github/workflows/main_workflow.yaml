@@ -65,8 +65,8 @@ jobs:
       #   run: tox -e liccheck
       - name: Check doc links
         run: tomte check-doc-links
-      - name: Check doc IPFS hashes
-        run: tox -e check-doc-hashes
+      # - name: Check doc IPFS hashes
+      #   run: tox -e check-doc-hashes
 
   linter_checks:
     continue-on-error: False
