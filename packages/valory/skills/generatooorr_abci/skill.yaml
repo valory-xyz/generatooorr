@@ -21,8 +21,8 @@ skills:
 - valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
 - valory/registration_abci:0.1.0:bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme
 - valory/inbox_abci:0.1.0:bafybeicq7okli7cxzoti5goxear2uu4xppkafmhqoikqpr3nseiaik6evq
-- valory/mech_interact_abci:0.1.0:bafybeidar5irfiljqalkgknmyzuypwcckyh35o5q77wqyy222ynbejeeje
-- valory/nft_mint_abci:0.1.0:bafybeiangi3h2awlhmz2m2da7jcxscekjrhabjyorottszzqd36gdubxqq
+- valory/mech_interact_abci:0.1.0:bafybeie5gtjx372kg6bjphhate5ki2c5hdj2zh2vnlnj4mvuqjmkjy2whe
+- valory/nft_mint_abci:0.1.0:bafybeicwanmd3ai6fhe6a24nys4f6ao5rvehidf4lhvegt3xpw3fcoemqu
 - valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
 - valory/outbox_abci:0.1.0:bafybeiaglz3m6wpnxcc5id4rkgpvzkfq3famnqdebsv62ov263yzfyogei
 - valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q
