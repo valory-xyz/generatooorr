@@ -1,14 +1,14 @@
 {
     "dev": {
-        "contract/valory/mech/0.1.0": "bafybeigtrhkhl6hex5awwdfkcm2gbhfq2bw5aaquhivsj3b24exp67pnzi",
-        "skill/valory/mech_interact_abci/0.1.0": "bafybeie5gtjx372kg6bjphhate5ki2c5hdj2zh2vnlnj4mvuqjmkjy2whe",
+        "contract/valory/mech/0.1.0": "bafybeieg7shlq3qef2ka6ra73vmdguwyewfth4sd755ujileivxssyj5iy",
+        "skill/valory/mech_interact_abci/0.1.0": "bafybeibdf5o4r2xymybbqeuhep5wnbe53xav356ezftezgyi546pfkdfeu",
         "skill/valory/inbox_abci/0.1.0": "bafybeicq7okli7cxzoti5goxear2uu4xppkafmhqoikqpr3nseiaik6evq",
         "skill/valory/outbox_abci/0.1.0": "bafybeiaglz3m6wpnxcc5id4rkgpvzkfq3famnqdebsv62ov263yzfyogei",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeibpv6zkcgww2sdvlalrrmich45lygmrxpmqkwnzcldnqfge2yleju",
-        "agent/valory/generatooorr/0.1.0": "bafybeif6frsoq4aiuxycinnwoqpwetdm2jahztsr4542tq6inuwqdy4fai",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeialxiu2vig7ywrxd37a4ndrxhont4pwvypbsjt7vhaxujmivce6fu",
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeifdfpcia54xv4er52hqahgkmia2xnm6vpecnqmt7xdss5du3n4loi",
+        "agent/valory/generatooorr/0.1.0": "bafybeiasy5vrm5asuo7vg24wvtm74npm3xqqu5znyz6r56mmojhnu7xtlu",
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeiayxvxqzgi2bfjwdafmlijkml6xvmscsszsxuwwcv7rjsi42a3xsy",
         "contract/valory/blockchain_shorts/0.1.0": "bafybeibq32wtsqoyeoxpkf4anviusf6pnz2pqin4xwlkqfyf2tzik5o4we",
-        "skill/valory/nft_mint_abci/0.1.0": "bafybeicwanmd3ai6fhe6a24nys4f6ao5rvehidf4lhvegt3xpw3fcoemqu"
+        "skill/valory/nft_mint_abci/0.1.0": "bafybeictromo5qwfpdyjntlurv2rsnncwsm75z4v6zqurgacznse6ptfy4"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",

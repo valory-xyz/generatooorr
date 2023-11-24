@@ -5,7 +5,7 @@ license: Apache-2.0
 description: Generatooorr agent
 aea_version: '>=1.19.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeicakmzg3ku2ki7oko3ovkbg3jhqdof2ite2ssnxb67xd6jxccl4te
+  __init__.py: bafybeifjlp7wgdnxptlu4omqinxqictottletdix2mqleawufukq6wvwqq
 fingerprint_ignore_patterns: []
 connections:
 - valory/abci:0.1.0:bafybeigzgupmh6kwwx4jbqkw7qri5vr6vz53xbi4uksulh6oiovdplmviu
@@ -17,7 +17,7 @@ connections:
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeifmsjpgbifvk7y462rhfczvjvpigkdniavghhg5utza3hbnffioq4
 - valory/gnosis_safe_proxy_factory:0.1.0:bafybeigejiv4fkksyjwmr6doo23kfpicfbktuwspbamasyvjusfdyjtrxy
-- valory/mech:0.1.0:bafybeigtrhkhl6hex5awwdfkcm2gbhfq2bw5aaquhivsj3b24exp67pnzi
+- valory/mech:0.1.0:bafybeieg7shlq3qef2ka6ra73vmdguwyewfth4sd755ujileivxssyj5iy
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/service_registry:0.1.0:bafybeic4bgql6x5jotp43ddazybmyb7macifjzudavqll3547ayhawttpi
 protocols:
@@ -32,10 +32,10 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeifmfv4bgt5vzvgawlocksacqeadzg72zs4usvgjaf245hbbptpiki
 - valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/generatooorr_abci:0.1.0:bafybeibpv6zkcgww2sdvlalrrmich45lygmrxpmqkwnzcldnqfge2yleju
+- valory/generatooorr_abci:0.1.0:bafybeifdfpcia54xv4er52hqahgkmia2xnm6vpecnqmt7xdss5du3n4loi
 - valory/inbox_abci:0.1.0:bafybeicq7okli7cxzoti5goxear2uu4xppkafmhqoikqpr3nseiaik6evq
-- valory/mech_interact_abci:0.1.0:bafybeie5gtjx372kg6bjphhate5ki2c5hdj2zh2vnlnj4mvuqjmkjy2whe
-- valory/nft_mint_abci:0.1.0:bafybeicwanmd3ai6fhe6a24nys4f6ao5rvehidf4lhvegt3xpw3fcoemqu
+- valory/mech_interact_abci:0.1.0:bafybeibdf5o4r2xymybbqeuhep5wnbe53xav356ezftezgyi546pfkdfeu
+- valory/nft_mint_abci:0.1.0:bafybeictromo5qwfpdyjntlurv2rsnncwsm75z4v6zqurgacznse6ptfy4
 - valory/outbox_abci:0.1.0:bafybeiaglz3m6wpnxcc5id4rkgpvzkfq3famnqdebsv62ov263yzfyogei
 - valory/registration_abci:0.1.0:bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme
 - valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q

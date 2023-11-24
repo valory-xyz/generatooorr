@@ -40,10 +40,7 @@ class Mech(Contract):
 
     @classmethod
     def get_price(
-        cls,
-        ledger_api: EthereumApi,
-        contract_address: str,
-        **kwargs: Any
+        cls, ledger_api: EthereumApi, contract_address: str, **kwargs: Any
     ) -> JSONLike:
         """Get the price of a request."""
         contract_instance = cls.get_instance(ledger_api, contract_address)
@@ -56,7 +53,7 @@ class Mech(Contract):
         ledger_api: LedgerApi,
         contract_address: str,
         request_data: bytes,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Dict[str, bytes]:
         """Gets the encoded arguments for a request tx, which should only be called via the multisig.
 
@@ -77,7 +74,7 @@ class Mech(Contract):
         expected_logs: int,
         event_name: str,
         *args: Any,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSONLike:
         """Process the logs of the given event."""
         ledger_api = cast(EthereumApi, ledger_api)
@@ -97,7 +94,9 @@ class Mech(Contract):
             if event_args is None or any(
                 expected_key not in event_args for expected_key in args
             ):
-                return {"error": f"The emitted event's ({event_name}) logs for tx {tx_hash} do not match the expected format: {log}"}
+                return {
+                    "error": f"The emitted event's ({event_name}) logs for tx {tx_hash} do not match the expected format: {log}"
+                }
             results.append({arg_name: event_args[arg_name] for arg_name in args})
 
         return dict(results=results)
@@ -109,7 +108,7 @@ class Mech(Contract):
         contract_address: str,
         tx_hash: HexStr,
         expected_logs: int = 1,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSONLike:
         """
         Process the request receipt to get the requestId and the given data from the `Request` event's logs.
@@ -122,7 +121,13 @@ class Mech(Contract):
         which contains a list of dictionaries (as many as the expected logs) containing the request id and the data.
         """
         return cls._process_event(
-            ledger_api, contract_address, tx_hash, expected_logs, "Request", "requestId", "data"
+            ledger_api,
+            contract_address,
+            tx_hash,
+            expected_logs,
+            "Request",
+            "requestId",
+            "data",
         )
 
     @classmethod
@@ -132,7 +137,7 @@ class Mech(Contract):
         contract_address: str,
         tx_hash: HexStr,
         expected_logs: int = 1,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSONLike:
         """
         Process the request receipt to get the requestId and the delivered data if the `Deliver` event has been emitted.
@@ -144,7 +149,13 @@ class Mech(Contract):
         :return: a dictionary with the request id and the data.
         """
         return cls._process_event(
-            ledger_api, contract_address, tx_hash, expected_logs, "Deliver", "requestId", "data"
+            ledger_api,
+            contract_address,
+            tx_hash,
+            expected_logs,
+            "Deliver",
+            "requestId",
+            "data",
         )
 
     @classmethod
@@ -153,7 +164,7 @@ class Mech(Contract):
         ledger_api: EthereumApi,
         contract_address: str,
         tx_hash: HexStr,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSONLike:
         """Get the number of the block in which the tx of the given hash was settled."""
         receipt: TxReceipt = ledger_api.api.eth.get_transaction_receipt(tx_hash)
@@ -168,7 +179,7 @@ class Mech(Contract):
         request_id: int,
         from_block: BlockIdentifier = "earliest",
         to_block: BlockIdentifier = "latest",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> JSONLike:
         """Filter the `Deliver` events emitted by the contract and get the data of the given `request_id`."""
         ledger_api = cast(EthereumApi, ledger_api)
@@ -202,10 +213,7 @@ class Mech(Contract):
 
     @classmethod
     def get_mech_id(
-        cls,
-        ledger_api: EthereumApi,
-        contract_address: str,
-        **kwargs: Any
+        cls, ledger_api: EthereumApi, contract_address: str, **kwargs: Any
     ) -> JSONLike:
         """Get the price of a request."""
         contract_instance = cls.get_instance(ledger_api, contract_address)
