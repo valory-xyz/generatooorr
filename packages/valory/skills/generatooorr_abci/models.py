@@ -38,6 +38,9 @@ from packages.valory.skills.mech_interact_abci.models import (
 from packages.valory.skills.mech_interact_abci.rounds import Event as MechInteractEvent
 from packages.valory.skills.outbox_abci.models import Params as BaseOutboxAbciParams
 from packages.valory.skills.reset_pause_abci.rounds import Event as ResetPauseEvent
+from packages.valory.skills.termination_abci.models import (
+    TerminationParams as BaseTerminationParams,
+)
 from packages.valory.skills.transaction_settlement_abci.models import (
     TransactionParams as BaseTransactionParams,
 )
@@ -46,6 +49,7 @@ from packages.valory.skills.transaction_settlement_abci.models import (
 MechInteractAbciParams = BaseMechInteractAbciParams
 InboxAbciParams = BaseInboxAbciParams
 OutboxAbciParams = BaseOutboxAbciParams
+TerminationParams = BaseTerminationParams
 TransactionParams = BaseTransactionParams
 
 Requests = BaseRequests
@@ -80,6 +84,10 @@ class SharedState(BaseSharedState):
 
 
 class Params(
-    MechInteractAbciParams, InboxAbciParams, OutboxAbciParams, TransactionParams
+    MechInteractAbciParams,
+    InboxAbciParams,
+    OutboxAbciParams,
+    TerminationParams,
+    TransactionParams,
 ):
     """A model to represent params for multiple abci apps."""
