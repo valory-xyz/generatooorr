@@ -2,7 +2,7 @@ name: nft_mint_abci
 author: valory
 version: 0.1.0
 type: skill
-description: A skill that dynamically updates NFT images according to user scores.
+description: A skill that mints NFTs for the generated shorts.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
@@ -18,13 +18,13 @@ connections: []
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeifmsjpgbifvk7y462rhfczvjvpigkdniavghhg5utza3hbnffioq4
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
-- valory/blockchain_shorts:0.1.0:bafybeibq32wtsqoyeoxpkf4anviusf6pnz2pqin4xwlkqfyf2tzik5o4we
+- valory/blockchain_shorts:0.1.0:bafybeidzgwhfygnh6waf4a43pcmcwwkexiqooziulzjuy4g5jqtq6icmdi
 protocols:
 - valory/contract_api:1.0.0:bafybeialhbjvwiwcnqq3ysxcyemobcbie7xza66gaofcvla5njezkvhcka
 - valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
 skills:
 - valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/mech_interact_abci:0.1.0:bafybeibdf5o4r2xymybbqeuhep5wnbe53xav356ezftezgyi546pfkdfeu
+- valory/mech_interact_abci:0.1.0:bafybeieavwfw6t7xak6iinfycknvdqtbvyodfeuru2cjbasklbzyn27h5m
 - valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
 behaviours:
   main:

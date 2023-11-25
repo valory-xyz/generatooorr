@@ -1,14 +1,14 @@
 token_id-"component_id"
 X-"contract/valory/blockchain_shorts/0.1.0"
-X-"contract/valory/mech/0.1.0"
-X-"skill/valory/generator_abci/0.1.0"
-X-"skill/valory/inbox_abci/0.1.0"
-X-"skill/valory/mech_interact_abci/0.1.0"
-X-"skill/valory/nft_mint_abci/0.1.0"
-X-"skill/valory/outbox_abci/0.1.0"
+X-"contract/valory/mech_shorts/0.1.0"
+X-"skill/valory/inbox_abci/0.1.0" -> 4, 14, 60
+X-"skill/valory/outbox_abci/0.1.0" -> 4, 14
+X-"skill/valory/mech_interact_abci/0.1.0" -> 3, 14, 19, 20, 22, contract/valory/mech_shorts/0.1.0
+X-"skill/valory/nft_mint_abci/0.1.0" -> 3, 4, 14, 19, 20, 22, contract/valory/blockchain_shorts/0.1.0, skill/valory/mech_interact_abci/0.1.0
+X-"skill/valory/generatooorr_abci/0.1.0" -> 14, 16, 17, 22, 4 skills above
 ---
 token_id-"agent_id"
-X-"agent/valory/generatooorr/0.1.0"
+X-"agent/valory/generatooorr/0.1.0" -> 1..7, 8..11, 12, 13, 14, 16, 17, 18..20, 22, 39, 50, 60, contract/valory/mech_shorts/0.1.0, 5 skills above
 ---
 token_id-"service_id"
-X-"service/valory/generatooorr_gnosis/0.1.0"
+X-"service/valory/generatooorr_gnosis/0.1.0" -> agent/valory/generatooorr/0.1.0

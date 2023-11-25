@@ -30,7 +30,7 @@ from eth_typing import HexStr
 from web3.types import BlockData, BlockIdentifier, EventData, TxReceipt
 
 
-PUBLIC_ID = PublicId.from_str("valory/mech:0.1.0")
+PUBLIC_ID = PublicId.from_str("valory/mech_shorts:0.1.0")
 
 
 class Mech(Contract):

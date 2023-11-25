@@ -2,7 +2,7 @@ agent_name: generatooorr
 author: valory
 version: 0.1.0
 license: Apache-2.0
-description: Generatooorr agent
+description: Generatooorr agent acting as a backend to shorts.wtf
 aea_version: '>=1.19.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeifjlp7wgdnxptlu4omqinxqictottletdix2mqleawufukq6wvwqq
@@ -17,7 +17,7 @@ connections:
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeifmsjpgbifvk7y462rhfczvjvpigkdniavghhg5utza3hbnffioq4
 - valory/gnosis_safe_proxy_factory:0.1.0:bafybeigejiv4fkksyjwmr6doo23kfpicfbktuwspbamasyvjusfdyjtrxy
-- valory/mech:0.1.0:bafybeieg7shlq3qef2ka6ra73vmdguwyewfth4sd755ujileivxssyj5iy
+- valory/mech_shorts:0.1.0:bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/service_registry:0.1.0:bafybeic4bgql6x5jotp43ddazybmyb7macifjzudavqll3547ayhawttpi
 protocols:
@@ -32,11 +32,11 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeifmfv4bgt5vzvgawlocksacqeadzg72zs4usvgjaf245hbbptpiki
 - valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/generatooorr_abci:0.1.0:bafybeifdfpcia54xv4er52hqahgkmia2xnm6vpecnqmt7xdss5du3n4loi
-- valory/inbox_abci:0.1.0:bafybeicq7okli7cxzoti5goxear2uu4xppkafmhqoikqpr3nseiaik6evq
-- valory/mech_interact_abci:0.1.0:bafybeibdf5o4r2xymybbqeuhep5wnbe53xav356ezftezgyi546pfkdfeu
-- valory/nft_mint_abci:0.1.0:bafybeictromo5qwfpdyjntlurv2rsnncwsm75z4v6zqurgacznse6ptfy4
-- valory/outbox_abci:0.1.0:bafybeiaglz3m6wpnxcc5id4rkgpvzkfq3famnqdebsv62ov263yzfyogei
+- valory/generatooorr_abci:0.1.0:bafybeiezu3kbbiug72ksidsaxkzal3u6ufos3cfbrf2wgtg2iamxmr7zrm
+- valory/inbox_abci:0.1.0:bafybeifkk2d3uqmgyaxxymrbqsm3pgnaoibcnsmubonxoyupelxgwch2u4
+- valory/mech_interact_abci:0.1.0:bafybeieavwfw6t7xak6iinfycknvdqtbvyodfeuru2cjbasklbzyn27h5m
+- valory/nft_mint_abci:0.1.0:bafybeifrfa7ep55tqbxtb5nznl4i7ygoewqvqymw5ltgayppi3m452htwu
+- valory/outbox_abci:0.1.0:bafybeiejabxswlmimzj6z2bgefriil6b5e6kgpafj4uyxpeabspkgoqxu4
 - valory/registration_abci:0.1.0:bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme
 - valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q
 - valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi

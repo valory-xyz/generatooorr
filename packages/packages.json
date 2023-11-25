@@ -1,14 +1,14 @@
 {
     "dev": {
-        "contract/valory/mech/0.1.0": "bafybeieg7shlq3qef2ka6ra73vmdguwyewfth4sd755ujileivxssyj5iy",
-        "skill/valory/mech_interact_abci/0.1.0": "bafybeibdf5o4r2xymybbqeuhep5wnbe53xav356ezftezgyi546pfkdfeu",
-        "skill/valory/inbox_abci/0.1.0": "bafybeicq7okli7cxzoti5goxear2uu4xppkafmhqoikqpr3nseiaik6evq",
-        "skill/valory/outbox_abci/0.1.0": "bafybeiaglz3m6wpnxcc5id4rkgpvzkfq3famnqdebsv62ov263yzfyogei",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeifdfpcia54xv4er52hqahgkmia2xnm6vpecnqmt7xdss5du3n4loi",
-        "agent/valory/generatooorr/0.1.0": "bafybeiasy5vrm5asuo7vg24wvtm74npm3xqqu5znyz6r56mmojhnu7xtlu",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeiayxvxqzgi2bfjwdafmlijkml6xvmscsszsxuwwcv7rjsi42a3xsy",
-        "contract/valory/blockchain_shorts/0.1.0": "bafybeibq32wtsqoyeoxpkf4anviusf6pnz2pqin4xwlkqfyf2tzik5o4we",
-        "skill/valory/nft_mint_abci/0.1.0": "bafybeictromo5qwfpdyjntlurv2rsnncwsm75z4v6zqurgacznse6ptfy4"
+        "skill/valory/mech_interact_abci/0.1.0": "bafybeieavwfw6t7xak6iinfycknvdqtbvyodfeuru2cjbasklbzyn27h5m",
+        "skill/valory/inbox_abci/0.1.0": "bafybeifkk2d3uqmgyaxxymrbqsm3pgnaoibcnsmubonxoyupelxgwch2u4",
+        "skill/valory/outbox_abci/0.1.0": "bafybeiejabxswlmimzj6z2bgefriil6b5e6kgpafj4uyxpeabspkgoqxu4",
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeiezu3kbbiug72ksidsaxkzal3u6ufos3cfbrf2wgtg2iamxmr7zrm",
+        "agent/valory/generatooorr/0.1.0": "bafybeiekydwpsifj32ayufk7ymr6a5gu64fixr6crajhx772vluev4g7m4",
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeibqfj3fhcxctj5u6dlbttfo2wrupe6zndap2peitvwhcfwglbs5vq",
+        "contract/valory/blockchain_shorts/0.1.0": "bafybeidzgwhfygnh6waf4a43pcmcwwkexiqooziulzjuy4g5jqtq6icmdi",
+        "skill/valory/nft_mint_abci/0.1.0": "bafybeifrfa7ep55tqbxtb5nznl4i7ygoewqvqymw5ltgayppi3m452htwu",
+        "contract/valory/mech_shorts/0.1.0": "bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",
