@@ -1,14 +1,14 @@
 {
     "dev": {
-        "contract/valory/mech/0.1.0": "bafybeieg7shlq3qef2ka6ra73vmdguwyewfth4sd755ujileivxssyj5iy",
-        "skill/valory/mech_interact_abci/0.1.0": "bafybeibdf5o4r2xymybbqeuhep5wnbe53xav356ezftezgyi546pfkdfeu",
-        "skill/valory/inbox_abci/0.1.0": "bafybeicq7okli7cxzoti5goxear2uu4xppkafmhqoikqpr3nseiaik6evq",
-        "skill/valory/outbox_abci/0.1.0": "bafybeiaglz3m6wpnxcc5id4rkgpvzkfq3famnqdebsv62ov263yzfyogei",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeifdfpcia54xv4er52hqahgkmia2xnm6vpecnqmt7xdss5du3n4loi",
-        "agent/valory/generatooorr/0.1.0": "bafybeiasy5vrm5asuo7vg24wvtm74npm3xqqu5znyz6r56mmojhnu7xtlu",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeiayxvxqzgi2bfjwdafmlijkml6xvmscsszsxuwwcv7rjsi42a3xsy",
-        "contract/valory/blockchain_shorts/0.1.0": "bafybeibq32wtsqoyeoxpkf4anviusf6pnz2pqin4xwlkqfyf2tzik5o4we",
-        "skill/valory/nft_mint_abci/0.1.0": "bafybeictromo5qwfpdyjntlurv2rsnncwsm75z4v6zqurgacznse6ptfy4"
+        "skill/valory/mech_interact_abci/0.1.0": "bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq",
+        "skill/valory/inbox_abci/0.1.0": "bafybeifkk2d3uqmgyaxxymrbqsm3pgnaoibcnsmubonxoyupelxgwch2u4",
+        "skill/valory/outbox_abci/0.1.0": "bafybeiejabxswlmimzj6z2bgefriil6b5e6kgpafj4uyxpeabspkgoqxu4",
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeibnve5s3o34kk3remlsrt2hiob623irklrm6yxctnzueiebi32fcy",
+        "agent/valory/generatooorr/0.1.0": "bafybeiarwglskvnoqcd2hrqn5wmdkgb3hjfscytwvps5o2f2h3ook322yi",
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeidaq5ojo7y7ynrddnzkaywk3fx5gue3hfrqp52gwl2orzcvk2fju4",
+        "contract/valory/blockchain_shorts/0.1.0": "bafybeidzgwhfygnh6waf4a43pcmcwwkexiqooziulzjuy4g5jqtq6icmdi",
+        "skill/valory/nft_mint_abci/0.1.0": "bafybeiabbc2ac4yulj7tv6vvxapcvhis2e3abfx5noz76kwul57uohgal4",
+        "contract/valory/mech_shorts/0.1.0": "bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",
@@ -33,6 +33,7 @@
         "skill/valory/abstract_round_abci/0.1.0": "bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q",
         "skill/valory/registration_abci/0.1.0": "bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme",
         "skill/valory/transaction_settlement_abci/0.1.0": "bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi",
-        "skill/valory/reset_pause_abci/0.1.0": "bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q"
+        "skill/valory/reset_pause_abci/0.1.0": "bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q",
+        "skill/valory/termination_abci/0.1.0": "bafybeifazwrksp756h7z42qqfcgi6lya6wmhbx46l7ghlaooe45gqnju7q"
     }
 }

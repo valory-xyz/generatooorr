@@ -45,6 +45,10 @@ from packages.valory.skills.registration_abci.behaviours import (
 from packages.valory.skills.reset_pause_abci.behaviours import (
     ResetPauseABCIConsensusBehaviour,
 )
+from packages.valory.skills.termination_abci.behaviours import (
+    BackgroundBehaviour,
+    TerminationAbciBehaviours,
+)
 from packages.valory.skills.transaction_settlement_abci.behaviours import (
     TransactionSettlementRoundBehaviour,
 )
@@ -94,8 +98,10 @@ class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):
         *InboxAbciRoundBehaviour.behaviours,
         *MechInteractRoundBehaviour.behaviours,
         *TransactionSettlementRoundBehaviour.behaviours,
+        *TerminationAbciBehaviours.behaviours,
         *OutboxAbciRoundBehaviour.behaviours,
         *NftMintAbciRoundBehaviour.behaviours,
         *TxMultiplexerRoundBehaviour.behaviours,
         *ResetPauseABCIConsensusBehaviour.behaviours,
     }
+    background_behaviours_cls = {BackgroundBehaviour}

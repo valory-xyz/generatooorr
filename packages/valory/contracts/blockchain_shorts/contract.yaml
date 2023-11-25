@@ -2,7 +2,7 @@ name: blockchain_shorts
 author: valory
 version: 0.1.0
 type: contract
-description: The scaffold contract scaffolds a contract to be implemented by the developer.
+description: The blockchain shorts NFT contract.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:

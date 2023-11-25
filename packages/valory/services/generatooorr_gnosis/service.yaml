@@ -1,13 +1,13 @@
 name: generatooorr_gnosis
 author: valory
 version: 0.1.0
-description: A generator of shorts.
+description: A service for generating shorts (AI generated short films).
 aea_version: '>=1.0.0, <2.0.0'
 license: Apache-2.0
 fingerprint:
   README.md: bafybeihoplqp3y2k6y4anmmtw4jfnvxuul36hurubnn2mdyxyuoaewibaa
 fingerprint_ignore_patterns: []
-agent: valory/generatooorr:0.1.0:bafybeiasy5vrm5asuo7vg24wvtm74npm3xqqu5znyz6r56mmojhnu7xtlu
+agent: valory/generatooorr:0.1.0:bafybeiarwglskvnoqcd2hrqn5wmdkgb3hjfscytwvps5o2f2h3ook322yi
 number_of_agents: 1
 deployment:
   agent:

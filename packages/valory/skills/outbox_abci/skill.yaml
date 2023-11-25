@@ -2,7 +2,7 @@ name: outbox_abci
 author: valory
 version: 0.1.0
 type: skill
-description: A skill that dynamically updates NFT images according to user scores.
+description: An abci skill that notifies the user when a short has been generated.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
