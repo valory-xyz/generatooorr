@@ -2,7 +2,7 @@
 
 ## Addresses
 
-- agent instance: "0x63F10385562fe15D79d908c53a9DF97C6b2b8482"
+- agent instance: "0x63F10385562fe15D79d908c53a9DF97C6b2b8482" & "0x339b3295C01c1b54F8A36746F700b5ADEC413795"
 - [multisig Gnosis](https://gnosisscan.io/address/0x74db17b32Db70F166376310dF071fe9747C0F4DE)
 
 ## State transitions - Happy path
