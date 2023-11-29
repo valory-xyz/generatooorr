@@ -2,7 +2,7 @@ name: inbox_abci
 author: valory
 version: 0.1.0
 type: skill
-description: A skill that dynamically updates NFT images according to user scores.
+description: An abci skill that handles incoming requests from users for shorts.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
@@ -20,7 +20,7 @@ contracts: []
 protocols:
 - valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
+- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
 behaviours:
   main:
     args: {}
@@ -140,5 +140,7 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies: {}
+dependencies:
+  typing_extensions:
+    version: '>=3.10.0.2'
 is_abstract: true

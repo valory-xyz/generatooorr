@@ -1,0 +1,14 @@
+token_id-"component_id"
+156-"contract/valory/blockchain_shorts/0.1.0"
+157-"contract/valory/mech_shorts/0.1.0"
+158-"skill/valory/inbox_abci/0.1.0"
+159-"skill/valory/outbox_abci/0.1.0"
+160-"skill/valory/mech_interact_abci/0.1.0"
+161-"skill/valory/nft_mint_abci/0.1.0"
+162-"skill/valory/generatooorr_abci/0.1.0"
+---
+token_id-"agent_id"
+23-"agent/valory/generatooorr/0.1.0"
+---
+token_id-"service_id"
+19-"service/valory/generatooorr/0.1.0"

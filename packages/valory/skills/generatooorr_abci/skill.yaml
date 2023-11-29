@@ -2,7 +2,7 @@ name: generatooorr_abci
 author: valory
 version: 0.1.0
 type: skill
-description: The chained abci for the generatooorr skill.
+description: The chained abci skill for the generatooorr.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
@@ -11,21 +11,22 @@ fingerprint:
   composition.py: bafybeibe27tpzpsj75xatdzeudgjrrcxmovbbbtwywapdb2f7vpdgt7e3i
   dialogues.py: bafybeigpwuzku3we7axmxeamg7vn656maww6emuztau5pg3ebsoquyfdqm
   handlers.py: bafybeic63srmrcogcbvcgzf54nwg2cbn2plfyrpbojjotrpyqqn456f6bq
-  models.py: bafybeih5brtrryrhe6kv6rlxr66cbyzgx4wf6ejneg635fl2auudvhrusu
+  models.py: bafybeifcdjymuedl54l6pkytgylkdz4gziodujuuvebwtog7anx3aemlim
   tx_multiplexer.py: bafybeiherv4cebpjnx5k6puf6pimuq2rwo3jt76y256y6neeidpfb2hip4
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
-- valory/registration_abci:0.1.0:bafybeih6armcjufwhkugsyj3vhbb77jsgavld53ragmkiayscpjmi3gesi
-- valory/inbox_abci:0.1.0:bafybeiglljh33ojzkgjqaixcpzhyrajh4iia6cwvp5i2mvjuqirsusuzwq
-- valory/mech_interact_abci:0.1.0:bafybeie36v4sdhh4tmdhlgtrtmaynrvjyfwgoylz65hxpqicj6o2nfbywu
-- valory/nft_mint_abci:0.1.0:bafybeib7nfbocgtibg52smjfcjgog3jzxf7ahl5so462ttfr6nxz6wbciu
-- valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
-- valory/outbox_abci:0.1.0:bafybeicj2zrx4t3636xhsdp7gf4s6v32qldqhtckodrgs5g3hmiwftg2by
-- valory/reset_pause_abci:0.1.0:bafybeihtcgzfacdeoi2osyd5kedm4heoxkcgtsgkhxx4t7vecyu6fj2vai
+- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
+- valory/registration_abci:0.1.0:bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme
+- valory/inbox_abci:0.1.0:bafybeifkk2d3uqmgyaxxymrbqsm3pgnaoibcnsmubonxoyupelxgwch2u4
+- valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
+- valory/nft_mint_abci:0.1.0:bafybeiabbc2ac4yulj7tv6vvxapcvhis2e3abfx5noz76kwul57uohgal4
+- valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
+- valory/outbox_abci:0.1.0:bafybeiejabxswlmimzj6z2bgefriil6b5e6kgpafj4uyxpeabspkgoqxu4
+- valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q
+- valory/termination_abci:0.1.0:bafybeifazwrksp756h7z42qqfcgi6lya6wmhbx46l7ghlaooe45gqnju7q
 behaviours:
   main:
     args: {}

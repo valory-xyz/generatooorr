@@ -1,15 +1,15 @@
-name: mech
+name: mech_shorts
 author: valory
 version: 0.1.0
 type: contract
-description: Agent mech contract
+description: Agent mech contract for blockchain shorts
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  README.md: bafybeibl4uw7rs6mwh7zuvdnqmj2o2xyr7nx5qk3w7torwx3jg6farn6ca
+  README.md: bafybeicsgmtq55zoskq5soa5xoy3cimj77yekjeyc53euholshaljpywvm
   __init__.py: bafybeicx5pxh3cxnml2biuuoebvafvu5tvy6mgkzyjzuubuoeebb5yzjsm
   build/mech.json: bafybeifmvuq5q64c5e6jhcnlyx3dauk6r2ypcc6hf4gj2obec3rzxyueum
-  contract.py: bafybeiblueqr3j3ll2bz6or73awrnyqxxmq2exd25675w4lnneboclcjd4
+  contract.py: bafybeidy5m6oyvkax4hybkszain3bqw7ts3s5am5ivzzy2cxbllydhb4cy
 fingerprint_ignore_patterns: []
 contracts: []
 class_name: Mech

@@ -2,19 +2,19 @@ name: mech_interact_abci
 author: valory
 version: 0.1.0
 type: skill
-description: The mech interact skill can be used to send requests to a mech and receive
-  the responses.
+description: The mech interact abci skill can be used to send requests to a mech and
+  receive the responses.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeidf3nlv5fpvfy4libtscayhirdw64shgmhfmvjiftjmjkmhu7auxq
   behaviours/__init__.py: bafybeie3zsi6p3yanz5mqwpkdrcgywaqvkit3hdintsb4awnvalgxpxa4i
-  behaviours/base.py: bafybeifb2lef4zqej47lnxukax5i46th6lspsbnznn67isg5jsvksqaeme
+  behaviours/base.py: bafybeiezyjxrvyvzktl6ehx2udbu3nuxu3wcesw7auskmnnkfxngaafgka
   behaviours/request.py: bafybeie5a2qbf74a2ptoghkjabr77uublorwukuudz5r6tu4etkyhiwv4e
-  behaviours/response.py: bafybeichmwfhue3mxtiyzsf5qfsgdzswqtfl7i3bsl2jiwmvr5xau27wve
+  behaviours/response.py: bafybeihgrzfdndh4wufwmqy4ilsv2n555oczipzxfw75klcsurmgo3kdme
   behaviours/round_behaviour.py: bafybeicwivk3g7edglb4nwaadldrxccwr2qjopmoydb5i4itikx7w6sfya
   dialogues.py: bafybeigjmyzd2bx6mgqiet2c223k6wkc5jk7kdkstbhpaxlqxatey26tlm
-  fsm_specification.yaml: bafybeiedt2qmjawb2nf5i4byknvdhyd2hn5qvuwcsyifaswxukybdcv7x4
+  fsm_specification.yaml: bafybeihj67lang6rhlit6rly2z4wbc56nlyqfgq3v6za6z653ukajglwhu
   handlers.py: bafybeiduy2nwkqdynainuimkjulcv7u2qq6iglkuut3gfurkckydapitg4
   models.py: bafybeiefic3muob67mijgak6i7cd6yuwbhyrdpjphdnlof257zhg276nzu
   payloads.py: bafybeif3vbkr2x77bgyg3wsomebbwtdy2hssyu7nkfcz7euymm35a5nd5i
@@ -34,14 +34,14 @@ fingerprint:
 fingerprint_ignore_patterns: []
 connections: []
 contracts:
-- valory/gnosis_safe:0.1.0:bafybeiaiwsdkahhluledg3n4gmejht6oxi7zbfkqruxqe4yj3anbb2x7yi
-- valory/mech:0.1.0:bafybeigtrhkhl6hex5awwdfkcm2gbhfq2bw5aaquhivsj3b24exp67pnzi
+- valory/gnosis_safe:0.1.0:bafybeifmsjpgbifvk7y462rhfczvjvpigkdniavghhg5utza3hbnffioq4
+- valory/mech_shorts:0.1.0:bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 protocols:
 - valory/contract_api:1.0.0:bafybeialhbjvwiwcnqq3ysxcyemobcbie7xza66gaofcvla5njezkvhcka
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeib5d3tt3jkd5b3sr2pbf2jkogicxxywve3z7n5ebau7vz4ibfsvq4
-- valory/transaction_settlement_abci:0.1.0:bafybeialer7rwrg6k6htnlotuvxhfhwthd5pvvhnxo3ndhwqlr53htd7wy
+- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
+- valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
 behaviours:
   main:
     args: {}

@@ -24,7 +24,7 @@ from typing import Any, Dict, Generator, List, Optional
 
 from web3.constants import ADDRESS_ZERO
 
-from packages.valory.contracts.mech.contract import Mech
+from packages.valory.contracts.mech_shorts.contract import Mech
 from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import get_name
 from packages.valory.skills.mech_interact_abci.behaviours.base import (

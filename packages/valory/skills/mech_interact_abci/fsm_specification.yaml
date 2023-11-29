@@ -5,24 +5,27 @@ alphabet_in:
 - SKIP_REQUEST
 default_start_state: MechRequestRound
 final_states:
-- FinishedMechRequestRound
+- FinishedMechTxSubmitterRound
 - FinishedMechRequestSkipRound
 - FinishedMechResponseRound
 label: MechInteractAbciApp
 start_states:
 - MechRequestRound
+- MechTxSubmitterRound
 - MechResponseRound
 states:
-- FinishedMechRequestRound
+- FinishedMechTxSubmitterRound
 - FinishedMechRequestSkipRound
 - FinishedMechResponseRound
 - MechRequestRound
+- MechTxSubmitterRound
 - MechResponseRound
 transition_func:
-    (MechRequestRound, DONE): FinishedMechRequestRound
+    (MechRequestRound, DONE): MechTxSubmitterRound
     (MechRequestRound, NO_MAJORITY): MechRequestRound
     (MechRequestRound, ROUND_TIMEOUT): MechRequestRound
     (MechRequestRound, SKIP_REQUEST): FinishedMechRequestSkipRound
+    (MechTxSubmitterRound, DONE): FinishedMechTxSubmitterRound
     (MechResponseRound, DONE): FinishedMechResponseRound
     (MechResponseRound, NO_MAJORITY): MechResponseRound
     (MechResponseRound, ROUND_TIMEOUT): MechResponseRound

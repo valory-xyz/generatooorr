@@ -3,6 +3,7 @@
 
 agent/
 temp/
+__pycache__
 
 packages/open_aea
 packages/valory/protocols
@@ -18,6 +19,7 @@ packages/valory/skills/abstract_abci
 packages/valory/skills/abstract_round_abci
 packages/valory/skills/registration_abci
 packages/valory/skills/transaction_settlement_abci
+packages/valory/skills/termination_abci
 packages/valory/skills/reset_pause_abci
 
 /generatooorr_gnosis/
