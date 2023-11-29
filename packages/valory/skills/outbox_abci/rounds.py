@@ -18,10 +18,10 @@
 # ------------------------------------------------------------------------------
 
 """This package contains the rounds of OutboxAbciApp."""
-
+import json
 from abc import ABC
 from enum import Enum
-from typing import Dict, FrozenSet, Optional, Set, Tuple, cast
+from typing import Dict, FrozenSet, Optional, Set, Tuple, cast, List
 
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
@@ -32,6 +32,7 @@ from packages.valory.skills.abstract_round_abci.base import (
     DegenerateRound,
     EventToTimeout,
 )
+from packages.valory.skills.mech_interact_abci.states.base import MechInteractionResponse
 from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
 
 
@@ -63,6 +64,12 @@ class SynchronizedData(BaseSynchronizedData):
         """Get the mech requests."""
         return self.db.get("requests", {})
 
+    @property
+    def mech_responses(self) -> List[MechInteractionResponse]:
+        """Get the mech responses."""
+        serialized = self.db.get("mech_responses", "[]")
+        responses = json.loads(serialized)
+        return [MechInteractionResponse(**response_item) for response_item in responses]
 
 class PushNotificationRound(CollectSameUntilThresholdRound):
     """PushNotificationRound"""
