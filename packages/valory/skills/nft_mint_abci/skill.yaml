@@ -148,5 +148,7 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies: {}
+dependencies:
+  py-multicodec: {}
+  py-multibase: {}
 is_abstract: true
