@@ -21,7 +21,7 @@
 import json
 from abc import ABC
 from enum import Enum
-from typing import Dict, FrozenSet, Optional, Set, Tuple, cast, List
+from typing import Dict, FrozenSet, List, Optional, Set, Tuple, cast
 
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
@@ -32,7 +32,9 @@ from packages.valory.skills.abstract_round_abci.base import (
     DegenerateRound,
     EventToTimeout,
 )
-from packages.valory.skills.mech_interact_abci.states.base import MechInteractionResponse
+from packages.valory.skills.mech_interact_abci.states.base import (
+    MechInteractionResponse,
+)
 from packages.valory.skills.outbox_abci.payloads import PushNotificationPayload
 
 
@@ -70,6 +72,7 @@ class SynchronizedData(BaseSynchronizedData):
         serialized = self.db.get("mech_responses", "[]")
         responses = json.loads(serialized)
         return [MechInteractionResponse(**response_item) for response_item in responses]
+
 
 class PushNotificationRound(CollectSameUntilThresholdRound):
     """PushNotificationRound"""

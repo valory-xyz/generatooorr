@@ -37,7 +37,11 @@ from packages.valory.skills.abstract_round_abci.base import (
 from packages.valory.skills.mech_interact_abci.states.base import (
     MechInteractionResponse,
 )
-from packages.valory.skills.nft_mint_abci.payloads import NftMintPayload, VerifyMintPayload
+from packages.valory.skills.nft_mint_abci.payloads import (
+    NftMintPayload,
+    VerifyMintPayload,
+)
+
 
 MAX_TOKEN_EVENT_RETRIES = 3
 _NO_TX_ROUND = "no_tx"

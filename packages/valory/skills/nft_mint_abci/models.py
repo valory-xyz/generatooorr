@@ -42,7 +42,9 @@ class Params(BaseParams):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize the params"""
-        self.blockchain_shorts_contract = self._ensure("blockchain_shorts_contract", kwargs, str)
+        self.blockchain_shorts_contract = self._ensure(
+            "blockchain_shorts_contract", kwargs, str
+        )
         super().__init__(*args, **kwargs)
 
 

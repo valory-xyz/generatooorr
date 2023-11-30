@@ -33,9 +33,9 @@ import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
 import packages.valory.skills.transaction_settlement_abci.rounds as TxSettlementAbci
 from packages.valory.skills.abstract_round_abci.abci_app_chain import (
     AbciAppTransitionMapping,
-    BackgroundAppConfig,
     chain,
 )
+from packages.valory.skills.abstract_round_abci.base import BackgroundAppConfig
 from packages.valory.skills.termination_abci.rounds import (
     BackgroundRound,
     Event,

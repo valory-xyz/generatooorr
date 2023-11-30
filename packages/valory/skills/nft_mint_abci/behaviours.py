@@ -30,13 +30,16 @@ from multicodec import multicodec
 from packages.valory.contracts.blockchain_shorts.contract import (
     BlockchainShortsContract,
 )
-from packages.valory.contracts.gnosis_safe.contract import SafeOperation, GnosisSafeContract
+from packages.valory.contracts.gnosis_safe.contract import (
+    GnosisSafeContract,
+    SafeOperation,
+)
 from packages.valory.contracts.multisend.contract import (
     MultiSendContract,
     MultiSendOperation,
 )
 from packages.valory.protocols.contract_api import ContractApiMessage
-from packages.valory.skills.abstract_round_abci.base import AbstractRound, get_name
+from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
@@ -263,9 +266,6 @@ class VerifyMintBehaviour(NftMintAbciBaseBehaviour):
         metadata_hash: str,
     ) -> Generator[None, None, Optional[int]]:
         """Get token ID"""
-        # TODO: FIX
-        # metadata_str = self.to_multihash(to_v1(metadata_hash))
-        # metadata = bytes.fromhex(metadata_str)
         response = yield from self.get_contract_api_response(
             performative=ContractApiMessage.Performative.GET_STATE,
             contract_address=self.params.blockchain_shorts_contract,
