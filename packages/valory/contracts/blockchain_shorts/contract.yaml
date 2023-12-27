@@ -8,7 +8,7 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicqln5tyudb5bzg27wale3xjvuliat6ipn6hntg5pqtnllex4pyre
   build/BlockchainShorts.json: bafybeibov6aqkoriod4i4axzvvq6eyxg4kpf4h6mbooruqedxb5hxajd2a
-  contract.py: bafybeifyytdqbjhjzvx7onshr5j7mf3volha5irb637n4lxzab7lzqwfve
+  contract.py: bafybeidvvbjqlqagu26cpe62a6rvwqrc7uuqw7jextftft566ie3hema6y
 fingerprint_ignore_patterns: []
 class_name: BlockchainShortsContract
 contract_interface_paths:

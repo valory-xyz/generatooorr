@@ -37,7 +37,10 @@ from packages.valory.skills.abstract_round_abci.base import (
 from packages.valory.skills.mech_interact_abci.states.base import (
     MechInteractionResponse,
 )
-from packages.valory.skills.nft_mint_abci.payloads import NftMintPayload
+from packages.valory.skills.nft_mint_abci.payloads import (
+    NftMintPayload,
+    VerifyMintPayload,
+)
 
 
 MAX_TOKEN_EVENT_RETRIES = 3
@@ -63,6 +66,11 @@ class SynchronizedData(BaseSynchronizedData):
     def most_voted_tx_hash(self) -> str:
         """Get the most_voted_tx_hash."""
         return cast(str, self.db.get_strict("most_voted_tx_hash"))
+
+    @property
+    def requests(self) -> Dict:
+        """Get the mech requests."""
+        return self.db.get("requests", {})
 
     @property
     def mech_responses(self) -> List[MechInteractionResponse]:
@@ -117,7 +125,7 @@ class NftMintRound(CollectSameUntilThresholdRound):
 class VerifyMintRound(CollectSameUntilThresholdRound):
     """VerifyMintRound"""
 
-    payload_class = NftMintPayload
+    payload_class = VerifyMintPayload
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
 

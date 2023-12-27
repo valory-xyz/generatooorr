@@ -23,16 +23,23 @@ import json
 from abc import ABC
 from typing import Dict, Generator, List, Optional, Set, Type, cast
 
+from aea.helpers.cid import to_v1
+from multibase import multibase
+from multicodec import multicodec
+
 from packages.valory.contracts.blockchain_shorts.contract import (
     BlockchainShortsContract,
 )
-from packages.valory.contracts.gnosis_safe.contract import SafeOperation
+from packages.valory.contracts.gnosis_safe.contract import (
+    GnosisSafeContract,
+    SafeOperation,
+)
 from packages.valory.contracts.multisend.contract import (
     MultiSendContract,
     MultiSendOperation,
 )
 from packages.valory.protocols.contract_api import ContractApiMessage
-from packages.valory.skills.abstract_round_abci.base import AbstractRound, get_name
+from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
@@ -71,21 +78,32 @@ class NftMintAbciBaseBehaviour(BaseBehaviour, ABC):
         """Return the params."""
         return cast(Params, super().params)
 
+    @staticmethod
+    def to_multihash(hash_string: str) -> str:
+        """To multihash string."""
+        # Decode the Base32 CID to bytes
+        cid_bytes = multibase.decode(hash_string)
+        # Remove the multicodec prefix (0x01) from the bytes
+        multihash_bytes = multicodec.remove_prefix(cid_bytes)
+        # Convert the multihash bytes to a hexadecimal string
+        hex_multihash = multihash_bytes.hex()
+        return hex_multihash[6:]
+
 
 class MintNftBehaviour(NftMintAbciBaseBehaviour):
     """MintNftBehaviour"""
 
     matching_round: Type[AbstractRound] = NftMintRound
 
-    def _prepare_mint_mstx(self, owner: str, ipfs_hash: str) -> Generator:
+    def _prepare_mint_mstx(self, owner: str, metadata: bytes) -> Generator:
         """Prepare a multisend tx for `create`"""
         response = yield from self.get_contract_api_response(
             performative=ContractApiMessage.Performative.GET_STATE,
-            contract_address=self.params.conditional_tokens_contract,
+            contract_address=self.params.blockchain_shorts_contract,
             contract_id=str(BlockchainShortsContract.contract_id),
-            contract_callable=get_name(BlockchainShortsContract.get_mint_data),
+            contract_callable="get_mint_data",
             owner=owner,
-            ipfs_hash=ipfs_hash,
+            ipfs_hash=metadata,
         )
         if response.performative != ContractApiMessage.Performative.STATE:
             self.context.logger.warning(
@@ -117,15 +135,18 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
     def async_act(self) -> Generator:
         """Get a list of the new tokens."""
         mech_response = self.synchronized_data.mech_responses[0]
-        data = json.loads(mech_response.data)
+        self.context.logger.info(f"mech_response: {mech_response}")
+        data = json.loads(mech_response.result)
         owner = self.synchronized_data.requests[mech_response.nonce]
         ipfs_hash = yield from self._publish_metadata(
             image=data["image"],
             video=data["video"],
         )
+        metadata_str = self.to_multihash(to_v1(ipfs_hash))
+        metadata = bytes.fromhex(metadata_str)
         mint_tx = yield from self._prepare_mint_mstx(
             owner=owner,
-            ipfs_hash=ipfs_hash,
+            metadata=metadata,
         )
         if mint_tx is None:
             return
@@ -184,9 +205,7 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
         multisend_data_str = cast(str, response.raw_transaction.body["data"])[2:]
         tx_data = bytes.fromhex(multisend_data_str)
         tx_hash = yield from self._get_safe_tx_hash(
-            self.params.multisend_address,
             tx_data,
-            operation=SafeOperation.DELEGATE_CALL.value,
         )
         if tx_hash is None:
             return None
@@ -200,6 +219,40 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
             data=tx_data,
         )
         return payload_data
+
+    def _get_safe_tx_hash(self, data: bytes) -> Generator[None, None, Optional[str]]:
+        """
+        Prepares and returns the safe tx hash.
+
+        This hash will be signed later by the agents, and submitted to the safe contract.
+        Note that this is the transaction that the safe will execute, with the provided data.
+
+        :param data: the safe tx data.
+        :return: the tx hash
+        """
+        response = yield from self.get_contract_api_response(
+            performative=ContractApiMessage.Performative.GET_STATE,  # type: ignore
+            contract_address=self.synchronized_data.safe_contract_address,
+            contract_id=str(GnosisSafeContract.contract_id),
+            contract_callable="get_raw_safe_transaction_hash",
+            to_address=self.params.multisend_address,  # we send the tx to the multisend address
+            value=ETHER_VALUE,
+            data=data,
+            safe_tx_gas=SAFE_TX_GAS,
+            operation=SafeOperation.DELEGATE_CALL.value,
+        )
+
+        if response.performative != ContractApiMessage.Performative.STATE:
+            self.context.logger.error(
+                f"Couldn't get safe hash. "
+                f"Expected response performative {ContractApiMessage.Performative.STATE.value}, "  # type: ignore
+                f"received {response.performative.value}."
+            )
+            return None
+
+        # strip "0x" from the response hash
+        tx_hash = cast(str, response.state.body["tx_hash"])[2:]
+        return tx_hash
 
 
 class VerifyMintBehaviour(NftMintAbciBaseBehaviour):
@@ -215,9 +268,9 @@ class VerifyMintBehaviour(NftMintAbciBaseBehaviour):
         """Get token ID"""
         response = yield from self.get_contract_api_response(
             performative=ContractApiMessage.Performative.GET_STATE,
-            contract_address=self.params.conditional_tokens_contract,
+            contract_address=self.params.blockchain_shorts_contract,
             contract_id=str(BlockchainShortsContract.contract_id),
-            contract_callable=get_name(BlockchainShortsContract.get_token_id_from_hash),
+            contract_callable="get_token_id_from_hash",
             tx_hash=tx_hash,
             metadata_hash=metadata_hash,
         )

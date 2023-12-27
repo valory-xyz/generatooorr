@@ -36,6 +36,7 @@ from packages.valory.skills.mech_interact_abci.models import (
     Params as BaseMechInteractAbciParams,
 )
 from packages.valory.skills.mech_interact_abci.rounds import Event as MechInteractEvent
+from packages.valory.skills.nft_mint_abci.models import Params as BaseNFTMintParams
 from packages.valory.skills.outbox_abci.models import Params as BaseOutboxAbciParams
 from packages.valory.skills.reset_pause_abci.rounds import Event as ResetPauseEvent
 from packages.valory.skills.termination_abci.models import (
@@ -51,6 +52,7 @@ InboxAbciParams = BaseInboxAbciParams
 OutboxAbciParams = BaseOutboxAbciParams
 TerminationParams = BaseTerminationParams
 TransactionParams = BaseTransactionParams
+NFTMintParams = BaseNFTMintParams
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool

@@ -22,7 +22,7 @@
 import json
 from enum import Enum
 from typing import Callable, Dict, List, Optional, cast
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 from uuid import uuid4
 
 from aea.protocols.base import Message
@@ -111,6 +111,8 @@ class TypedResponse(TypedDict):
 class HttpApplication:
     """Http Server class."""
 
+    authenticated_handlers = ["post_restore"]
+
     def __init__(self, inbox: "InBox", auth: str) -> None:
         """Initialize object."""
         self.inbox = inbox
@@ -118,22 +120,25 @@ class HttpApplication:
 
     def handle(self, message: HttpMessage) -> TypedResponse:
         """Handle incoming request."""
+        url_meta = urlparse(message.url)
+        handler_func = message.method + url_meta.path.replace("/", "_")
         if message.method == "post":
-            # TOFIX: Use header parser from some package
             headers = dict(
                 map(
                     lambda x: x.split(": ", maxsplit=1),
                     message.headers.strip().split("\n"),
                 )
             )
-            if headers.get("Authorization", "") != self.auth:
+            if (
+                headers.get("Authorization", "") != self.auth
+                and handler_func in self.authenticated_handlers
+            ):
                 return TypedResponse(
                     code=HttpResponseCode.UNAUTHORIZED,
                     data={"status": "REJECTED", "message": "Invalid authentication"},
                 )
-        url_meta = urlparse(message.url)
         handler: Callable[[HttpMessage, HttpDialogue], TypedResponse] = getattr(
-            self, message.method + url_meta.path.replace("/", "_"), self._respond_404
+            self, handler_func, self._respond_404
         )
         return handler(message)
 
@@ -154,11 +159,64 @@ class HttpApplication:
         )
 
     def get_responses(self, message: HttpMessage) -> TypedResponse:
-        """Handle GET /responses"""
-        return TypedResponse(
-            code=HttpResponseCode.OK,
-            data={"data": self.inbox.get_responses()},
-        )
+        """Handle GET /responses with optional pagination."""
+        # Parse query parameters from the URL
+        query_params = parse_qs(urlparse(message.url).query)
+
+        # Get all responses
+        all_responses = self.inbox.get_responses()
+
+        # Check for sorting parameters
+        sort_key = query_params.get("sortBy", ["id"])[0]
+        sort_order = query_params.get("sortOrder", ["desc"])[0]
+
+        # Apply sorting if sort_key is provided
+        try:
+            if sort_key:
+                all_responses.sort(
+                    key=lambda x: x.get(sort_key, None), reverse=(sort_order == "desc")
+                )
+        except Exception as e:
+            return TypedResponse(
+                code=HttpResponseCode.BAD_REQUEST,
+                data={
+                    "status": "ERROR",
+                    "message": "Invalid sorting key",
+                    "error": str(e),
+                },
+            )
+
+        # Check if pageNum and limit are provided
+        if "pageNum" in query_params and "limit" in query_params:
+            # Convert pageNum and limit to integers
+            page_size = int(query_params["pageNum"][0])
+            limit = int(query_params["limit"][0])
+
+            # Calculate the number of pages and current page
+            num_pages = max(1, (len(all_responses) + limit - 1) // limit)
+            current_page = max(1, page_size)
+
+            # Calculate the start and end indices for slicing
+            start_index = (current_page - 1) * limit
+            end_index = start_index + limit
+
+            # Slice the responses based on calculated indices
+            paginated_responses = all_responses[start_index:end_index]
+
+            return TypedResponse(
+                code=HttpResponseCode.OK,
+                data={
+                    "data": paginated_responses,
+                    "currentPage": current_page,
+                    "numPages": num_pages,
+                },
+            )
+        else:
+            # Return all responses if pageNum and limit are not provided
+            return TypedResponse(
+                code=HttpResponseCode.OK,
+                data={"data": all_responses},
+            )
 
     def _respond_404(self, message: HttpMessage) -> TypedResponse:
         """Send an OK response with the provided data"""
