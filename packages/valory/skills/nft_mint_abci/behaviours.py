@@ -132,11 +132,18 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
         )
         return ipfs_hash
 
-    def async_act(self) -> Generator:
-        """Get a list of the new tokens."""
+    def get_payload(self) -> Generator:
+        """Get the round payload"""
         mech_response = self.synchronized_data.mech_responses[0]
         self.context.logger.info(f"mech_response: {mech_response}")
-        data = json.loads(mech_response.result)
+        try:
+            data = json.loads(mech_response.result)
+        except json.JSONDecodeError:
+            self.context.logger.error(
+                f"Couldn't decode the mech response: {mech_response.result}"
+            )
+            return NftMintRound.ERROR_PAYLOAD
+
         owner = self.synchronized_data.requests[mech_response.nonce]
         ipfs_hash = yield from self._publish_metadata(
             image=data["image"],
@@ -149,25 +156,33 @@ class MintNftBehaviour(NftMintAbciBaseBehaviour):
             metadata=metadata,
         )
         if mint_tx is None:
-            return
+            self.context.logger.error("Couldn't prepare the mint tx.")
+            return NftMintRound.ERROR_PAYLOAD
         tx_hash = yield from self._to_multisend(
             transactions=[
                 mint_tx,
             ]
         )
         if tx_hash is None:
-            return
+            self.context.logger.error("Couldn't compile the multisend tx.")
+            return NftMintRound.ERROR_PAYLOAD
+
+        data = json.dumps(
+            dict(
+                tx_hash=tx_hash,
+                metadata_hash=ipfs_hash,
+            ),
+            sort_keys=True,
+        )
+        return data
+
+    def async_act(self) -> Generator:
+        """Get a list of the new tokens."""
+        with self.context.benchmark_tool.measure(self.behaviour_id).local():
+            content = yield from self.get_payload()
+            sender = self.context.agent_address
+            payload = NftMintPayload(sender=sender, content=content)
         with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
-            payload = NftMintPayload(
-                sender=self.context.agent_address,
-                content=json.dumps(
-                    dict(
-                        tx_hash=tx_hash,
-                        metadata_hash=ipfs_hash,
-                    ),
-                    sort_keys=True,
-                ),
-            )
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()
         self.set_done()
