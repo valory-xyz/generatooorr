@@ -102,6 +102,8 @@ class NftMintRound(CollectSameUntilThresholdRound):
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
 
+    ERROR_PAYLOAD = "error"
+
     def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
         """Process the end of the block."""
         if self.threshold_reached:
@@ -154,6 +156,10 @@ class FinishedVerifyMintRound(DegenerateRound, ABC):
     """FinishedVerifyMintRound"""
 
 
+class FinishedWithErrorRound(DegenerateRound, ABC):
+    """FinishedWithErrorRound"""
+
+
 class NftMintAbciApp(AbciApp[Event]):
     """NftMintAbciApp"""
 
@@ -162,6 +168,7 @@ class NftMintAbciApp(AbciApp[Event]):
     transition_function: AbciAppTransitionFunction = {
         NftMintRound: {
             Event.DONE: FinishedNftMintRound,
+            Event.ERROR: FinishedWithErrorRound,
             Event.NO_MAJORITY: NftMintRound,
             Event.ROUND_TIMEOUT: NftMintRound,
         },
@@ -172,10 +179,12 @@ class NftMintAbciApp(AbciApp[Event]):
         },
         FinishedNftMintRound: {},
         FinishedVerifyMintRound: {},
+        FinishedWithErrorRound: {},
     }
     final_states: Set[AppState] = {
         FinishedNftMintRound,
         FinishedVerifyMintRound,
+        FinishedWithErrorRound,
     }
     event_to_timeout: EventToTimeout = {
         Event.ROUND_TIMEOUT: 30.0,
@@ -189,5 +198,6 @@ class NftMintAbciApp(AbciApp[Event]):
             "most_voted_tx_hash",
         },
         FinishedVerifyMintRound: set(),
+        FinishedWithErrorRound: set(),
     }
     cross_period_persisted_keys: FrozenSet[str] = frozenset([])

@@ -50,6 +50,7 @@ abci_app_transition_mapping: AbciAppTransitionMapping = {
     TxMultiplexerAbci.FinishedMechTxRound: MechResponseStates.MechResponseRound,
     MechFinalStates.FinishedMechResponseRound: NftMintAbci.NftMintRound,
     NftMintAbci.FinishedNftMintRound: TxSettlementAbci.RandomnessTransactionSubmissionRound,
+    NftMintAbci.FinishedWithErrorRound: ResetAndPauseAbci.ResetAndPauseRound,
     TxMultiplexerAbci.FinishedNFTMintTxRound: NftMintAbci.VerifyMintRound,
     TxSettlementAbci.FinishedTransactionSubmissionRound: TxMultiplexerAbci.TxMultiplexerRound,
     NftMintAbci.FinishedVerifyMintRound: OutboxAbci.PushNotificationRound,

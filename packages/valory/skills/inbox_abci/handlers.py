@@ -78,6 +78,8 @@ CODE_TO_MESSAGE = {
     401: "Unauthorized",
 }
 
+REQUEST_TIME = 30 * 60  # 30 minutes in seconds
+
 
 class HttpResponseCode(Enum):
     """Http response codes."""
@@ -217,6 +219,17 @@ class HttpApplication:
                 code=HttpResponseCode.OK,
                 data={"data": all_responses},
             )
+
+    def get_queue_time(self, message: HttpMessage) -> TypedResponse:
+        """Get queue time"""
+        queue = len(self.inbox._queue) + 1
+        time = queue * REQUEST_TIME
+        return TypedResponse(
+            code=HttpResponseCode.OK,
+            data={
+                "queue_time_in_seconds": time,
+            },
+        )
 
     def _respond_404(self, message: HttpMessage) -> TypedResponse:
         """Send an OK response with the provided data"""
