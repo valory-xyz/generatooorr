@@ -89,6 +89,7 @@ class Params(
     MechInteractAbciParams,
     InboxAbciParams,
     OutboxAbciParams,
+    NFTMintParams,
     TerminationParams,
     TransactionParams,
 ):
