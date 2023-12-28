@@ -171,6 +171,12 @@ class HttpApplication:
         # Check for sorting parameters
         sort_key = query_params.get("sortBy", ["id"])[0]
         sort_order = query_params.get("sortOrder", ["desc"])[0]
+        id_ = query_params.get("id", None)
+        if id_ is not None:
+            id_ = id_[0]
+            all_responses = list(
+                filter(lambda x: str(x.get("id", "")) == id_, all_responses)
+            )
 
         # Apply sorting if sort_key is provided
         try:
