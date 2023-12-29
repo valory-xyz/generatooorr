@@ -33,10 +33,10 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeifmfv4bgt5vzvgawlocksacqeadzg72zs4usvgjaf245hbbptpiki
 - valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/generatooorr_abci:0.1.0:bafybeib7wg4jl6wtng3fubsup3haaiqmwry3s2p2vq2phpirkjomg3fnai
-- valory/inbox_abci:0.1.0:bafybeihouwar55c6blcpqyr55dcu7mive6wist63jtuttw66dq6abltwy4
+- valory/generatooorr_abci:0.1.0:bafybeifdghdcicv3fkcez4xkswznphezmdwq7srici6jliqy5zlljzczoq
+- valory/inbox_abci:0.1.0:bafybeiej6eqbkjjtconqsn4waa5vgvanftnlflvlgmr3k55lysjkmgox6y
 - valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
-- valory/nft_mint_abci:0.1.0:bafybeia2a4sr6nep5f35lwhncsnuaiw2ms3xwft3f7kzqxz5opz2xxydvi
+- valory/nft_mint_abci:0.1.0:bafybeih4c3rmetf6skohqh5iojhahitewcjqxdtonhfkgl7rduujmfn7pi
 - valory/outbox_abci:0.1.0:bafybeickzgky2fr4gradkaarfwttf6kgjfjmi5au3gdzsdkrk2qjk3uovm
 - valory/registration_abci:0.1.0:bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme
 - valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q

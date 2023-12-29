@@ -53,6 +53,7 @@ class Event(Enum):
     NO_MAJORITY = "no_majority"
     DONE = "done"
     ROUND_TIMEOUT = "round_timeout"
+    ERROR = "error"
 
 
 class SynchronizedData(BaseSynchronizedData):
