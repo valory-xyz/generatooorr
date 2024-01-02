@@ -30,7 +30,7 @@ from packages.valory.skills.abstract_round_abci.base import (
     BaseSynchronizedData,
     CollectSameUntilThresholdRound,
     DegenerateRound,
-    EventToTimeout,
+    EventToTimeout, get_name,
 )
 from packages.valory.skills.mech_interact_abci.states.base import (
     MechInteractionResponse,
@@ -116,7 +116,9 @@ class OutboxAbciApp(AbciApp[Event]):
         Event.ROUND_TIMEOUT: 30.0,
     }
     db_pre_conditions: Dict[AppState, Set[str]] = {
-        PushNotificationRound: set(),
+        PushNotificationRound: {
+            get_name(SynchronizedData.token_id),
+        },
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedPushNotificationRound: set(),

@@ -1,14 +1,14 @@
 {
     "dev": {
         "skill/valory/mech_interact_abci/0.1.0": "bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq",
-        "skill/valory/inbox_abci/0.1.0": "bafybeiej6eqbkjjtconqsn4waa5vgvanftnlflvlgmr3k55lysjkmgox6y",
-        "skill/valory/outbox_abci/0.1.0": "bafybeickzgky2fr4gradkaarfwttf6kgjfjmi5au3gdzsdkrk2qjk3uovm",
-        "skill/valory/generatooorr_abci/0.1.0": "bafybeid4nwy7exchx4x4tp7gvq5hqygqj3zkqvtyrwdvzeohwoudoxipwe",
-        "agent/valory/generatooorr/0.1.0": "bafybeibpqvhsbb354svs7fqeokef7z6r3vm6vlk3r3veo27g4qm4uadwey",
-        "service/valory/generatooorr_gnosis/0.1.0": "bafybeigonnytuupw65e7zqwsnh7p36fd7tf4zkrjcxx5wrii2pjs67dqgy",
-        "service/valory/generatooorr/0.1.0": "bafybeib6qe4ud24akwborb5usggsidgwh3gvetzil6hpf6ac2uidyxcsqi",
+        "skill/valory/inbox_abci/0.1.0": "bafybeidjx6trsvtuwf4ogm3gq5olg3b47gjaek2gdqmhv6g4o7wpeb56ia",
+        "skill/valory/outbox_abci/0.1.0": "bafybeiaos5ujntlsu6ok76e5c3divjsks4jedtxcstpmcdmv5e3uwaw64a",
+        "skill/valory/generatooorr_abci/0.1.0": "bafybeibzembflzn666cf4hsh2kfnf6mrej4z2yh7yqxix6slwnaswlacdy",
+        "agent/valory/generatooorr/0.1.0": "bafybeidbgw52sd6qsvh6bw5zk73ec6ktf7njps5pwmuj4bdemzevvynuqm",
+        "service/valory/generatooorr_gnosis/0.1.0": "bafybeiherl7kz4eek463aappli2gnmv62je4jfgqakccmkz3khr5timbom",
+        "service/valory/generatooorr/0.1.0": "bafybeifs6pxkizpybtxgspoxf3zng5jpu7p25ohyjqt3hrpt42bwojwdcu",
         "contract/valory/blockchain_shorts/0.1.0": "bafybeifdtjjy2qzdpyfizatbsc2imxkqnetfw4we7x47od42acbr3nqqqq",
-        "skill/valory/nft_mint_abci/0.1.0": "bafybeifaucagybspy3amrbpltiazq7jvoy3rdvq6g45zr45c5u4lhkebqa",
+        "skill/valory/nft_mint_abci/0.1.0": "bafybeihgbzon35y4ticyrfnyq6lz2hz6dgcxctc5wejitfywbkdkxu6t54",
         "contract/valory/mech_shorts/0.1.0": "bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei"
     },
     "third_party": {

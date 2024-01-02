@@ -199,9 +199,11 @@ class NftMintAbciApp(AbciApp[Event]):
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedNftMintRound: {
-            "most_voted_tx_hash",
+            get_name(SynchronizedData.most_voted_tx_hash),
         },
-        FinishedVerifyMintRound: set(),
+        FinishedVerifyMintRound: {
+            get_name(SynchronizedData.token_id),
+        },
         FinishedWithErrorRound: set(),
     }
     cross_period_persisted_keys: FrozenSet[str] = frozenset([])
