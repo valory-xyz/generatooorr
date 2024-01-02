@@ -24,7 +24,7 @@ skills:
 - valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
 - valory/nft_mint_abci:0.1.0:bafybeihgbzon35y4ticyrfnyq6lz2hz6dgcxctc5wejitfywbkdkxu6t54
 - valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
-- valory/outbox_abci:0.1.0:bafybeiaos5ujntlsu6ok76e5c3divjsks4jedtxcstpmcdmv5e3uwaw64a
+- valory/outbox_abci:0.1.0:bafybeihpm7mbtz5nwf3jy43e6tjzlt7jaltifitnbkeqb45j2trgafmu7a
 - valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q
 - valory/termination_abci:0.1.0:bafybeifazwrksp756h7z42qqfcgi6lya6wmhbx46l7ghlaooe45gqnju7q
 behaviours:
