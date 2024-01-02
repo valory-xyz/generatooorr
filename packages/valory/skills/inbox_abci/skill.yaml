@@ -9,18 +9,18 @@ fingerprint:
   __init__.py: bafybeieh4xmeumc6jmhzjjnyxgttoe6fbuzyxyoej32c5ezjsacvjq7noy
   behaviours.py: bafybeigsh5np26sdg77tg23e5oq6nkurk4jbren5qipl6obisrablrlimy
   dialogues.py: bafybeidjif76psqyj4bixcrg4nc4jl7iihi44wa6hr4rfixvi7623pibmq
-  handlers.py: bafybeiefnmtrwaueschbjyqaickulbddnoj5u2vosy2zo2xxidh52rlema
+  handlers.py: bafybeihtzzbdvom7bpavabe5bsqwr5uvp5ckcd2gyycqbqlpeey2sow2eu
   models.py: bafybeifzz6x3swc2agqbw3bqvsrbifecespzdrkrisdpbdlx3qbhlgvvwy
   payloads.py: bafybeigkkjidebtlkdy3rwkogytnu2egfowrbos3l53c534racg6trkxgu
   rounds.py: bafybeicdmrnaqkcwhqaqbi665dv7murcrkxht3yn7ovpyagelkmdg5cqfu
 fingerprint_ignore_patterns: []
 connections:
-- valory/http_server:0.22.0:bafybeie3d6tj2kzewced4nnttxdvr7njue2ortvawmwdt67gwf4tcuosom
+- valory/http_server:0.22.0:bafybeidq5ydshs5hcuhi6rgascdarsjjag57d5xufbsi3vxbgc5rflaetu
 contracts: []
 protocols:
-- valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
+- valory/http:1.0.0:bafybeic5xgedvkjcshbbc4nutvamz4mqcmuvl3boy62butyy7izqbfwnbu
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
+- valory/abstract_round_abci:0.1.0:bafybeie7shd46lz4es4anjxujn7lzci5uaoiecdvoqrqvqx5xtyws7cdvi
 behaviours:
   main:
     args: {}

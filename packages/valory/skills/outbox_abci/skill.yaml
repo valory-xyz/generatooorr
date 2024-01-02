@@ -7,20 +7,20 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicxk3mjazwl2bqsmj6owwc2cnmsjtufvdxexkufdrwecnfys36l6m
-  behaviours.py: bafybeihjsmcokw23g6ju7btgzwe256kkc5jmfh2dy6swamwjclsm36dgdy
+  behaviours.py: bafybeifscreed32zjegxquu2jtdjhz64j3ngv6rmrmh6szp3cpua64vcma
   dialogues.py: bafybeibeolj27x46yj5vje3nv5svvkey4b43jlfta3nx2mt4gfen7q5h6q
   handlers.py: bafybeif36zlhozwzxbo6dn7k7l4o22d3ooucnfiadjkddqvjgmu3resrgq
   models.py: bafybeifm5dkagrqfzj3q2vqhzksde5w6lyxbcjnhkoveugia2k7i5k4ncm
   payloads.py: bafybeihd7kzdlkkhk225nxyr3dcqhwtznogboidftz5dxycxuyi54kag2m
-  rounds.py: bafybeibrgq53zaoim3n2m3vltuqprr7hhmtbnmiteevnj2wl5lfb4uhvi4
+  rounds.py: bafybeih5eduexdna337qgrdefmdelnjvmvsg53zl2n4hubx6offzfzf36a
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
 protocols:
-- valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
+- valory/http:1.0.0:bafybeic5xgedvkjcshbbc4nutvamz4mqcmuvl3boy62butyy7izqbfwnbu
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
+- valory/abstract_round_abci:0.1.0:bafybeie7shd46lz4es4anjxujn7lzci5uaoiecdvoqrqvqx5xtyws7cdvi
+- valory/mech_interact_abci:0.1.0:bafybeihelrwdmhc4pm5h6mr6npdubljuwncjziimqdrwukrgeiq32zjtli
 behaviours:
   main:
     args: {}
