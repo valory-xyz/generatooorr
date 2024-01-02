@@ -17,10 +17,10 @@ fingerprint_ignore_patterns: []
 connections: []
 contracts: []
 protocols:
-- valory/http:1.0.0:bafybeic5xgedvkjcshbbc4nutvamz4mqcmuvl3boy62butyy7izqbfwnbu
+- valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeie7shd46lz4es4anjxujn7lzci5uaoiecdvoqrqvqx5xtyws7cdvi
-- valory/mech_interact_abci:0.1.0:bafybeihelrwdmhc4pm5h6mr6npdubljuwncjziimqdrwukrgeiq32zjtli
+- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
+- valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
 behaviours:
   main:
     args: {}
