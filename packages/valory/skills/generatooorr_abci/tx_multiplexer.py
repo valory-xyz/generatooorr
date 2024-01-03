@@ -44,6 +44,8 @@ class Event(Enum):
     DONE = "done"
     MECH_TX = "mech_tx"
     NFT_TX = "nft_tx"
+    FAILED_MECH_TX = "failed_mech_tx"
+    FAILED_NFT_TX = "failed_nft_tx"
 
 
 class SynchronizedData(BaseSynchronizedData):
@@ -84,24 +86,63 @@ class TxMultiplexerRound(CollectSameUntilThresholdRound):
         return sync_data, self.round_id_to_event[sync_data.tx_submitter]
 
 
+class TxMultiplexerFailedRound(CollectSameUntilThresholdRound):
+    """A round that will be called after tx settlement has failed."""
+
+    payload_class = _NO_TX_ROUND
+    payload_attribute = _NO_TX_ROUND
+    synchronized_data_class = SynchronizedData
+
+    round_id_to_event: Dict[str, Event] = {
+        MechTxSubmitterRound.auto_round_id(): Event.FAILED_MECH_TX,
+        NftMintRound.auto_round_id(): Event.FAILED_NFT_TX,
+    }
+
+    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Enum]]:
+        """
+        The end block.
+
+        This is a dummy round, no consensus is necessary here.
+        There is no need to send a tx through, nor to check for majority.
+        We simply use this round to check which round submitted the tx,
+        and move to the next state in accordance to that.
+        """
+        sync_data = cast(SynchronizedData, self.synchronized_data)
+        return sync_data, self.round_id_to_event[sync_data.tx_submitter]
+
+
 class FinishedMechTxRound(DegenerateRound):
-    """Finished allowlist update round."""
+    """Finished mech tx round."""
 
 
 class FinishedNFTMintTxRound(DegenerateRound):
-    """Finished weight update round."""
+    """Finished nft mint round."""
+
+
+class FinishedWithFailedMechTxRound(DegenerateRound):
+    """Finished with failed tx round."""
+
+
+class FinishedWithFailedNFTMintTxRound(DegenerateRound):
+    """Finished with failed nft mint round."""
 
 
 class TxSettlementMultiplexerAbci(AbciApp[Event]):
     """ABCI app to multiplex the transaction settlement skill."""
 
     initial_round_cls: AppState = TxMultiplexerRound
-    initial_states: Set[AppState] = {TxMultiplexerRound}
+    initial_states: Set[AppState] = {TxMultiplexerRound, TxMultiplexerFailedRound}
     transition_function: AbciAppTransitionFunction = {
         TxMultiplexerRound: {
             Event.MECH_TX: FinishedMechTxRound,
             Event.NFT_TX: FinishedNFTMintTxRound,
         },
+        TxMultiplexerFailedRound: {
+            Event.FAILED_MECH_TX: FinishedWithFailedMechTxRound,
+            Event.FAILED_NFT_TX: FinishedWithFailedNFTMintTxRound,
+        },
+        FinishedWithFailedMechTxRound: {},
+        FinishedWithFailedNFTMintTxRound: {},
         FinishedMechTxRound: {},
         FinishedNFTMintTxRound: {},
     }
@@ -115,4 +156,6 @@ class TxSettlementMultiplexerAbci(AbciApp[Event]):
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedMechTxRound: set(),
         FinishedNFTMintTxRound: set(),
+        FinishedWithFailedMechTxRound: set(),
+        FinishedWithFailedNFTMintTxRound: set(),
     }

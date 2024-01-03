@@ -29,6 +29,7 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
 from packages.valory.skills.generatooorr_abci.composition import GeneratooorrAbciApp
 from packages.valory.skills.generatooorr_abci.tx_multiplexer import (
     SynchronizedData,
+    TxMultiplexerFailedRound,
     TxMultiplexerRound,
     TxSettlementMultiplexerAbci,
 )
@@ -78,6 +79,25 @@ class TxMultiplexerBehaviour(BaseBehaviour, ABC):
         self.set_done()
 
 
+class FailedTxMultiplexerBehaviour(TxMultiplexerBehaviour):
+    """
+    The post transaction settlement behaviour.
+
+    This behaviour is executed after a tx is not settled,
+    via the transaction_settlement_abci.
+    """
+
+    matching_round = TxMultiplexerFailedRound
+
+    def async_act(self) -> Generator:
+        """Simply log that a tx is settled and wait for round end."""
+        self.context.logger.info(
+            f"The transaction submitted by {self.synchronized_data.tx_submitter} could not be settled."
+        )
+        yield from self.wait_until_round_end()
+        self.set_done()
+
+
 class TxMultiplexerRoundBehaviour(AbstractRoundBehaviour):
     """The post tx settlement full behaviour."""
 
@@ -85,6 +105,7 @@ class TxMultiplexerRoundBehaviour(AbstractRoundBehaviour):
     abci_app_cls = TxSettlementMultiplexerAbci
     behaviours: Set[Type[BaseBehaviour]] = {
         TxMultiplexerBehaviour,
+        FailedTxMultiplexerBehaviour,
     }
 
 
