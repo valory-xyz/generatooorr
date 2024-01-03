@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
 #
-#   Copyright 2023 Valory AG
+#   Copyright 2023-2024 Valory AG
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -253,10 +253,13 @@ class InBox:
     _queue: List[Dict]
     _processed: List[Dict]
 
-    def __init__(self) -> None:
+    def __init__(self, db: Optional[str] = None) -> None:
         """Initialize object."""
         self._queue = []
         self._processed = []
+        self._db = db or "/logs/db.json"
+        with open(self._db, "r") as file:
+            self._processed = json.load(file)
 
     def get(self) -> Optional[Dict]:
         """Get request from inbox."""
@@ -272,7 +275,7 @@ class InBox:
     def add_response(self, response: Dict, db: Optional[str] = None) -> None:
         """Add response to processed list."""
         self._processed.append(response)
-        with open(db or "/logs/db.json", "w") as file:
+        with open(db or self._db, "w") as file:
             json.dump(self._processed, file)
 
     def get_responses(self) -> List[Dict]:

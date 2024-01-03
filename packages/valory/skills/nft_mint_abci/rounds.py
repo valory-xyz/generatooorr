@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
 #
-#   Copyright 2023 Valory AG
+#   Copyright 2023-2024 Valory AG
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -199,9 +199,11 @@ class NftMintAbciApp(AbciApp[Event]):
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedNftMintRound: {
-            "most_voted_tx_hash",
+            get_name(SynchronizedData.most_voted_tx_hash),
         },
-        FinishedVerifyMintRound: set(),
+        FinishedVerifyMintRound: {
+            get_name(SynchronizedData.token_id),
+        },
         FinishedWithErrorRound: set(),
     }
     cross_period_persisted_keys: FrozenSet[str] = frozenset([])

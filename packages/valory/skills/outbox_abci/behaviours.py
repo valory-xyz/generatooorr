@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
 #
-#   Copyright 2023 Valory AG
+#   Copyright 2023-2024 Valory AG
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -64,11 +64,11 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
         """
         response = self.synchronized_data.mech_responses[0]
         data = json.loads(response.result)
-        data["id"] = self.context.state.inbox.next_id
+        data["id"] = self.synchronized_data.token_id
         self.context.state.inbox.add_response(data)
         address = self.synchronized_data.requests[response.nonce]
         self.context.logger.info(
-            f"Pushing notification for address {address} with noncee {response.nonce}"
+            f"Pushing notification for address {address} with nonce {response.nonce}"
         )
         notification_response = yield from self.get_http_response(
             method="post",
