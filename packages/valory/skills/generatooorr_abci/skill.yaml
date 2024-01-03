@@ -12,7 +12,7 @@ fingerprint:
   dialogues.py: bafybeigpwuzku3we7axmxeamg7vn656maww6emuztau5pg3ebsoquyfdqm
   handlers.py: bafybeic63srmrcogcbvcgzf54nwg2cbn2plfyrpbojjotrpyqqn456f6bq
   models.py: bafybeifb4pyje7aqqpgl7ztc66gmt32fpwxoi6ugl4syhd2mceyf4x5zxq
-  tx_multiplexer.py: bafybeid5g6vbbddnavf6su76f7wcnkjoin6l7pyiu4pmm33qz5ton6njve
+  tx_multiplexer.py: bafybeihq3incskow7c5llvopub43u7ymodtv66nxofukhz7a7w7yojb6s4
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []

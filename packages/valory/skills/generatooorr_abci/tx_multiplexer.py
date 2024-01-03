@@ -149,9 +149,12 @@ class TxSettlementMultiplexerAbci(AbciApp[Event]):
     final_states: Set[AppState] = {
         FinishedMechTxRound,
         FinishedNFTMintTxRound,
+        FinishedWithFailedMechTxRound,
+        FinishedWithFailedNFTMintTxRound,
     }
     db_pre_conditions: Dict[AppState, Set[str]] = {
         TxMultiplexerRound: set(),
+        TxMultiplexerFailedRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedMechTxRound: set(),
