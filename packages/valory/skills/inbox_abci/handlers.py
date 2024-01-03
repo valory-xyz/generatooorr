@@ -259,13 +259,20 @@ class InBox:
         self._processed = []
         self._db = db or "/logs/db.json"
         with open(self._db, "r") as file:
-            self._processed = json.load(file)
+            file_json = json.load(file)
+            self._processed = file_json["processed"]
+            # if a request was being processed, add it back to the front of the queue
+            self._processing_req = file_json.get("processing", None)
+            if self._processing_req is not None:
+                self._queue.append(self._processing_req)
+            self._queue = self._queue + file_json.get("queue", [])
 
     def get(self) -> Optional[Dict]:
         """Get request from inbox."""
         if len(self._queue) == 0:
             return None
-        return self._queue.pop(0)
+        self._processing_req = self._queue.pop(0)
+        return self._processing_req
 
     def put(self, request: Dict) -> None:
         """Put request into inbox."""
@@ -275,8 +282,14 @@ class InBox:
     def add_response(self, response: Dict, db: Optional[str] = None) -> None:
         """Add response to processed list."""
         self._processed.append(response)
+        self._processing_req = None
         with open(db or self._db, "w") as file:
-            json.dump(self._processed, file)
+            data = {
+                "queue": self._queue,
+                "processed": self._processed,
+                "processing": self._processing_req,
+            }
+            json.dump(data, file)
 
     def get_responses(self) -> List[Dict]:
         """Return the available responses."""
