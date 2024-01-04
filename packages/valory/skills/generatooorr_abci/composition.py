@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
 #
-#   Copyright 2023 Valory AG
+#   Copyright 2023-2024 Valory AG
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -53,6 +53,9 @@ abci_app_transition_mapping: AbciAppTransitionMapping = {
     NftMintAbci.FinishedWithErrorRound: ResetAndPauseAbci.ResetAndPauseRound,
     TxMultiplexerAbci.FinishedNFTMintTxRound: NftMintAbci.VerifyMintRound,
     TxSettlementAbci.FinishedTransactionSubmissionRound: TxMultiplexerAbci.TxMultiplexerRound,
+    TxSettlementAbci.FailedRound: TxMultiplexerAbci.TxMultiplexerFailedRound,
+    TxMultiplexerAbci.FinishedWithFailedMechTxRound: MechRequestStates.MechRequestRound,
+    TxMultiplexerAbci.FinishedWithFailedNFTMintTxRound: NftMintAbci.NftMintRound,
     NftMintAbci.FinishedVerifyMintRound: OutboxAbci.PushNotificationRound,
     OutboxAbci.FinishedPushNotificationRound: ResetAndPauseAbci.ResetAndPauseRound,
     ResetAndPauseAbci.FinishedResetAndPauseRound: InboxAbci.WaitRound,
