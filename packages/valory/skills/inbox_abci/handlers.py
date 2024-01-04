@@ -21,7 +21,8 @@
 
 import json
 from enum import Enum
-from typing import Callable, Dict, List, Optional, cast
+from logging import Logger
+from typing import Any, Callable, Dict, List, Optional, cast
 from urllib.parse import parse_qs, urlparse
 from uuid import uuid4
 
@@ -253,30 +254,58 @@ class InBox:
     _queue: List[Dict]
     _processed: List[Dict]
 
-    def __init__(self, db: Optional[str] = None) -> None:
+    def __init__(self, logger: Logger, db: Optional[str] = None) -> None:
         """Initialize object."""
-        self._queue = []
-        self._processed = []
+        self.logger = logger
         self._db = db or "/logs/db.json"
+        self._deserialize_state()
+
+    def _serialize_state(self, state: Dict[str, Any]) -> None:
+        """Serialize the state to the db."""
+        with open(self._db, "w") as file:
+            json.dump(state, file)
+
+    def _deserialize_state(self) -> None:
+        """Deserialize the state from the db."""
+        self._processed = []
+        self._queue = []
+        self._processing_req = None
         with open(self._db, "r") as file:
-            self._processed = json.load(file)
+            try:
+                file_json = json.load(file)
+                self._processed = file_json["processed"]
+                # if a request was being processed, add it back to the front of the queue
+                self._processing_req = file_json.get("processing", None)
+                if self._processing_req is not None:
+                    self._queue.append(self._processing_req)
+                self._queue = self._queue + file_json.get("queue", [])
+            except (json.decoder.JSONDecodeError, KeyError) as e:
+                self.logger.error(
+                    f"Error deserializing state: {e}. Starting with empty state."
+                )
 
     def get(self) -> Optional[Dict]:
         """Get request from inbox."""
         if len(self._queue) == 0:
             return None
-        return self._queue.pop(0)
+        self._processing_req = self._queue.pop(0)
+        return self._processing_req
 
     def put(self, request: Dict) -> None:
         """Put request into inbox."""
         request["nonce"] = uuid4().hex
         self._queue.append(request)
 
-    def add_response(self, response: Dict, db: Optional[str] = None) -> None:
+    def add_response(self, response: Dict) -> None:
         """Add response to processed list."""
         self._processed.append(response)
-        with open(db or self._db, "w") as file:
-            json.dump(self._processed, file)
+        self._processing_req = None
+        state = {
+            "queue": self._queue,
+            "processed": self._processed,
+            "processing": self._processing_req,
+        }
+        self._serialize_state(state)
 
     def get_responses(self) -> List[Dict]:
         """Return the available responses."""
@@ -302,7 +331,7 @@ class HttpHandler(BaseHttpHandler):
     def setup(self) -> None:
         """Setup class."""
         super().setup()
-        self.context.state.inbox = InBox()
+        self.context.state.inbox = InBox(logger=self.context.logger)
         self.app = HttpApplication(
             inbox=self.context.state.inbox,
             auth=self.context.params.inbox_auth,
