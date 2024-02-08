@@ -270,6 +270,13 @@ class InBox:
         self._processed = []
         self._queue = []
         self._processing_req = None
+
+        if not os.path.exists(self._db):
+            # if the file exists, load the state from it
+            self.logger.warn(
+                f"File {self._db} doesn't exist. Starting with empty state."
+            )
+
         with open(self._db, "r") as file:
             try:
                 file_json = json.load(file)
