@@ -274,9 +274,10 @@ class InBox:
 
         if not os.path.exists(self._db):
             # if the file exists, load the state from it
-            self.logger.warn(
+            self.logger.warning(
                 f"File {self._db} doesn't exist. Starting with empty state."
             )
+            return
 
         with open(self._db, "r") as file:
             try:
