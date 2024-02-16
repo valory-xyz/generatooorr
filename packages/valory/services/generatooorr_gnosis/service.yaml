@@ -13,7 +13,7 @@ deployment:
   agent:
     ports:
       0:
-        8001: 8001
+        8000: 8000
 ---
 public_id: valory/generatooorr_abci:0.1.0
 type: skill
