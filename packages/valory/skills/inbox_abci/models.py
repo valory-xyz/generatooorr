@@ -42,10 +42,12 @@ class Params(BaseParams):
     """Parameters."""
 
     inbox_auth: str
+    farcaster_auth: str
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize parameters."""
         self.inbox_auth = self._ensure("inbox_auth", kwargs=kwargs, type_=str)
+        self.farcaster_auth = self._ensure("farcaster_auth", kwargs=kwargs, type_=str)
         super().__init__(*args, **kwargs)
 
 

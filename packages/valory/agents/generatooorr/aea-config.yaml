@@ -33,8 +33,8 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeifmfv4bgt5vzvgawlocksacqeadzg72zs4usvgjaf245hbbptpiki
 - valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/generatooorr_abci:0.1.0:bafybeie4rok2nqskntj72rwxbgxqfhvvvfqvljysxdahbaaylivogc3jlu
-- valory/inbox_abci:0.1.0:bafybeicp7izlo6jhxxt5q57xqtejozqrcn3xmhgsjtjtw7tuedfuyewlna
+- valory/generatooorr_abci:0.1.0:bafybeidzo4j46k64evr6arlvltwvxxv7pusjfalukbe35mrgh3hfk7tjaq
+- valory/inbox_abci:0.1.0:bafybeie2uopz45rzrma6myconsnlhhs6tnjsudnkdtzkadif3fqukfm54u
 - valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
 - valory/nft_mint_abci:0.1.0:bafybeidjjybk6jvc7jp3octfmja4swatccxwdab6qfyjuncyl764zlz2pq
 - valory/outbox_abci:0.1.0:bafybeigbfmwwzlv3gc4jv5m2xtppi4gyzjoo3b4hmqyjb6xmtvyh6ga2xe
@@ -183,6 +183,7 @@ models:
       w3_inbox_project_id: ${str:w3_inbox_project_id}
       w3_notification_type: ${str:w3_notification_type}
       w3_notification_api_key: ${str:w3_notification_api_key}
+      farcaster_auth: ${str:farcaster_auth}
 ---
 public_id: valory/http_server:0.22.0:bafybeicblltx7ha3ulthg7bzfccuqqyjmihhrvfeztlgrlcoxhr7kf6nbq
 type: connection

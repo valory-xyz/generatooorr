@@ -117,10 +117,11 @@ class HttpApplication:
 
     authenticated_handlers = ["post_restore"]
 
-    def __init__(self, inbox: "InBox", auth: str) -> None:
+    def __init__(self, inbox: "InBox", auth: str, farcaster_auth: str) -> None:
         """Initialize object."""
         self.inbox = inbox
         self.auth = auth
+        self.farcaster_auth = farcaster_auth
 
     def handle(self, message: HttpMessage) -> TypedResponse:
         """Handle incoming request."""
@@ -148,6 +149,26 @@ class HttpApplication:
 
     def post_generate(self, message: HttpMessage) -> TypedResponse:
         """Handle POST /generate"""
+        self.inbox.put(json.loads(message.body.decode()))
+        return TypedResponse(
+            code=HttpResponseCode.OK,
+            data={"status": "CREATED", "id": "0x"},
+        )
+
+    def post_generate_farcaster(self, message: HttpMessage) -> TypedResponse:
+        """Handle POST /generate_farcaster"""
+        headers = dict(
+            map(
+                lambda x: x.split(": ", maxsplit=1),
+                message.headers.strip().split("\n"),
+            )
+        )
+        auth = headers.get('Authorization', '')
+        if auth != self.auth:
+            return TypedResponse(
+                code=HttpResponseCode.UNAUTHORIZED,
+                data={"status": "Unauthorized", "message": "Invalid authentication"}
+            )
         self.inbox.put(json.loads(message.body.decode()))
         return TypedResponse(
             code=HttpResponseCode.OK,
@@ -344,6 +365,7 @@ class HttpHandler(BaseHttpHandler):
         self.app = HttpApplication(
             inbox=self.context.state.inbox,
             auth=self.context.params.inbox_auth,
+            farcaster_auth=self.context.params.farcaster_auth,
         )
 
     @property
