@@ -12,6 +12,8 @@
         "contract/valory/mech_shorts/0.1.0": "bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei"
     },
     "third_party": {
+        "contract/valory/erc20/0.1.0": "bafybeibyutc6scd7pmexbonih7txh37knwph7lduzrkkhzjwfin2vuop4i",
+        "contract/valory/transfer_nft_condition/0.1.0": "bafybeibqsfqao3puhodmvtriyyvbiqtgotdb4z5hul7tvitfacr47fv2pe",
         "protocol/open_aea/signing/1.0.0": "bafybeie7xyems76v5b4wc2lmaidcujizpxfzjnnwdeokmhje53g7ym25ii",
         "protocol/valory/acn/1.1.0": "bafybeic2pxzfc3voxl2ejhcqyf2ehm4wm5gxvgx7bliloiqi2uppmq6weu",
         "protocol/valory/http/1.0.0": "bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe",
