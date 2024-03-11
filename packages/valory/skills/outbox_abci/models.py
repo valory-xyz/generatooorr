@@ -52,6 +52,8 @@ class Params(BaseParams):
         self.w3_notification_api_key = self._ensure(
             "w3_notification_api_key", kwargs=kwargs, type_=str
         )
+        self.base_fe_url = self._ensure("base_fe_url", kwargs=kwargs, type_=str)
+        self.farcaster_message = self._ensure("farcaster_message", kwargs=kwargs, type_=str)
         super().__init__(*args, **kwargs)
 
 

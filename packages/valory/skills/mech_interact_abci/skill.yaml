@@ -10,7 +10,7 @@ fingerprint:
   __init__.py: bafybeidf3nlv5fpvfy4libtscayhirdw64shgmhfmvjiftjmjkmhu7auxq
   behaviours/__init__.py: bafybeie3zsi6p3yanz5mqwpkdrcgywaqvkit3hdintsb4awnvalgxpxa4i
   behaviours/base.py: bafybeiezyjxrvyvzktl6ehx2udbu3nuxu3wcesw7auskmnnkfxngaafgka
-  behaviours/request.py: bafybeie5a2qbf74a2ptoghkjabr77uublorwukuudz5r6tu4etkyhiwv4e
+  behaviours/request.py: bafybeics4eebziukppltf5dpvgnv7cbuh7iilkaxdw6grzqf2catxjidd4
   behaviours/response.py: bafybeihgrzfdndh4wufwmqy4ilsv2n555oczipzxfw75klcsurmgo3kdme
   behaviours/round_behaviour.py: bafybeicwivk3g7edglb4nwaadldrxccwr2qjopmoydb5i4itikx7w6sfya
   dialogues.py: bafybeigjmyzd2bx6mgqiet2c223k6wkc5jk7kdkstbhpaxlqxatey26tlm
@@ -34,14 +34,14 @@ fingerprint:
 fingerprint_ignore_patterns: []
 connections: []
 contracts:
-- valory/gnosis_safe:0.1.0:bafybeifmsjpgbifvk7y462rhfczvjvpigkdniavghhg5utza3hbnffioq4
-- valory/mech_shorts:0.1.0:bafybeiaqtxcb7covyjm4ex46ksuq6gy2sutgbbseecuoli7leedsi5dfei
+- valory/gnosis_safe:0.1.0:bafybeidrguivprxfv3doys4s47uttqnr6m47ah5wbcfbczgp3m6nivclr4
+- valory/mech_shorts:0.1.0:bafybeihkqc6n5w2dhnc55h3rbppnb7abck537t3726cqws2jkemx32xs5e
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 protocols:
 - valory/contract_api:1.0.0:bafybeialhbjvwiwcnqq3ysxcyemobcbie7xza66gaofcvla5njezkvhcka
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
+- valory/abstract_round_abci:0.1.0:bafybeie44ytoususmffvi2swh2ke4rgdmlu3qtfw6lugyzqigc4ta5tz6e
+- valory/transaction_settlement_abci:0.1.0:bafybeicckhvw46mm7detdvw4zk47szrw7ak4jz6fclrnvlle2jws5ti64m
 behaviours:
   main:
     args: {}

@@ -90,14 +90,29 @@ class PushNotificationBehaviour(OutboxAbciBaseBehaviour):
         )
         self.context.logger.info(notification_response)
 
+    def _prepare_write_data(self) -> str:
+        """Prepare the data to be written to the db."""
+        response = self.synchronized_data.mech_responses[0]
+        data = json.loads(response.result)
+        user = data.get("user", "")
+        token_id = self.synchronized_data.token_id
+        message = self.params.farcaster_message
+        link = f"{self.params.base_fe_url}/{token_id}"
+        return message.format(user=user, link=link)
+
     def async_act(self) -> Generator:
         """Get a list of the new tokens."""
         yield from self._push_from_response()
+        write_data = self._prepare_write_data()
         with self.context.benchmark_tool.measure(
             self.behaviour_id,
         ).consensus():
+            data = {
+                "status": True,
+                "data": write_data,
+            }
             payload = PushNotificationPayload(
-                sender=self.context.agent_address, content=json.dumps({"status": True})
+                sender=self.context.agent_address, content=json.dumps(data)
             )
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()

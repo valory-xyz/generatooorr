@@ -31,6 +31,8 @@ import packages.valory.skills.outbox_abci.rounds as OutboxAbci
 import packages.valory.skills.registration_abci.rounds as RegistrationAbci
 import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
 import packages.valory.skills.transaction_settlement_abci.rounds as TxSettlementAbci
+import packages.valory.skills.farcaster_write_abci.rounds as FarcasterWriteAbci
+import packages.valory.skills.subscription_abci.rounds as SubscriptionAbci
 from packages.valory.skills.abstract_round_abci.abci_app_chain import (
     AbciAppTransitionMapping,
     chain,
@@ -45,7 +47,11 @@ from packages.valory.skills.termination_abci.rounds import (
 
 abci_app_transition_mapping: AbciAppTransitionMapping = {
     RegistrationAbci.FinishedRegistrationRound: InboxAbci.WaitRound,
-    InboxAbci.FinishedInboxWaitingRound: MechRequestStates.MechRequestRound,
+    InboxAbci.FinishedInboxWaitingRound: SubscriptionAbci.SubscriptionRound,
+    SubscriptionAbci.FinishedSubscriptionRound: TxMultiplexerAbci.TxMultiplexerRound,
+    SubscriptionAbci.FinishedWithoutSubscriptionRound: MechRequestStates.MechRequestRound,
+    TxMultiplexerAbci.FinishedSubscriptionTxRound: MechRequestStates.MechRequestRound,
+    TxMultiplexerAbci.FinishedWithFailedSubscriptionTxRound: SubscriptionAbci.SubscriptionRound,
     MechFinalStates.FinishedMechTxSubmitterRound: TxSettlementAbci.RandomnessTransactionSubmissionRound,
     TxMultiplexerAbci.FinishedMechTxRound: MechResponseStates.MechResponseRound,
     MechFinalStates.FinishedMechResponseRound: NftMintAbci.NftMintRound,
@@ -57,7 +63,8 @@ abci_app_transition_mapping: AbciAppTransitionMapping = {
     TxMultiplexerAbci.FinishedWithFailedMechTxRound: MechRequestStates.MechRequestRound,
     TxMultiplexerAbci.FinishedWithFailedNFTMintTxRound: NftMintAbci.NftMintRound,
     NftMintAbci.FinishedVerifyMintRound: OutboxAbci.PushNotificationRound,
-    OutboxAbci.FinishedPushNotificationRound: ResetAndPauseAbci.ResetAndPauseRound,
+    OutboxAbci.FinishedPushNotificationRound: FarcasterWriteAbci.RandomnessFarcasterRound,
+    FarcasterWriteAbci.FinishedFarcasterWriteRound: ResetAndPauseAbci.ResetAndPauseRound,
     ResetAndPauseAbci.FinishedResetAndPauseRound: InboxAbci.WaitRound,
     ResetAndPauseAbci.FinishedResetAndPauseErrorRound: ResetAndPauseAbci.ResetAndPauseRound,
 }
@@ -77,6 +84,8 @@ GeneratooorrAbciApp = chain(
         OutboxAbci.OutboxAbciApp,
         ResetAndPauseAbci.ResetPauseAbciApp,
         TxMultiplexerAbci.TxSettlementMultiplexerAbci,
+        FarcasterWriteAbci.FarcasterWriteAbciApp,
+        SubscriptionAbci.SubscriptionAbciApp,
         NftMintAbci.NftMintAbciApp,
     ),
     abci_app_transition_mapping,
