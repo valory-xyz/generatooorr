@@ -22,16 +22,14 @@
 import json
 from typing import Generator, Set, Type, cast, Any, Dict, List, Optional
 
+from hexbytes import HexBytes
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.valory.skills.inbox_abci.rounds import (
-    InboxAbciApp,
-)
 from packages.valory.skills.mech_interact_abci.models import MultisendBatch
-from packages.valory.skills.subscription_abci.base import BaseSubscriptionBehaviour
-from packages.valory.skills.subscription_abci.payloads import ClaimPayload
+from packages.valory.skills.subscription_abci.base import BaseSubscriptionBehaviour, WaitableConditionType
+from packages.valory.skills.subscription_abci.payloads import ClaimPayload, SubscriptionPayload
 from packages.valory.skills.subscription_abci.utils.nevermined import (
     generate_id,
     get_agreement_id,
@@ -45,6 +43,14 @@ from packages.valory.skills.subscription_abci.utils.nevermined import (
     get_claim_endpoint,
     get_creator,
 )
+
+from packages.valory.skills.subscription_abci.rounds import SubscriptionRound, SubscriptionAbciApp, ClaimRound
+
+from packages.valory.protocols.contract_api.message import ContractApiMessage
+
+from packages.valory.contracts.transfer_nft_condition.contract import TransferNftCondition
+
+from packages.valory.contracts.erc20.contract import ERC20
 
 LOCK_CONDITION_INDEX = 0
 SERVICE_INDEX = -1
@@ -150,31 +156,6 @@ class OrderSubscriptionBehaviour(BaseSubscriptionBehaviour):
         approval_params["amount"] = self.price  # type: ignore
         return approval_params
 
-    def _build_withdraw_wxdai_tx(self, amount: int) -> WaitableConditionType:
-        """Exchange xDAI to wxDAI."""
-        response_msg = yield from self.get_contract_api_response(
-            performative=ContractApiMessage.Performative.GET_STATE,  # type: ignore
-            contract_address=WXDAI,
-            contract_id=str(ERC20.contract_id),
-            contract_callable="build_withdraw_tx",
-            amount=amount,
-        )
-
-        if response_msg.performative != ContractApiMessage.Performative.STATE:
-            self.context.logger.info(f"Could not build deposit tx: {response_msg}")
-            return False
-
-        approval_data = response_msg.state.body.get("data")
-        if approval_data is None:
-            self.context.logger.info(f"Could not build deposit tx: {response_msg}")
-            return False
-
-        batch = MultisendBatch(
-            to=WXDAI,
-            data=HexBytes(approval_data),
-        )
-        self.multisend_batches.append(batch)
-        return True
 
     def _prepare_order_tx(
         self,
@@ -269,30 +250,17 @@ class OrderSubscriptionBehaviour(BaseSubscriptionBehaviour):
         if not result:
             return SubscriptionRound.ERROR_PAYLOAD
 
-        if not self.is_xdai:
-            self.context.logger.warning(
-                f"Subscription is not using xDAI: {self.is_xdai}"
-            )
-            approval_params = self._get_approval_params()
-            result = yield from self._prepare_approval_tx(**approval_params)
-            if not result:
-                return SubscriptionRound.ERROR_PAYLOAD
-
-        else:
+        if self.token_balance < self.price:
             self.context.logger.info(
-                f"Using wxDAI to purchase subscription: {self.wallet_balance} < {self.price}"
+                f"Insufficient funds to purchase subscription: {self.token_balance} < {self.price}"
             )
-            if self.wallet_balance < self.price:
-                if self.wallet_balance + self.token_balance < self.price:
-                    self.context.logger.info(
-                        f"Insufficient funds to purchase subscription: {self.wallet_balance + self.token_balance} < {self.price}"
-                    )
-                    return SubscriptionRound.ERROR_PAYLOAD
-                amount_to_withdraw = self.price - self.wallet_balance
-                self.context.logger.info(f"Withdrawing {amount_to_withdraw} from WxDAI")
-                result = yield from self._build_withdraw_wxdai_tx(amount_to_withdraw)
-                if not result:
-                    return SubscriptionRound.ERROR_PAYLOAD
+            return SubscriptionRound.ERROR_PAYLOAD
+
+        approval_params = self._get_approval_params()
+        result = yield from self._prepare_approval_tx(**approval_params)
+        if not result:
+            return SubscriptionRound.ERROR_PAYLOAD
+
 
         purchase_params = yield from self._get_purchase_params()
         if purchase_params is None:
@@ -397,7 +365,7 @@ class SubscriptionRoundBehaviour(AbstractRoundBehaviour):
     """SubscriptionRoundBehaviour"""
 
     initial_behaviour_cls = OrderSubscriptionBehaviour
-    abci_app_cls = InboxAbciApp
+    abci_app_cls = SubscriptionAbciApp
     behaviours: Set[Type[BaseBehaviour]] = [
         OrderSubscriptionBehaviour,
         ClaimSubscriptionBehaviour,

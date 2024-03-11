@@ -19,8 +19,9 @@
 
 """This module contains the shared state for the abci skill of InboxAbciApp."""
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Dict, Iterable
 
+from aea.exceptions import enforce
 from hexbytes import HexBytes
 
 from packages.valory.contracts.multisend.contract import MultiSendOperation
@@ -51,16 +52,47 @@ class SharedState(BaseSharedState):
     abci_app_cls = InboxAbciApp
 
 
+def _raise_incorrect_config(key: str, values: Any) -> None:
+    """Raise a `ValueError` for incorrect configuration of a nested_list workaround."""
+    raise ValueError(
+        f"The given configuration for {key!r} is incorrectly formatted: {values}!"
+        "The value is expected to be a list of lists that can be represented as a dictionary."
+    )
+
+
+def nested_list_todict_workaround(
+    kwargs: Dict,
+    key: str,
+) -> Dict:
+    """Get a nested list from the kwargs and convert it to a dictionary."""
+    values = list(kwargs.get(key, []))
+    if len(values) == 0:
+        raise ValueError(f"No {key!r} specified in agent's configurations: {kwargs}!")
+    if any(not issubclass(type(nested_values), Iterable) for nested_values in values):
+        _raise_incorrect_config(key, values)
+    if any(len(nested_values) % 2 == 1 for nested_values in values):
+        _raise_incorrect_config(key, values)
+    return {value[0]: value[1] for value in values}
+
+
 class Params(BaseParams):
     """Parameters."""
 
-    inbox_auth: str
-    farcaster_auth: str
-
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize parameters."""
-        self.inbox_auth = self._ensure("inbox_auth", kwargs=kwargs, type_=str)
-        self.farcaster_auth = self._ensure("farcaster_auth", kwargs=kwargs, type_=str)
+        self.multisend_address = kwargs.get("multisend_address", None)
+        enforce(
+            self.multisend_address is not None,
+            "multisend_address must be set!",
+        )
+        self.mech_agent_address
+        self.use_nevermined = self._ensure("use_nevermined", kwargs, type_=bool)
+        self.mech_to_subscription_params: Dict[
+            str, Any
+        ] = nested_list_todict_workaround(
+            kwargs,
+            "mech_to_subscription_params",
+        )
         super().__init__(*args, **kwargs)
 
 

@@ -28,6 +28,8 @@ from typing import Any, Callable, Dict, Generator, List, Optional, Tuple, cast
 from aea.configurations.data_types import PublicId
 from aea.protocols.base import Message
 from aea.protocols.dialogue.base import Dialogue
+
+from packages.valory.contracts.erc20.contract import ERC20
 from packages.valory.contracts.transfer_nft_condition.contract import (
     TransferNftCondition,
 )
@@ -84,7 +86,34 @@ class BaseSubscriptionBehaviour(BaseBehaviour, ABC):
     def __init__(self, **kwargs: Any) -> None:
         """Initialize `BaseSubscriptionBehaviour`."""
         super().__init__(**kwargs)
+        self.token_balance = 0
+        self.wallet_balance = 0
+        self.multisend_batches: List[MultisendBatch] = []
+        self.multisend_data = b""
+        self._safe_tx_hash = ""
         self.balance: int = 0
+
+    @property
+    def params(self) -> Params:
+        """Return the params."""
+        return cast(Params, self.context.params)
+
+    @property
+    def subscription_params(self) -> Dict[str, Any]:
+        """Get the subscription params."""
+        return self.params.mech_to_subscription_params
+
+    @property
+    def did(self) -> str:
+        """Get the did."""
+        subscription_params = self.subscription_params
+        return subscription_params["did"]
+
+    @property
+    def token_address(self) -> str:
+        """Get the token address."""
+        subscription_params = self.subscription_params
+        return subscription_params["token_address"]
 
     @property
     def escrow_payment_condition_address(self) -> str:
@@ -200,73 +229,91 @@ class BaseSubscriptionBehaviour(BaseBehaviour, ABC):
 
         return self.balance > 0
 
-
-class DecisionMakerBaseBehaviour(BaseBehaviour, ABC):
-    """Represents the base class for the decision-making FSM behaviour."""
-
-    def __init__(self, **kwargs: Any) -> None:
-        """Initialize the bet placement behaviour."""
-        super().__init__(**kwargs)
-        self.token_balance = 0
-        self.wallet_balance = 0
-        self.multisend_batches: List[MultisendBatch] = []
-        self.multisend_data = b""
-        self._safe_tx_hash = ""
-        self._inflight_strategy_req: Optional[str] = None
-
-    @property
-    def subscription_params(self) -> Dict[str, Any]:
-        """Get the subscription params."""
-        return self.params.mech_to_subscription_params
-
-    @property
-    def did(self) -> str:
-        """Get the did."""
-        subscription_params = self.subscription_params
-        return subscription_params["did"]
-
-    @property
-    def token_address(self) -> str:
-        """Get the token address."""
-        subscription_params = self.subscription_params
-        return subscription_params["token_address"]
-
-    def strategy_exec(self, strategy: str) -> Optional[Tuple[str, str]]:
-        """Get the executable strategy file's content."""
-        return self.shared_state.strategies_executables.get(strategy, None)
-
-    def execute_strategy(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:
-        """Execute the strategy and return the results."""
-        trading_strategy = kwargs.pop("trading_strategy", None)
-        if trading_strategy is None:
-            self.context.logger.error(f"No {trading_strategy!r} was given!")
-            return {BET_AMOUNT_FIELD: 0}
-
-        strategy = self.strategy_exec(trading_strategy)
-        if strategy is None:
+    def check_balance(self) -> WaitableConditionType:
+        """Check the safe's balance."""
+        response_msg = yield from self.get_contract_api_response(
+            performative=ContractApiMessage.Performative.GET_RAW_TRANSACTION,  # type: ignore
+            contract_address=self.payment_token,
+            contract_id=str(ERC20.contract_id),
+            contract_callable="check_balance",
+            account=self.synchronized_data.safe_contract_address,
+        )
+        if response_msg.performative != ContractApiMessage.Performative.RAW_TRANSACTION:
             self.context.logger.error(
-                f"No executable was found for {trading_strategy=}!"
+                f"Could not calculate the balance of the safe: {response_msg}"
             )
-            return {BET_AMOUNT_FIELD: 0}
+            return False
 
-        strategy_exec, callable_method = strategy
-        if callable_method in globals():
-            del globals()[callable_method]
-
-        exec(strategy_exec, globals())  # pylint: disable=W0122  # nosec
-        method = globals().get(callable_method, None)
-        if method is None:
+        token = response_msg.raw_transaction.body.get("token", None)
+        wallet = response_msg.raw_transaction.body.get("wallet", None)
+        if token is None or wallet is None:
             self.context.logger.error(
-                f"No {callable_method!r} method was found in {trading_strategy} strategy's executable."
+                f"Something went wrong while trying to get the balance of the safe: {response_msg}"
             )
-            return {BET_AMOUNT_FIELD: 0}
+            return False
 
-        return method(*args, **kwargs)
+        self.token_balance = int(token)
+        self.wallet_balance = int(wallet)
 
-    @property
-    def params(self) -> Params:
-        """Return the params."""
-        return cast(Params, self.context.params)
+        return True
+
+    def _propagate_contract_messages(self, response_msg: ContractApiMessage) -> bool:
+        """Propagate the contract's message to the logger, if exists.
+
+        Contracts can only return one message at a time.
+
+        :param response_msg: the response message from the contract method.
+        :return: whether a message has been propagated.
+        """
+        for level in ("info", "warning", "error"):
+            msg = response_msg.raw_transaction.body.get(level, None)
+            if msg is not None:
+                logger = getattr(self.context.logger, level)
+                logger(msg)
+                return True
+        return False
+
+    def contract_interact(
+        self,
+        performative: ContractApiMessage.Performative,
+        contract_address: str,
+        contract_public_id: PublicId,
+        contract_callable: str,
+        data_key: str,
+        placeholder: str,
+        **kwargs: Any,
+    ) -> WaitableConditionType:
+        """Interact with a contract."""
+        contract_id = str(contract_public_id)
+        response_msg = yield from self.get_contract_api_response(
+            performative,
+            contract_address,
+            contract_id,
+            contract_callable,
+            **kwargs,
+        )
+        if response_msg.performative != ContractApiMessage.Performative.RAW_TRANSACTION:
+            self.default_error(contract_id, contract_callable, response_msg)
+            return False
+
+        propagated = self._propagate_contract_messages(response_msg)
+        data = response_msg.raw_transaction.body.get(data_key, None)
+        if data is None:
+            if not propagated:
+                self.default_error(contract_id, contract_callable, response_msg)
+            return False
+
+        setattr(self, placeholder, data)
+        return True
+
+    def default_error(
+        self, contract_id: str, contract_callable: str, response_msg: ContractApiMessage
+    ) -> None:
+        """Return a default contract interaction error message."""
+        self.context.logger.error(
+            f"Could not successfully interact with the {contract_id} contract "
+            f"using {contract_callable!r}: {response_msg}"
+        )
 
     @property
     def shared_state(self) -> SharedState:
@@ -335,87 +382,6 @@ class DecisionMakerBaseBehaviour(BaseBehaviour, ABC):
     def wei_to_native(wei: int) -> float:
         """Convert WEI to native token."""
         return wei / 10**18
-
-    def _collateral_amount_info(self, amount: int) -> str:
-        """Get a description of the collateral token's amount."""
-        return (
-            f"{self.wei_to_native(amount)} wxDAI"
-            if self.is_wxdai
-            else f"{amount} WEI of the collateral token with address {self.collateral_token}"
-        )
-
-    def default_error(
-        self, contract_id: str, contract_callable: str, response_msg: ContractApiMessage
-    ) -> None:
-        """Return a default contract interaction error message."""
-        self.context.logger.error(
-            f"Could not successfully interact with the {contract_id} contract "
-            f"using {contract_callable!r}: {response_msg}"
-        )
-
-    def _propagate_contract_messages(self, response_msg: ContractApiMessage) -> bool:
-        """Propagate the contract's message to the logger, if exists.
-
-        Contracts can only return one message at a time.
-
-        :param response_msg: the response message from the contract method.
-        :return: whether a message has been propagated.
-        """
-        for level in ("info", "warning", "error"):
-            msg = response_msg.raw_transaction.body.get(level, None)
-            if msg is not None:
-                logger = getattr(self.context.logger, level)
-                logger(msg)
-                return True
-        return False
-
-    def contract_interact(
-        self,
-        performative: ContractApiMessage.Performative,
-        contract_address: str,
-        contract_public_id: PublicId,
-        contract_callable: str,
-        data_key: str,
-        placeholder: str,
-        **kwargs: Any,
-    ) -> WaitableConditionType:
-        """Interact with a contract."""
-        contract_id = str(contract_public_id)
-        response_msg = yield from self.get_contract_api_response(
-            performative,
-            contract_address,
-            contract_id,
-            contract_callable,
-            **kwargs,
-        )
-        if response_msg.performative != ContractApiMessage.Performative.RAW_TRANSACTION:
-            self.default_error(contract_id, contract_callable, response_msg)
-            return False
-
-        propagated = self._propagate_contract_messages(response_msg)
-        data = response_msg.raw_transaction.body.get(data_key, None)
-        if data is None:
-            if not propagated:
-                self.default_error(contract_id, contract_callable, response_msg)
-            return False
-
-        setattr(self, placeholder, data)
-        return True
-
-    def _mech_contract_interact(
-        self, contract_callable: str, data_key: str, placeholder: str, **kwargs: Any
-    ) -> WaitableConditionType:
-        """Interact with the mech contract."""
-        status = yield from self.contract_interact(
-            performative=ContractApiMessage.Performative.GET_RAW_TRANSACTION,  # type: ignore
-            contract_address=self.params.mech_agent_address,
-            contract_public_id=Mech.contract_id,
-            contract_callable=contract_callable,
-            data_key=data_key,
-            placeholder=placeholder,
-            **kwargs,
-        )
-        return status
 
     def _build_multisend_data(
         self,

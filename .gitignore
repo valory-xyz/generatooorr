@@ -12,6 +12,7 @@ packages/valory/contracts/gnosis_safe
 packages/valory/contracts/gnosis_safe_proxy_factory
 packages/valory/contracts/multisend
 packages/valory/contracts/service_registry
+packages/valory/contracts/transfer_nft_condition/
 
 packages/valory/connections
 
@@ -23,3 +24,5 @@ packages/valory/skills/termination_abci
 packages/valory/skills/reset_pause_abci
 
 /generatooorr_gnosis/
+/packages/valory/skills/farcaster_write_abci/
+/packages/valory/contracts/erc20/
