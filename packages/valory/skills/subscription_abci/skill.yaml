@@ -6,21 +6,24 @@ description: An abci skill that handles incoming requests from users for shorts.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeieh4xmeumc6jmhzjjnyxgttoe6fbuzyxyoej32c5ezjsacvjq7noy
-  behaviours.py: bafybeigsh5np26sdg77tg23e5oq6nkurk4jbren5qipl6obisrablrlimy
+  __init__.py: bafybeicoh75afnfoszhse3vsnuynid6ikfdnmoj4ndoxuz2f7dtvmbjjeq
+  base.py: bafybeicwwjuja34dskprjx2sjm6mngvaotbithiyuypbgrx2kvx5zm5wte
+  behaviours.py: bafybeifuc2recah2pydhhevupetm2wy6ywpw3reoqvuarl2obi7tanxqhq
   dialogues.py: bafybeidjif76psqyj4bixcrg4nc4jl7iihi44wa6hr4rfixvi7623pibmq
-  handlers.py: bafybeieq5jbe4bstsvigdvttw6ajsyd3tsyvyab7hepl332mu7repp7xr4
-  models.py: bafybeigcwp3ol6dawje4kxbgoptqsjc2qn42msgr46pkngenw5iypgck5i
-  payloads.py: bafybeigkkjidebtlkdy3rwkogytnu2egfowrbos3l53c534racg6trkxgu
-  rounds.py: bafybeicdmrnaqkcwhqaqbi665dv7murcrkxht3yn7ovpyagelkmdg5cqfu
+  handlers.py: bafybeiamcxhkg3asjvvtk7fj3t244nzlupwwn2etbeavuaovohjwdx2rhm
+  models.py: bafybeiaczago23h2qoq4jjigzmdlk7m363njemeru66wmhnjn5gdohbzou
+  payloads.py: bafybeicmqioatesils3sygrksfhn75npdnvczv5l4xras2p34oqebrirq4
+  rounds.py: bafybeickdpqottk5fpov2y4hn2dsapg7wx5emublem3kwtk5fls2pe5rpq
+  utils/__init__.py: bafybeieyeoplpnbjcd6s2x6ao4dgtm5scizsps7gyuwlpaflml6hg6iidi
+  utils/nevermined.py: bafybeidw4ydwqo7dmdfu2oqx4lmgho5ciakthx6rj2iwgt7bywvnppbxuy
 fingerprint_ignore_patterns: []
 connections:
-- valory/http_server:0.22.0:bafybeie3d6tj2kzewced4nnttxdvr7njue2ortvawmwdt67gwf4tcuosom
+- valory/http_server:0.22.0:bafybeibveiaocfj4734t7zu5nw7trivnkszixeumnccnwthgig5vmpcwdm
 contracts: []
 protocols:
-- valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
+- valory/http:1.0.0:bafybeifugzl63kfdmwrxwphrnrhj7bn6iruxieme3a4ntzejf6kmtuwmae
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
+- valory/abstract_round_abci:0.1.0:bafybeifrsatxr4syaccaxnirpvm2zetttlmrp3vr3fmqm7vc7lazy4i2bm
 behaviours:
   main:
     args: {}
@@ -130,28 +133,28 @@ models:
       serious_slash_unit_amount: 8000000000000000
       use_nevermined: true
       mech_to_subscription_params:
-        - - base_url
-          - https://marketplace-api.gnosis.nevermined.app/api/v1/metadata/assets/ddo
-        - - did
-          - did:nv:0ea01d5de3b34e3792db825f2a5f5595c393c68b19fd5efdacd00fcc63a53483
-        - - escrow_payment_condition_address
-          - '0x9dDC4F1Ea5b94C138A23b60EC48c0d01d172629a'
-        - - lock_payment_condition_address
-          - '0xDE85A368Ee6f374d236500d176814365370778dA'
-        - - transfer_nft_condition_address
-          - '0xbBa4A25262745a55f020D0a3E9a82c25bb6F4979'
-        - - token_address
-          - '0xa30DE8C6aC39B825192e5F1FADe0770332D279A8'
-        - - order_address
-          - '0xc7751eff5396a846e7bc83ac31d3cb7d37cb49e4'
-        - - nft_amount
-          - '100'
-        - - payment_token
-          - '0x0000000000000000000000000000000000000000'
-        - - order_address
-          - '0xc7751eff5396a846e7bc83ac31d3cb7d37cb49e4'
-        - - price
-          - '1000000000000000000'
+      - - base_url
+        - https://marketplace-api.gnosis.nevermined.app/api/v1/metadata/assets/ddo
+      - - did
+        - did:nv:0ea01d5de3b34e3792db825f2a5f5595c393c68b19fd5efdacd00fcc63a53483
+      - - escrow_payment_condition_address
+        - '0x9dDC4F1Ea5b94C138A23b60EC48c0d01d172629a'
+      - - lock_payment_condition_address
+        - '0xDE85A368Ee6f374d236500d176814365370778dA'
+      - - transfer_nft_condition_address
+        - '0xbBa4A25262745a55f020D0a3E9a82c25bb6F4979'
+      - - token_address
+        - '0xa30DE8C6aC39B825192e5F1FADe0770332D279A8'
+      - - order_address
+        - '0xc7751eff5396a846e7bc83ac31d3cb7d37cb49e4'
+      - - nft_amount
+        - '100'
+      - - payment_token
+        - '0x0000000000000000000000000000000000000000'
+      - - order_address
+        - '0xc7751eff5396a846e7bc83ac31d3cb7d37cb49e4'
+      - - price
+        - '1000000000000000000'
     class_name: Params
   requests:
     args: {}

@@ -18,15 +18,15 @@ connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeie44ytoususmffvi2swh2ke4rgdmlu3qtfw6lugyzqigc4ta5tz6e
-- valory/registration_abci:0.1.0:bafybeiax7kacmmght54odhylfeclfnmagikzbolz62fsxmxl6bngs4mybq
-- valory/inbox_abci:0.1.0:bafybeigwsn4pfhagrcst6piopdvzcyw5gqbgky5c3khx574heivdli3mwq
-- valory/mech_interact_abci:0.1.0:bafybeiepc74tyqfxygjb42oxf6czd7v746flminc36k4wfaaezg4nsexvm
-- valory/nft_mint_abci:0.1.0:bafybeidyejdexmm2ged5kpcfeyp5egxe7kisxtnz5gnz4ms42ik247ccne
-- valory/transaction_settlement_abci:0.1.0:bafybeicckhvw46mm7detdvw4zk47szrw7ak4jz6fclrnvlle2jws5ti64m
-- valory/outbox_abci:0.1.0:bafybeicljn3exsverqwkgetzs3fwtjhznx3fot6qe4n4mdbhxdobebbl6e
-- valory/reset_pause_abci:0.1.0:bafybeiftjmcanncc52a7mn3a6oddzuqbvsjpcvg7uykygotdkf36355eiq
-- valory/termination_abci:0.1.0:bafybeig7l5mslee57nbe7ym2tykkrhbzijqffkeqj6aduhhikswpqao3ta
+- valory/abstract_round_abci:0.1.0:bafybeifrsatxr4syaccaxnirpvm2zetttlmrp3vr3fmqm7vc7lazy4i2bm
+- valory/registration_abci:0.1.0:bafybeibfzntdwfzvddh2hzmaun23724y7neq5koowxzjbxsevs3igntfue
+- valory/inbox_abci:0.1.0:bafybeie4i2q4boni2xq3bjhvp4dqb57m7ltxlwwda6o6s3jkur7cjjynlq
+- valory/mech_interact_abci:0.1.0:bafybeibsrxl4lnfyvy6hvkdcu2kaucgbikwh5cot3clptobniwqwseidmy
+- valory/nft_mint_abci:0.1.0:bafybeib3wkhbgvhrr2jgbrhgcuadaqlr2li4cjxz7c7grjpd5jcp6mh6xa
+- valory/transaction_settlement_abci:0.1.0:bafybeihcfbjnty6j4aluaajgfdrc4ctg76ebb3gfub5pwqtooait7x76r4
+- valory/outbox_abci:0.1.0:bafybeiainjk3kaafnfqggosflej5jkrvojlyl5hmuvsv7herfdmuqkpqti
+- valory/reset_pause_abci:0.1.0:bafybeienpu6guwbkdzscnovmhizuzlkpalycltzxnwovisbd2coyjim7li
+- valory/termination_abci:0.1.0:bafybeicklx5s3mjl4pgkcz36bw2vuuqj6w73qyh455vkoncyanxqlns6ze
 behaviours:
   main:
     args: {}

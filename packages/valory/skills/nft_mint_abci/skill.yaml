@@ -20,12 +20,12 @@ contracts:
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/blockchain_shorts:0.1.0:bafybeifdtjjy2qzdpyfizatbsc2imxkqnetfw4we7x47od42acbr3nqqqq
 protocols:
-- valory/contract_api:1.0.0:bafybeialhbjvwiwcnqq3ysxcyemobcbie7xza66gaofcvla5njezkvhcka
-- valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
+- valory/contract_api:1.0.0:bafybeidgu7o5llh26xp3u3ebq3yluull5lupiyeu6iooi2xyymdrgnzq5i
+- valory/http:1.0.0:bafybeifugzl63kfdmwrxwphrnrhj7bn6iruxieme3a4ntzejf6kmtuwmae
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeie44ytoususmffvi2swh2ke4rgdmlu3qtfw6lugyzqigc4ta5tz6e
-- valory/mech_interact_abci:0.1.0:bafybeiepc74tyqfxygjb42oxf6czd7v746flminc36k4wfaaezg4nsexvm
-- valory/transaction_settlement_abci:0.1.0:bafybeicckhvw46mm7detdvw4zk47szrw7ak4jz6fclrnvlle2jws5ti64m
+- valory/abstract_round_abci:0.1.0:bafybeifrsatxr4syaccaxnirpvm2zetttlmrp3vr3fmqm7vc7lazy4i2bm
+- valory/mech_interact_abci:0.1.0:bafybeibsrxl4lnfyvy6hvkdcu2kaucgbikwh5cot3clptobniwqwseidmy
+- valory/transaction_settlement_abci:0.1.0:bafybeihcfbjnty6j4aluaajgfdrc4ctg76ebb3gfub5pwqtooait7x76r4
 behaviours:
   main:
     args: {}
