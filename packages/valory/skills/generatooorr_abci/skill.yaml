@@ -7,26 +7,28 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeieegktb3lc2pl6v64khnqpaizjb5y66su5lokbrsyu5zzicccugie
-  behaviours.py: bafybeigdedqge6k22uae23b3ysia6kthhvspgongxvizsbl7yxwbzuqdyu
-  composition.py: bafybeibn4zwdij3p6hljbhaawmhwci62rr6s3hh76wpehy5c6edjhe65ay
+  behaviours.py: bafybeiam6w7wekdelqseehbhkwuf56u5jowzti4pjnip4zkhhauxsmvq74
+  composition.py: bafybeiahdwb5t65ql7ggumvce6l2t4jobynzt4nux3idr2jwc5b2p7okca
   dialogues.py: bafybeigpwuzku3we7axmxeamg7vn656maww6emuztau5pg3ebsoquyfdqm
   handlers.py: bafybeic63srmrcogcbvcgzf54nwg2cbn2plfyrpbojjotrpyqqn456f6bq
   models.py: bafybeifb4pyje7aqqpgl7ztc66gmt32fpwxoi6ugl4syhd2mceyf4x5zxq
-  tx_multiplexer.py: bafybeihq3incskow7c5llvopub43u7ymodtv66nxofukhz7a7w7yojb6s4
+  tx_multiplexer.py: bafybeihywxce5z5jd4nkz4nou4xhdpkjp2rzlsl5aorakaqpye32uq4cnu
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/registration_abci:0.1.0:bafybeib2whqixp5265d53sa6szkz7woet4awuqr4dekb2hokpgps5codme
-- valory/inbox_abci:0.1.0:bafybeicp7izlo6jhxxt5q57xqtejozqrcn3xmhgsjtjtw7tuedfuyewlna
-- valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
-- valory/nft_mint_abci:0.1.0:bafybeidjjybk6jvc7jp3octfmja4swatccxwdab6qfyjuncyl764zlz2pq
-- valory/transaction_settlement_abci:0.1.0:bafybeigxkdujugzvve2dszkwr5kgfx4uhz2epofo4lorbcnthmzfjegwzi
-- valory/outbox_abci:0.1.0:bafybeigbfmwwzlv3gc4jv5m2xtppi4gyzjoo3b4hmqyjb6xmtvyh6ga2xe
-- valory/reset_pause_abci:0.1.0:bafybeiflxcl2dtzayyzzddc4f2astzxunyp66meutornanrgeemicdea5q
-- valory/termination_abci:0.1.0:bafybeifazwrksp756h7z42qqfcgi6lya6wmhbx46l7ghlaooe45gqnju7q
+- valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
+- valory/registration_abci:0.1.0:bafybeibzduasg5pahk2d2glc36wlopg54ybwcdmjqbzozt2lmkp4reqsdu
+- valory/inbox_abci:0.1.0:bafybeiaet4cewfelygbol3av6ribw42w4bkkwzm42masxevz3yay7svc5e
+- valory/farcaster_write_abci:0.1.0:bafybeid2uyurq2sonsxlgnhs2jx6akkggl5io7aywvlwskpdds734blkwa
+- valory/subscription_abci:0.1.0:bafybeic2uyy3ifckq3ugpf6fqh7u7ygsrfpcmsgdpndf3cqcwt3uh5tpqi
+- valory/mech_interact_abci:0.1.0:bafybeidl7fcaznve53hq5wzzidvgg64hn2riagx533eoxrciscv5ntg3xu
+- valory/nft_mint_abci:0.1.0:bafybeibnxrdfoxitnvjpbaxchau53obus4dkgx4n2rcsmjv5m3ddpfkpri
+- valory/transaction_settlement_abci:0.1.0:bafybeifhuemoavm6hf4vypg2sl7kng3iv4ipxgpk3itbh5hp73lworpuwq
+- valory/outbox_abci:0.1.0:bafybeiaizjwmzholsmlkqguebzshwwi4b73htjmv4ul7u4yyun5hludycm
+- valory/reset_pause_abci:0.1.0:bafybeib3geaw3o35aigmb4dhplxrjlsef7hbdwrozu4akiunlgyiegshj4
+- valory/termination_abci:0.1.0:bafybeifnfuy3svz5oz6kwglu35q6jn7ai3riqplyypskb7za5ejyvjmfza
 behaviours:
   main:
     args: {}
@@ -138,6 +140,10 @@ models:
       multisend_batch_size: 50
       mech_agent_address: '0xff82123dfb52ab75c417195c5fdb87630145ae81'
       slash_cooldown_hours: 3
+      farcaster_message: '{user} your short has been generated. {link}'
+      farcaster_auth: farcaster_auth
+      base_fe_url: https://shorts.wtf/short
+      termination_from_block: 0
       slash_threshold_amount: 10000000000000000
       light_slash_unit_amount: 5000000000000000
       serious_slash_unit_amount: 8000000000000000
@@ -184,5 +190,5 @@ models:
     class_name: TendermintDialogues
 dependencies:
   open-aea-cli-ipfs:
-    version: <2.0.0,>=1.41.0.post1
+    version: <2.0.0,>=1.49.0
 is_abstract: false

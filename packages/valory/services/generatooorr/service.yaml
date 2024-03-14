@@ -7,7 +7,7 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeihoplqp3y2k6y4anmmtw4jfnvxuul36hurubnn2mdyxyuoaewibaa
 fingerprint_ignore_patterns: []
-agent: valory/generatooorr:0.1.0:bafybeicepfppvdytm7e7sxnq3or2fbli5bsymffkp56zgn46canuctvp2q
+agent: valory/generatooorr:0.1.0:bafybeietazcmxvbsmtb2dvuja3devyakuxzofvzplnhvrgvpzfx67dcvdq
 number_of_agents: 1
 deployment:
   agent:
@@ -31,6 +31,7 @@ type: skill
         tendermint_url: ${TENDERMINT_URL:str:http://localhost:26657}
         tendermint_p2p_url: ${TM_P2P_ENDPOINT_NODE_0:str:node0:26656}
         termination_sleep: ${TERMINATION_SLEEP:int:900}
+        termination_from_block: ${TERMINATION_FROM_BLOCK:int:0}
         use_termination: ${USE_TERMINATION:bool:false}
         mech_agent_address: ${AGENT_MECH_CONTRACT_ADDRESS:str:0x1847f93501704F9AA67FE8Af5de7e999af5d0970}
         reset_period_count: ${RESET_PERIOD_COUNT:int:1000}
@@ -76,3 +77,9 @@ type: connection
 0:
   config:
     port: ${HTTP_INGRESS_PORT:int:8000}
+---
+public_id: valory/farcaster:0.1.0:bafybeihrixgptxuqpf2s4nujypwlv5aed2nboozq5kl4c26cxw6r7si2x4
+type: connection
+0:
+  config:
+    farcaster_mnemonic: ${FARCASTER_MNEMONIC:str:null}

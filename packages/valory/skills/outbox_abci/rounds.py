@@ -89,7 +89,17 @@ class PushNotificationRound(CollectSameUntilThresholdRound):
         if not self.is_majority_possible(
             self.collection, self.synchronized_data.nb_participants
         ):
-            return self.synchronized_data, Event.NO_MAJORITY
+            payload = json.loads(
+                self.most_voted_payload,
+            )
+            data = payload.pop("data")
+            synchronized_data = self.synchronized_data.update(
+                synchronized_data_class=SynchronizedData,
+                **{
+                    "write_data": data,
+                }
+            )
+            return synchronized_data, Event.NO_MAJORITY
         return None
 
 
@@ -108,6 +118,7 @@ class OutboxAbciApp(AbciApp[Event]):
             Event.NO_MAJORITY: PushNotificationRound,
             Event.ROUND_TIMEOUT: PushNotificationRound,
         },
+
         FinishedPushNotificationRound: {},
     }
     final_states: Set[AppState] = {

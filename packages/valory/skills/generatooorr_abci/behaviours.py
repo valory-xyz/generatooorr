@@ -26,6 +26,7 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
+from packages.valory.skills.farcaster_write_abci.behaviours import FarcasterWriteRoundBehaviour
 from packages.valory.skills.generatooorr_abci.composition import GeneratooorrAbciApp
 from packages.valory.skills.generatooorr_abci.tx_multiplexer import (
     SynchronizedData,
@@ -46,6 +47,7 @@ from packages.valory.skills.registration_abci.behaviours import (
 from packages.valory.skills.reset_pause_abci.behaviours import (
     ResetPauseABCIConsensusBehaviour,
 )
+from packages.valory.skills.subscription_abci.behaviours import SubscriptionRoundBehaviour
 from packages.valory.skills.termination_abci.behaviours import (
     BackgroundBehaviour,
     TerminationAbciBehaviours,
@@ -124,5 +126,7 @@ class GeneratooorrConsensusBehaviour(AbstractRoundBehaviour):
         *NftMintAbciRoundBehaviour.behaviours,
         *TxMultiplexerRoundBehaviour.behaviours,
         *ResetPauseABCIConsensusBehaviour.behaviours,
+        *SubscriptionRoundBehaviour.behaviours,
+        *FarcasterWriteRoundBehaviour.behaviours,
     }
     background_behaviours_cls = {BackgroundBehaviour}

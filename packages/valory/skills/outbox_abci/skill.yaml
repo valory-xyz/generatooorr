@@ -7,20 +7,20 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicxk3mjazwl2bqsmj6owwc2cnmsjtufvdxexkufdrwecnfys36l6m
-  behaviours.py: bafybeifscreed32zjegxquu2jtdjhz64j3ngv6rmrmh6szp3cpua64vcma
+  behaviours.py: bafybeid2ybc5riboyikmcwe5orjmxour5ugqhxywppcwxgzb4n3ypkjfzu
   dialogues.py: bafybeibeolj27x46yj5vje3nv5svvkey4b43jlfta3nx2mt4gfen7q5h6q
   handlers.py: bafybeif36zlhozwzxbo6dn7k7l4o22d3ooucnfiadjkddqvjgmu3resrgq
-  models.py: bafybeifm5dkagrqfzj3q2vqhzksde5w6lyxbcjnhkoveugia2k7i5k4ncm
+  models.py: bafybeigijdbgkm6pjyegatthz6ke7gp6kpxryff3gfolvqacgujyuaiyx4
   payloads.py: bafybeihd7kzdlkkhk225nxyr3dcqhwtznogboidftz5dxycxuyi54kag2m
-  rounds.py: bafybeih5eduexdna337qgrdefmdelnjvmvsg53zl2n4hubx6offzfzf36a
+  rounds.py: bafybeievzfltdt6bszdnzjxywad36yxeslipfaoc3mvb3yed2euhi6ic4u
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
 protocols:
-- valory/http:1.0.0:bafybeiejoqgv7finfxo3rcvvovrlj5ccrbgxodjq43uo26ylpowsa3llfe
+- valory/http:1.0.0:bafybeifugzl63kfdmwrxwphrnrhj7bn6iruxieme3a4ntzejf6kmtuwmae
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeigrqhygo2hl2owisj5rqyh3acdvee773ajije64snlzalcgtaac7q
-- valory/mech_interact_abci:0.1.0:bafybeid263qgidw2fb54s7qelxtafl7fzetbjsw3t3uvdwnriv6aetfzuq
+- valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
+- valory/mech_interact_abci:0.1.0:bafybeidl7fcaznve53hq5wzzidvgg64hn2riagx533eoxrciscv5ntg3xu
 behaviours:
   main:
     args: {}
@@ -119,6 +119,8 @@ models:
       tx_timeout: 10.0
       use_termination: false
       validate_timeout: 1205
+      farcaster_message: '{user} your short has been generated. {link}'
+      base_fe_url: https://shorts.wtf/short
       finalize_timeout: 60.0
       history_check_timeout: 1205
       use_slashing: false

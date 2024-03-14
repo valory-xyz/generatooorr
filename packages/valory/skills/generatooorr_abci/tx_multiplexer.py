@@ -33,7 +33,7 @@ from packages.valory.skills.mech_interact_abci.states.request import (
     MechTxSubmitterRound,
 )
 from packages.valory.skills.nft_mint_abci.rounds import NftMintRound
-
+from packages.valory.skills.subscription_abci.rounds import SubscriptionRound
 
 _NO_TX_ROUND = "no_tx"
 
@@ -44,8 +44,10 @@ class Event(Enum):
     DONE = "done"
     MECH_TX = "mech_tx"
     NFT_TX = "nft_tx"
+    SUBSCRIPTION_TX = "subscription_tx"
     FAILED_MECH_TX = "failed_mech_tx"
     FAILED_NFT_TX = "failed_nft_tx"
+    FAILED_SUBSCRIPTION_TX = "failed_subscription_tx"
 
 
 class SynchronizedData(BaseSynchronizedData):
@@ -71,6 +73,7 @@ class TxMultiplexerRound(CollectSameUntilThresholdRound):
     round_id_to_event: Dict[str, Event] = {
         MechTxSubmitterRound.auto_round_id(): Event.MECH_TX,
         NftMintRound.auto_round_id(): Event.NFT_TX,
+        SubscriptionRound.auto_round_id(): Event.SUBSCRIPTION_TX,
     }
 
     def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Enum]]:
@@ -96,6 +99,7 @@ class TxMultiplexerFailedRound(CollectSameUntilThresholdRound):
     round_id_to_event: Dict[str, Event] = {
         MechTxSubmitterRound.auto_round_id(): Event.FAILED_MECH_TX,
         NftMintRound.auto_round_id(): Event.FAILED_NFT_TX,
+        SubscriptionRound.auto_round_id(): Event.FAILED_SUBSCRIPTION_TX,
     }
 
     def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Enum]]:
@@ -119,12 +123,20 @@ class FinishedNFTMintTxRound(DegenerateRound):
     """Finished nft mint round."""
 
 
+class FinishedSubscriptionTxRound(DegenerateRound):
+    """Finished subscription purchase round."""
+
+
 class FinishedWithFailedMechTxRound(DegenerateRound):
     """Finished with failed tx round."""
 
 
 class FinishedWithFailedNFTMintTxRound(DegenerateRound):
     """Finished with failed nft mint round."""
+
+
+class FinishedWithFailedSubscriptionTxRound(DegenerateRound):
+    """Finished with failed subscription purchase round."""
 
 
 class TxSettlementMultiplexerAbci(AbciApp[Event]):
@@ -136,21 +148,27 @@ class TxSettlementMultiplexerAbci(AbciApp[Event]):
         TxMultiplexerRound: {
             Event.MECH_TX: FinishedMechTxRound,
             Event.NFT_TX: FinishedNFTMintTxRound,
+            Event.SUBSCRIPTION_TX: FinishedSubscriptionTxRound,
         },
         TxMultiplexerFailedRound: {
             Event.FAILED_MECH_TX: FinishedWithFailedMechTxRound,
             Event.FAILED_NFT_TX: FinishedWithFailedNFTMintTxRound,
+            Event.FAILED_SUBSCRIPTION_TX: FinishedWithFailedSubscriptionTxRound,
         },
         FinishedWithFailedMechTxRound: {},
         FinishedWithFailedNFTMintTxRound: {},
+        FinishedSubscriptionTxRound: {},
         FinishedMechTxRound: {},
         FinishedNFTMintTxRound: {},
+        FinishedWithFailedSubscriptionTxRound: {},
     }
     final_states: Set[AppState] = {
         FinishedMechTxRound,
         FinishedNFTMintTxRound,
         FinishedWithFailedMechTxRound,
         FinishedWithFailedNFTMintTxRound,
+        FinishedSubscriptionTxRound,
+        FinishedWithFailedSubscriptionTxRound,
     }
     db_pre_conditions: Dict[AppState, Set[str]] = {
         TxMultiplexerRound: set(),
@@ -161,4 +179,6 @@ class TxSettlementMultiplexerAbci(AbciApp[Event]):
         FinishedNFTMintTxRound: set(),
         FinishedWithFailedMechTxRound: set(),
         FinishedWithFailedNFTMintTxRound: set(),
+        FinishedSubscriptionTxRound: set(),
+        FinishedWithFailedSubscriptionTxRound: set(),
     }
