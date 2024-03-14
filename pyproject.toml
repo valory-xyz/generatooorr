@@ -13,15 +13,17 @@ include = "eth_lisbon_hack"
 
 [tool.poetry.dependencies]
 python = "<4,>=3.8"
-open-autonomy = {version = "0.14.7", extras = ["all"]}
-open-aea-test-autonomy = "0.14.7"
-open-aea-ledger-ethereum = "1.48.0.post1"
-open-aea-ledger-cosmos = "1.48.0.post1"
+open-autonomy = {version = "0.14.8", extras = ["all"]}
+open-aea-test-autonomy = "0.14.8"
+open-aea-ledger-ethereum = "1.49.0"
+open-aea-ledger-cosmos = "1.49.0"
 protobuf = ">=4.21.0,<4.25.0"
 web3 = ">=6.0.0,<7"
 tomte = {version = "==0.2.15", extras = ["tests", "cli", "tox"]}
-open-aea = {version = "1.48.0.post1", extras = ["all"]}
-open-aea-cli-ipfs = "1.48.0.post1"
+open-aea = {version = "1.49.0", extras = ["all"]}
+open-aea-cli-ipfs = "1.49.0"
+openapi-core = "0.15.0"
+farcaster = "0.7.11"
 
 [tool.poetry.group.dev.dependencies]
 tomte = {version = "0.2.15", extras = ["cli", "tests"]}

@@ -15,12 +15,12 @@ fingerprint:
   rounds.py: bafybeicdmrnaqkcwhqaqbi665dv7murcrkxht3yn7ovpyagelkmdg5cqfu
 fingerprint_ignore_patterns: []
 connections:
-- valory/http_server:0.22.0:bafybeibveiaocfj4734t7zu5nw7trivnkszixeumnccnwthgig5vmpcwdm
+- valory/http_server:0.22.0:bafybeihpgu56ovmq4npazdbh6y6ru5i7zuv6wvdglpxavsckyih56smu7m
 contracts: []
 protocols:
 - valory/http:1.0.0:bafybeifugzl63kfdmwrxwphrnrhj7bn6iruxieme3a4ntzejf6kmtuwmae
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeifrsatxr4syaccaxnirpvm2zetttlmrp3vr3fmqm7vc7lazy4i2bm
+- valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
 behaviours:
   main:
     args: {}
@@ -123,6 +123,7 @@ models:
       finalize_timeout: 60.0
       history_check_timeout: 1205
       use_slashing: false
+      farcaster_auth: farcaster_auth
       slash_cooldown_hours: 3
       slash_threshold_amount: 10000000000000000
       light_slash_unit_amount: 5000000000000000

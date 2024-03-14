@@ -23,13 +23,18 @@ import json
 from typing import Generator, Set, Type, cast, Any, Dict, List, Optional
 
 from hexbytes import HexBytes
+
+from packages.valory.contracts.erc20.contract import ERC20TokenContract as ERC20
+from packages.valory.contracts.transfer_nft_condition.contract import TransferNftCondition
+from packages.valory.protocols.contract_api.message import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.valory.skills.mech_interact_abci.models import MultisendBatch
-from packages.valory.skills.subscription_abci.base import BaseSubscriptionBehaviour, WaitableConditionType
+from packages.valory.skills.subscription_abci.models import MultisendBatch
+from packages.valory.skills.subscription_abci.base import BaseSubscriptionBehaviour
 from packages.valory.skills.subscription_abci.payloads import ClaimPayload, SubscriptionPayload
+from packages.valory.skills.subscription_abci.rounds import SubscriptionRound, SubscriptionAbciApp, ClaimRound
 from packages.valory.skills.subscription_abci.utils.nevermined import (
     generate_id,
     get_agreement_id,
@@ -43,14 +48,6 @@ from packages.valory.skills.subscription_abci.utils.nevermined import (
     get_claim_endpoint,
     get_creator,
 )
-
-from packages.valory.skills.subscription_abci.rounds import SubscriptionRound, SubscriptionAbciApp, ClaimRound
-
-from packages.valory.protocols.contract_api.message import ContractApiMessage
-
-from packages.valory.contracts.transfer_nft_condition.contract import TransferNftCondition
-
-from packages.valory.contracts.erc20.contract import ERC20
 
 LOCK_CONDITION_INDEX = 0
 SERVICE_INDEX = -1

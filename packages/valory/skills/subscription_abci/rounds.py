@@ -104,6 +104,7 @@ class TxPreparationRound(CollectSameUntilThresholdRound):
         get_name(SynchronizedData.most_voted_tx_hash),
     )
     collection_key = get_name(SynchronizedData.participant_to_tx_prep)
+    payload_class = SubscriptionPayload
 
 
 class SubscriptionRound(TxPreparationRound):
@@ -164,7 +165,7 @@ class SubscriptionAbciApp(AbciApp[Event]):
     """InboxAbciApp"""
 
     initial_round_cls: AppState = SubscriptionRound
-    initial_states: Set[AppState] = {SubscriptionRound, ClaimRound, }
+    initial_states: Set[AppState] = {SubscriptionRound, ClaimRound}
     transition_function: AbciAppTransitionFunction = {
         SubscriptionRound: {
             Event.DONE: FinishedSubscriptionRound,
@@ -183,7 +184,7 @@ class SubscriptionAbciApp(AbciApp[Event]):
         FinishedSubscriptionRound: {},
         FinishedWithoutSubscriptionRound: {},
         FinishedClaimingRound: {},
-    },
+    }
     final_states: Set[AppState] = {
         FinishedSubscriptionRound,
         FinishedWithoutSubscriptionRound,
@@ -194,7 +195,7 @@ class SubscriptionAbciApp(AbciApp[Event]):
     }
     db_pre_conditions: Dict[AppState, Set[str]] = {
         SubscriptionRound: set(),
-        ClaimRound: {get_name(SynchronizedData.agreement_id), },
+        ClaimRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedSubscriptionRound: {

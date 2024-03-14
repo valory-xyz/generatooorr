@@ -7,7 +7,7 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeieegktb3lc2pl6v64khnqpaizjb5y66su5lokbrsyu5zzicccugie
-  behaviours.py: bafybeigdedqge6k22uae23b3ysia6kthhvspgongxvizsbl7yxwbzuqdyu
+  behaviours.py: bafybeiam6w7wekdelqseehbhkwuf56u5jowzti4pjnip4zkhhauxsmvq74
   composition.py: bafybeiahdwb5t65ql7ggumvce6l2t4jobynzt4nux3idr2jwc5b2p7okca
   dialogues.py: bafybeigpwuzku3we7axmxeamg7vn656maww6emuztau5pg3ebsoquyfdqm
   handlers.py: bafybeic63srmrcogcbvcgzf54nwg2cbn2plfyrpbojjotrpyqqn456f6bq
@@ -18,15 +18,17 @@ connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeifrsatxr4syaccaxnirpvm2zetttlmrp3vr3fmqm7vc7lazy4i2bm
-- valory/registration_abci:0.1.0:bafybeibfzntdwfzvddh2hzmaun23724y7neq5koowxzjbxsevs3igntfue
-- valory/inbox_abci:0.1.0:bafybeie4i2q4boni2xq3bjhvp4dqb57m7ltxlwwda6o6s3jkur7cjjynlq
-- valory/mech_interact_abci:0.1.0:bafybeibsrxl4lnfyvy6hvkdcu2kaucgbikwh5cot3clptobniwqwseidmy
-- valory/nft_mint_abci:0.1.0:bafybeib3wkhbgvhrr2jgbrhgcuadaqlr2li4cjxz7c7grjpd5jcp6mh6xa
-- valory/transaction_settlement_abci:0.1.0:bafybeihcfbjnty6j4aluaajgfdrc4ctg76ebb3gfub5pwqtooait7x76r4
-- valory/outbox_abci:0.1.0:bafybeiainjk3kaafnfqggosflej5jkrvojlyl5hmuvsv7herfdmuqkpqti
-- valory/reset_pause_abci:0.1.0:bafybeienpu6guwbkdzscnovmhizuzlkpalycltzxnwovisbd2coyjim7li
-- valory/termination_abci:0.1.0:bafybeicklx5s3mjl4pgkcz36bw2vuuqj6w73qyh455vkoncyanxqlns6ze
+- valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
+- valory/registration_abci:0.1.0:bafybeibzduasg5pahk2d2glc36wlopg54ybwcdmjqbzozt2lmkp4reqsdu
+- valory/inbox_abci:0.1.0:bafybeiaet4cewfelygbol3av6ribw42w4bkkwzm42masxevz3yay7svc5e
+- valory/farcaster_write_abci:0.1.0:bafybeid2uyurq2sonsxlgnhs2jx6akkggl5io7aywvlwskpdds734blkwa
+- valory/subscription_abci:0.1.0:bafybeic2uyy3ifckq3ugpf6fqh7u7ygsrfpcmsgdpndf3cqcwt3uh5tpqi
+- valory/mech_interact_abci:0.1.0:bafybeidl7fcaznve53hq5wzzidvgg64hn2riagx533eoxrciscv5ntg3xu
+- valory/nft_mint_abci:0.1.0:bafybeibnxrdfoxitnvjpbaxchau53obus4dkgx4n2rcsmjv5m3ddpfkpri
+- valory/transaction_settlement_abci:0.1.0:bafybeifhuemoavm6hf4vypg2sl7kng3iv4ipxgpk3itbh5hp73lworpuwq
+- valory/outbox_abci:0.1.0:bafybeiaizjwmzholsmlkqguebzshwwi4b73htjmv4ul7u4yyun5hludycm
+- valory/reset_pause_abci:0.1.0:bafybeib3geaw3o35aigmb4dhplxrjlsef7hbdwrozu4akiunlgyiegshj4
+- valory/termination_abci:0.1.0:bafybeifnfuy3svz5oz6kwglu35q6jn7ai3riqplyypskb7za5ejyvjmfza
 behaviours:
   main:
     args: {}
@@ -139,6 +141,9 @@ models:
       mech_agent_address: '0xff82123dfb52ab75c417195c5fdb87630145ae81'
       slash_cooldown_hours: 3
       farcaster_message: '{user} your short has been generated. {link}'
+      farcaster_auth: farcaster_auth
+      base_fe_url: https://shorts.wtf/short
+      termination_from_block: 0
       slash_threshold_amount: 10000000000000000
       light_slash_unit_amount: 5000000000000000
       serious_slash_unit_amount: 8000000000000000
@@ -185,5 +190,5 @@ models:
     class_name: TendermintDialogues
 dependencies:
   open-aea-cli-ipfs:
-    version: <2.0.0,>=1.48.0.post1
+    version: <2.0.0,>=1.49.0
 is_abstract: false

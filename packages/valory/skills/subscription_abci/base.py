@@ -23,23 +23,19 @@ import dataclasses
 import json
 from abc import ABC
 from datetime import datetime, timedelta
-from typing import Any, Callable, Dict, Generator, List, Optional, Tuple, cast
+from typing import Any, Callable, Dict, Generator, List, Optional, cast
 
 from aea.configurations.data_types import PublicId
-from aea.protocols.base import Message
-from aea.protocols.dialogue.base import Dialogue
 
-from packages.valory.contracts.erc20.contract import ERC20
-from packages.valory.contracts.transfer_nft_condition.contract import (
-    TransferNftCondition,
-)
-
+from packages.valory.contracts.erc20.contract import ERC20TokenContract as ERC20
 from packages.valory.contracts.gnosis_safe.contract import (
     GnosisSafeContract,
     SafeOperation,
 )
-from packages.valory.contracts.mech_shorts.contract import Mech
 from packages.valory.contracts.multisend.contract import MultiSendContract
+from packages.valory.contracts.transfer_nft_condition.contract import (
+    TransferNftCondition,
+)
 from packages.valory.protocols.contract_api import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
 from packages.valory.skills.abstract_round_abci.behaviour_utils import TimeoutException, BaseBehaviour

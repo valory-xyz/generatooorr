@@ -33,7 +33,7 @@ from packages.valory.skills.abstract_round_abci.models import Requests as BaseRe
 from packages.valory.skills.abstract_round_abci.models import (
     SharedState as BaseSharedState,
 )
-from packages.valory.skills.inbox_abci.rounds import InboxAbciApp
+from packages.valory.skills.subscription_abci.rounds import SubscriptionAbciApp
 
 
 @dataclass
@@ -49,7 +49,7 @@ class MultisendBatch:
 class SharedState(BaseSharedState):
     """Keep the current shared state of the skill."""
 
-    abci_app_cls = InboxAbciApp
+    abci_app_cls = SubscriptionAbciApp
 
 
 def _raise_incorrect_config(key: str, values: Any) -> None:

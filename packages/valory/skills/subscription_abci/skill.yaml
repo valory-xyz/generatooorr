@@ -7,23 +7,28 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicoh75afnfoszhse3vsnuynid6ikfdnmoj4ndoxuz2f7dtvmbjjeq
-  base.py: bafybeicwwjuja34dskprjx2sjm6mngvaotbithiyuypbgrx2kvx5zm5wte
-  behaviours.py: bafybeifuc2recah2pydhhevupetm2wy6ywpw3reoqvuarl2obi7tanxqhq
+  base.py: bafybeid54ndde3kixlh6bidwgz7m4s33dp776em6kf4aoqcuwdvbk4f2ti
+  behaviours.py: bafybeidlxv6gkkpl33iardobb4s3jbc5ldxzknapqiz5ed4epw76tw6wyi
   dialogues.py: bafybeidjif76psqyj4bixcrg4nc4jl7iihi44wa6hr4rfixvi7623pibmq
-  handlers.py: bafybeiamcxhkg3asjvvtk7fj3t244nzlupwwn2etbeavuaovohjwdx2rhm
-  models.py: bafybeiaczago23h2qoq4jjigzmdlk7m363njemeru66wmhnjn5gdohbzou
+  handlers.py: bafybeiaklqwu3yteyjiexhdie5ec3j3p2lc3jzp4hlmrlqfbvdwreqxfpq
+  models.py: bafybeidosbrphitffxgfg2457zyulxfx5bfgh2o3fki5scjtygi2mhs4hu
   payloads.py: bafybeicmqioatesils3sygrksfhn75npdnvczv5l4xras2p34oqebrirq4
-  rounds.py: bafybeickdpqottk5fpov2y4hn2dsapg7wx5emublem3kwtk5fls2pe5rpq
+  rounds.py: bafybeihpes4dha2nolz7sxtxvwj2bmjfiaapjl4vtz6jtpnxgy4su36npe
   utils/__init__.py: bafybeieyeoplpnbjcd6s2x6ao4dgtm5scizsps7gyuwlpaflml6hg6iidi
   utils/nevermined.py: bafybeidw4ydwqo7dmdfu2oqx4lmgho5ciakthx6rj2iwgt7bywvnppbxuy
 fingerprint_ignore_patterns: []
-connections:
-- valory/http_server:0.22.0:bafybeibveiaocfj4734t7zu5nw7trivnkszixeumnccnwthgig5vmpcwdm
-contracts: []
+connections: []
+contracts:
+- valory/gnosis_safe:0.1.0:bafybeif3n23srpc7kouvry6c5h3qmd4h63vtd3gg7el2upjm6xac6mligi
+- valory/erc20:0.1.0:bafybeib7ctk3deleyxayrqvropewefr2muj4kcqe3t3wscak25bjmxnqwe
+- valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
+- valory/transfer_nft_condition:0.1.0:bafybeiczj3p4r6bxdfuc2lzsvcax4kyxy5bpvgaoz54snhg67tdgas5tcu
 protocols:
 - valory/http:1.0.0:bafybeifugzl63kfdmwrxwphrnrhj7bn6iruxieme3a4ntzejf6kmtuwmae
+- valory/contract_api:1.0.0:bafybeidgu7o5llh26xp3u3ebq3yluull5lupiyeu6iooi2xyymdrgnzq5i
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeifrsatxr4syaccaxnirpvm2zetttlmrp3vr3fmqm7vc7lazy4i2bm
+- valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
+- valory/transaction_settlement_abci:0.1.0:bafybeifhuemoavm6hf4vypg2sl7kng3iv4ipxgpk3itbh5hp73lworpuwq
 behaviours:
   main:
     args: {}

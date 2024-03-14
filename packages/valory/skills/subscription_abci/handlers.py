@@ -19,29 +19,11 @@
 
 """This module contains the handlers for the skill of InboxAbciApp."""
 
-import json
-import os
-from enum import Enum
-from logging import Logger
-from typing import Any, Callable, Dict, List, Optional, cast
-from urllib.parse import parse_qs, urlparse
-from uuid import uuid4
-
-from aea.protocols.base import Message
-from typing_extensions import TypedDict
-
-from packages.valory.connections.http_server.connection import (
-    PUBLIC_ID as HTTP_SERVER_PUBLIC_ID,
-)
-from packages.valory.protocols.http.message import HttpMessage
 from packages.valory.skills.abstract_round_abci.handlers import (
     ABCIRoundHandler as BaseABCIRoundHandler,
 )
 from packages.valory.skills.abstract_round_abci.handlers import (
     ContractApiHandler as BaseContractApiHandler,
-)
-from packages.valory.skills.abstract_round_abci.handlers import (
-    HttpHandler as BaseHttpHandler,
 )
 from packages.valory.skills.abstract_round_abci.handlers import (
     IpfsHandler as BaseIpfsHandler,
@@ -55,9 +37,6 @@ from packages.valory.skills.abstract_round_abci.handlers import (
 from packages.valory.skills.abstract_round_abci.handlers import (
     TendermintHandler as BaseTendermintHandler,
 )
-from packages.valory.skills.inbox_abci.dialogues import HttpDialogue, HttpDialogues
-from packages.valory.skills.inbox_abci.rounds import SynchronizedData
-
 
 ABCIRoundHandler = BaseABCIRoundHandler
 SigningHandler = BaseSigningHandler
