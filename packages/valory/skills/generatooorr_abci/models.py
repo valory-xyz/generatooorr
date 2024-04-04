@@ -45,6 +45,9 @@ from packages.valory.skills.termination_abci.models import (
 from packages.valory.skills.transaction_settlement_abci.models import (
     TransactionParams as BaseTransactionParams,
 )
+from packages.valory.skills.subscription_abci.models import (
+    Params as SubscriptionParams,
+)
 
 
 MechInteractAbciParams = BaseMechInteractAbciParams
@@ -90,6 +93,7 @@ class Params(
     InboxAbciParams,
     OutboxAbciParams,
     NFTMintParams,
+    SubscriptionParams,
     TerminationParams,
     TransactionParams,
 ):

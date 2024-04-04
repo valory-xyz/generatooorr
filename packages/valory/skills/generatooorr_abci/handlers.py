@@ -38,6 +38,7 @@ from packages.valory.skills.abstract_round_abci.handlers import (
     TendermintHandler as BaseTendermintHandler,
 )
 from packages.valory.skills.inbox_abci.handlers import HttpHandler as BaseHttpHandler
+from packages.valory.skills.farcaster_write_abci.handlers import SrrHandler as BaseSrrHandler
 
 
 ABCIRoundHandler = BaseABCIRoundHandler
@@ -47,3 +48,4 @@ LedgerApiHandler = BaseLedgerApiHandler
 ContractApiHandler = BaseContractApiHandler
 TendermintHandler = BaseTendermintHandler
 IpfsHandler = BaseIpfsHandler
+SrrHandler = BaseSrrHandler

@@ -7,8 +7,8 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicoh75afnfoszhse3vsnuynid6ikfdnmoj4ndoxuz2f7dtvmbjjeq
-  base.py: bafybeid54ndde3kixlh6bidwgz7m4s33dp776em6kf4aoqcuwdvbk4f2ti
-  behaviours.py: bafybeidlxv6gkkpl33iardobb4s3jbc5ldxzknapqiz5ed4epw76tw6wyi
+  base.py: bafybeide3m75uggptav3pkcpr2tnc5shdcefr75kbrskrsyu42apl3vpoe
+  behaviours.py: bafybeibh3lslhidextbrf73vsyidomti2o3cznbs7ippyvse7v2mksmsu4
   dialogues.py: bafybeidjif76psqyj4bixcrg4nc4jl7iihi44wa6hr4rfixvi7623pibmq
   handlers.py: bafybeiaklqwu3yteyjiexhdie5ec3j3p2lc3jzp4hlmrlqfbvdwreqxfpq
   models.py: bafybeidosbrphitffxgfg2457zyulxfx5bfgh2o3fki5scjtygi2mhs4hu
@@ -20,7 +20,7 @@ fingerprint_ignore_patterns: []
 connections: []
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeif3n23srpc7kouvry6c5h3qmd4h63vtd3gg7el2upjm6xac6mligi
-- valory/erc20:0.1.0:bafybeib7ctk3deleyxayrqvropewefr2muj4kcqe3t3wscak25bjmxnqwe
+- valory/erc20:0.1.0:bafybeihcpl24ybnmrgu3lnbzwlxyosx5ohjhm6ll646xoo3byj42i3f2x4
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/transfer_nft_condition:0.1.0:bafybeiczj3p4r6bxdfuc2lzsvcax4kyxy5bpvgaoz54snhg67tdgas5tcu
 protocols:
@@ -139,27 +139,27 @@ models:
       use_nevermined: true
       mech_to_subscription_params:
       - - base_url
-        - https://marketplace-api.gnosis.nevermined.app/api/v1/metadata/assets/ddo
+        - https://marketplace-api.base.nevermined.app/api/v1/metadata/assets/ddo
       - - did
-        - did:nv:0ea01d5de3b34e3792db825f2a5f5595c393c68b19fd5efdacd00fcc63a53483
+        - did:nv:did:nv:9683c5f7dc4246c400fa57d0ca49925229765cb4d63e2e2d8de1be2d5c548f6d
       - - escrow_payment_condition_address
-        - '0x9dDC4F1Ea5b94C138A23b60EC48c0d01d172629a'
+        - '0xA33f6149563CfEC51C9e7961A3FB5DdF5F9D5B68'
       - - lock_payment_condition_address
-        - '0xDE85A368Ee6f374d236500d176814365370778dA'
+        - '0x7d1b782A347234d1442e57721444B778D5B2E6B7'
       - - transfer_nft_condition_address
-        - '0xbBa4A25262745a55f020D0a3E9a82c25bb6F4979'
+        - '0x17a49d0942b987ebDE9D6400A045159bd3936541'
       - - token_address
-        - '0xa30DE8C6aC39B825192e5F1FADe0770332D279A8'
+        - '0xE24f60aE42F7Cc3B3357480C94165afD86B66583'
       - - order_address
         - '0xc7751eff5396a846e7bc83ac31d3cb7d37cb49e4'
       - - nft_amount
         - '100'
       - - payment_token
-        - '0x0000000000000000000000000000000000000000'
+        - '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
       - - order_address
-        - '0xc7751eff5396a846e7bc83ac31d3cb7d37cb49e4'
+        - '0x468dC6d758129c4563005B49aC58DfF2e6f7F08e'
       - - price
-        - '1000000000000000000'
+        - '0'
     class_name: Params
   requests:
     args: {}

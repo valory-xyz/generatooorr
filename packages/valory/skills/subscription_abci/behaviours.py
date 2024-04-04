@@ -24,7 +24,7 @@ from typing import Generator, Set, Type, cast, Any, Dict, List, Optional
 
 from hexbytes import HexBytes
 
-from packages.valory.contracts.erc20.contract import ERC20TokenContract as ERC20
+from packages.valory.contracts.erc20.contract import ERC20
 from packages.valory.contracts.transfer_nft_condition.contract import TransferNftCondition
 from packages.valory.protocols.contract_api.message import ContractApiMessage
 from packages.valory.skills.abstract_round_abci.behaviours import (

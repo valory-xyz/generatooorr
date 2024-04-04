@@ -48,9 +48,10 @@ from packages.valory.skills.termination_abci.rounds import (
 abci_app_transition_mapping: AbciAppTransitionMapping = {
     RegistrationAbci.FinishedRegistrationRound: InboxAbci.WaitRound,
     InboxAbci.FinishedInboxWaitingRound: SubscriptionAbci.SubscriptionRound,
-    SubscriptionAbci.FinishedSubscriptionRound: TxMultiplexerAbci.TxMultiplexerRound,
+    SubscriptionAbci.FinishedSubscriptionRound: TxSettlementAbci.RandomnessTransactionSubmissionRound,
     SubscriptionAbci.FinishedWithoutSubscriptionRound: MechRequestStates.MechRequestRound,
-    TxMultiplexerAbci.FinishedSubscriptionTxRound: MechRequestStates.MechRequestRound,
+    SubscriptionAbci.FinishedClaimingRound: MechRequestStates.MechRequestRound,
+    TxMultiplexerAbci.FinishedSubscriptionTxRound: SubscriptionAbci.ClaimRound,
     TxMultiplexerAbci.FinishedWithFailedSubscriptionTxRound: SubscriptionAbci.SubscriptionRound,
     MechFinalStates.FinishedMechTxSubmitterRound: TxSettlementAbci.RandomnessTransactionSubmissionRound,
     TxMultiplexerAbci.FinishedMechTxRound: MechResponseStates.MechResponseRound,

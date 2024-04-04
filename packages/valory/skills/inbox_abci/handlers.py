@@ -73,6 +73,7 @@ RESPONSE_HEADERS = {
     "Connection": "Closed",
     "Access-Control-Allow-Origin": "*",
 }
+TOOL = 'short-maker'
 CODE_TO_MESSAGE = {
     200: "Ok",
     404: "Not Found",
@@ -169,7 +170,19 @@ class HttpApplication:
                 code=HttpResponseCode.UNAUTHORIZED,
                 data={"status": "Unauthorized", "message": "Invalid authentication"}
             )
-        self.inbox.put(json.loads(message.body.decode()))
+        body = json.loads(message.body.decode())
+
+        if "address" not in body or "inputText" not in body:
+            return TypedResponse(
+                code=HttpResponseCode.BAD_REQUEST,
+                data={"status": "ERROR", "message": "Invalid request body"},
+            )
+        request = {
+          "address": body["address"],
+          "prompt":  body["inputText"],
+          "tool": TOOL,
+        }
+        self.inbox.put(request)
         return TypedResponse(
             code=HttpResponseCode.OK,
             data={"status": "CREATED", "id": "0x"},

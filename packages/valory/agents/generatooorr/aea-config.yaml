@@ -9,19 +9,21 @@ fingerprint:
 fingerprint_ignore_patterns: []
 connections:
 - valory/abci:0.1.0:bafybeigks2eqrpf5zn3qbah2uzf3fcpvqstommftpxlyhs32cjdg32lzea
+- valory/farcaster:0.1.0:bafybeih74jn5dedgbbjnqrksbuwb4radi3sbcknf6r75ink7srnofrikd4
 - valory/http_client:0.23.0:bafybeih5vzo22p2umhqo52nzluaanxx7kejvvpcpdsrdymckkyvmsim6gm
 - valory/http_server:0.22.0:bafybeihpgu56ovmq4npazdbh6y6ru5i7zuv6wvdglpxavsckyih56smu7m
 - valory/ipfs:0.1.0:bafybeieogncafs6j6akrvsj6oi63iwhuunjyssmhz736vrl2sku4jc77za
 - valory/ledger:0.19.0:bafybeic3ft7l7ca3qgnderm4xupsfmyoihgi27ukotnz7b5hdczla2enya
 - valory/p2p_libp2p_client:0.1.0:bafybeid3xg5k2ol5adflqloy75ibgljmol6xsvzvezebsg7oudxeeolz7e
-- valory/farcaster:0.1.0:bafybeih74jn5dedgbbjnqrksbuwb4radi3sbcknf6r75ink7srnofrikd4
 contracts:
 - valory/blockchain_shorts:0.1.0:bafybeifdtjjy2qzdpyfizatbsc2imxkqnetfw4we7x47od42acbr3nqqqq
+- valory/erc20:0.1.0:bafybeihcpl24ybnmrgu3lnbzwlxyosx5ohjhm6ll646xoo3byj42i3f2x4
 - valory/gnosis_safe:0.1.0:bafybeif3n23srpc7kouvry6c5h3qmd4h63vtd3gg7el2upjm6xac6mligi
 - valory/gnosis_safe_proxy_factory:0.1.0:bafybeic5f3vnd3pkzlhapkzgtrfmer7otjg3xxaflxkadpz6prjxk3salq
 - valory/mech_shorts:0.1.0:bafybeie5sot6fkfnbesdjlhim4v3auhn3ervrzes6o3nk6oml2wcifvocq
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/service_registry:0.1.0:bafybeibtaa6tvhzoo4osu3moilxtwxbfwqo3vt7rsr3ugjugzwndzkkmd4
+- valory/transfer_nft_condition:0.1.0:bafybeiczj3p4r6bxdfuc2lzsvcax4kyxy5bpvgaoz54snhg67tdgas5tcu
 protocols:
 - open_aea/signing:1.0.0:bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi
 - valory/abci:0.1.0:bafybeiaqmp7kocbfdboksayeqhkbrynvlfzsx4uy4x6nohywnmaig4an7u
@@ -30,21 +32,22 @@ protocols:
 - valory/http:1.0.0:bafybeifugzl63kfdmwrxwphrnrhj7bn6iruxieme3a4ntzejf6kmtuwmae
 - valory/ipfs:0.1.0:bafybeiftxi2qhreewgsc5wevogi7yc5g6hbcbo4uiuaibauhv3nhfcdtvm
 - valory/ledger_api:1.0.0:bafybeihdk6psr4guxmbcrc26jr2cbgzpd5aljkqvpwo64bvaz7tdti2oni
+- valory/srr:0.1.0:bafybeihrixgptxuqpf2s4nujypwlv5aed2nboozq5kl4c26cxw6r7si2x4
 - valory/tendermint:0.1.0:bafybeig4mi3vmlv5zpbjbfuzcgida6j5f2nhrpedxicmrrfjweqc5r7cra
 skills:
 - valory/abstract_abci:0.1.0:bafybeibvz3hi25ktgdzm25kih25o5osml62zk4kzpgmzmyrem3hzo2vtnm
 - valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
-- valory/generatooorr_abci:0.1.0:bafybeifwsgpwyqs3dxemop7lzeezknjnbzvejjipxbqjjmwrsevs4qbzs4
-- valory/inbox_abci:0.1.0:bafybeiaet4cewfelygbol3av6ribw42w4bkkwzm42masxevz3yay7svc5e
-- valory/farcaster_write_abci:0.1.0:bafybeid2uyurq2sonsxlgnhs2jx6akkggl5io7aywvlwskpdds734blkwa
-- valory/subscription_abci:0.1.0:bafybeic2uyy3ifckq3ugpf6fqh7u7ygsrfpcmsgdpndf3cqcwt3uh5tpqi
+- valory/farcaster_write_abci:0.1.0:bafybeihyur4o467n7pwaysjd4x5nccu4m53tf5xlyivd4od7uy35li754y
+- valory/generatooorr_abci:0.1.0:bafybeifm5cirg2ixe7y75qhjifctl2dlajvp7gtph5cepg5i6qryt7fu3y
+- valory/inbox_abci:0.1.0:bafybeidunbta7uifyvswr2wkyt2jazdnlbukw7nqvghkh7shonbnqqwdy4
 - valory/mech_interact_abci:0.1.0:bafybeidl7fcaznve53hq5wzzidvgg64hn2riagx533eoxrciscv5ntg3xu
 - valory/nft_mint_abci:0.1.0:bafybeibnxrdfoxitnvjpbaxchau53obus4dkgx4n2rcsmjv5m3ddpfkpri
-- valory/outbox_abci:0.1.0:bafybeiaizjwmzholsmlkqguebzshwwi4b73htjmv4ul7u4yyun5hludycm
+- valory/outbox_abci:0.1.0:bafybeiep777axbgqkhnfhknyahvudxxucwxniio6gpeclwojnqdpftpwca
 - valory/registration_abci:0.1.0:bafybeibzduasg5pahk2d2glc36wlopg54ybwcdmjqbzozt2lmkp4reqsdu
 - valory/reset_pause_abci:0.1.0:bafybeib3geaw3o35aigmb4dhplxrjlsef7hbdwrozu4akiunlgyiegshj4
-- valory/transaction_settlement_abci:0.1.0:bafybeifhuemoavm6hf4vypg2sl7kng3iv4ipxgpk3itbh5hp73lworpuwq
+- valory/subscription_abci:0.1.0:bafybeicasgoyeh3lpklwgfaatlt3gljufwl3uqfjs7mhq2eyz4w6gdw7bm
 - valory/termination_abci:0.1.0:bafybeifnfuy3svz5oz6kwglu35q6jn7ai3riqplyypskb7za5ejyvjmfza
+- valory/transaction_settlement_abci:0.1.0:bafybeifhuemoavm6hf4vypg2sl7kng3iv4ipxgpk3itbh5hp73lworpuwq
 default_ledger: ethereum
 required_ledgers:
 - ethereum
@@ -77,6 +80,9 @@ skill_exception_policy: stop_and_exit
 dependencies:
   open-aea-ledger-ethereum:
     version: ==1.49.0
+  farcaster:
+    version: ==0.7.11
+customs: []
 default_connection: null
 ---
 public_id: valory/abci:0.1.0
@@ -94,7 +100,7 @@ config:
     ethereum:
       address: ${str:localhost:8545}
       chain_id: ${int:1337}
-      poa_chain: ${bool:false}
+      poa_chain: ${bool:true}
       default_gas_price_strategy: ${str:eip1559}
 ---
 public_id: valory/p2p_libp2p_client:0.1.0
@@ -122,7 +128,7 @@ models:
     args:
       inbox_auth: ${str:inbox_auth}
       broadcast_to_server: ${bool:false}
-      blockchain_shorts_contract: ${str:'0x0000000000000000000000000000000000000000'}
+      blockchain_shorts_contract: ${str:0x8F2D3E5bfc2e51C553733E9AEb7aeC4454272442}
       cleanup_history_depth: 1
       cleanup_history_depth_current: null
       drand_public_key: 868f005eb8e6e4ca0a47c8a77ceaa5309a47978a7c71bc5cce96366b5d7a569937c529eeda66c7293784a9402801af31
@@ -148,7 +154,10 @@ models:
       max_healthcheck: 120
       multisend_address: ${str:0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761}
       termination_sleep: ${int:900}
-      init_fallback_gas: 0
+      init_fallback_gas: 600000
+      gas_params:
+        max_fee_per_gas: 75000000
+        max_priority_fee_per_gas: 4500
       keeper_allowed_retries: 3
       reset_pause_duration: ${int:300}
       on_chain_service_id: ${int:null}
@@ -163,7 +172,7 @@ models:
       service_registry_address: ${str:null}
       setup:
         all_participants: ${list:["0x339b3295C01c1b54F8A36746F700b5ADEC413795"]}
-        safe_contract_address: ${str:0x74db17b32Db70F166376310dF071fe9747C0F4DE}
+        safe_contract_address: ${str:0xd5134c07301f497Ee4Ee7f804Bd82381bCd298B7}
         consensus_threshold: ${int:null}
       share_tm_config_on_startup: ${bool:false}
       sleep_time: 1
@@ -180,7 +189,7 @@ models:
       max_points_per_period: ${int:5000}
       multisend_batch_size: ${int:50}
       farcaster_message: ${str:"{user} your short has been generated. {link}"}
-      mech_agent_address: ${str:0x1847f93501704F9AA67FE8Af5de7e999af5d0970}
+      mech_agent_address: ${str:0x37C484cc34408d0F827DB4d7B6e54b8837Bf8BDA}
       ipfs_address: ${str:https://gateway.autonolas.tech/ipfs/}
       default_chain_id: ${str:ethereum}
       use_slashing: ${bool:false}

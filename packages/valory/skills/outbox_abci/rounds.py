@@ -85,10 +85,6 @@ class PushNotificationRound(CollectSameUntilThresholdRound):
     def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
         """Process the end of the block."""
         if self.threshold_reached:
-            return self.synchronized_data, Event.DONE
-        if not self.is_majority_possible(
-            self.collection, self.synchronized_data.nb_participants
-        ):
             payload = json.loads(
                 self.most_voted_payload,
             )
@@ -96,10 +92,14 @@ class PushNotificationRound(CollectSameUntilThresholdRound):
             synchronized_data = self.synchronized_data.update(
                 synchronized_data_class=SynchronizedData,
                 **{
-                    "write_data": data,
+                    "write_data": [{"text": data}],
                 }
             )
-            return synchronized_data, Event.NO_MAJORITY
+            return synchronized_data, Event.DONE
+        if not self.is_majority_possible(
+            self.collection, self.synchronized_data.nb_participants
+        ):
+            return self.synchronized_data, Event.NO_MAJORITY
         return None
 
 

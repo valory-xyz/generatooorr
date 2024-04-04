@@ -27,7 +27,7 @@ from typing import Any, Callable, Dict, Generator, List, Optional, cast
 
 from aea.configurations.data_types import PublicId
 
-from packages.valory.contracts.erc20.contract import ERC20TokenContract as ERC20
+from packages.valory.contracts.erc20.contract import ERC20
 from packages.valory.contracts.gnosis_safe.contract import (
     GnosisSafeContract,
     SafeOperation,
