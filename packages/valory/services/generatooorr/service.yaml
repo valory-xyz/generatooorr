@@ -22,10 +22,10 @@ type: skill
     params:
       args:
         setup:
-          all_participants: ${ALL_PARTICIPANTS:list:["0x339b3295C01c1b54F8A36746F700b5ADEC413795"]}
-          safe_contract_address: ${SAFE_CONTRACT_ADDRESS:str:0x74db17b32Db70F166376310dF071fe9747C0F4DE}
+          all_participants: ${ALL_PARTICIPANTS:list:["0xE4B3a17f8159B1eB42864DdbA6a438432Bc10709"]}
+          safe_contract_address: ${SAFE_CONTRACT_ADDRESS:str:0xef5B17d62671ef9682Be66D5b81c2001B3c71fAC}
           consensus_threshold: ${CONSENSUS_THRESHOLD:int:null}
-        blockchain_shorts_contract: ${BLOCKCHAIN_SHORTS_CONTRACT:str:'0xd2ff4Cf0927c3cFbF3BB27391044dBaf6f4ca7b9'}
+        blockchain_shorts_contract: ${BLOCKCHAIN_SHORTS_CONTRACT:str:0x8F2D3E5bfc2e51C553733E9AEb7aeC4454272442}
         share_tm_config_on_startup: ${USE_ACN:bool:false}
         tendermint_com_url: ${TENDERMINT_COM_URL:str:http://localhost:8080}
         tendermint_url: ${TENDERMINT_URL:str:http://localhost:26657}
@@ -33,7 +33,7 @@ type: skill
         termination_sleep: ${TERMINATION_SLEEP:int:900}
         termination_from_block: ${TERMINATION_FROM_BLOCK:int:0}
         use_termination: ${USE_TERMINATION:bool:false}
-        mech_agent_address: ${AGENT_MECH_CONTRACT_ADDRESS:str:0x1847f93501704F9AA67FE8Af5de7e999af5d0970}
+        mech_agent_address: ${AGENT_MECH_CONTRACT_ADDRESS:str:0x37C484cc34408d0F827DB4d7B6e54b8837Bf8BDA}
         reset_period_count: ${RESET_PERIOD_COUNT:int:1000}
         use_slashing: ${USE_SLASHING:bool:false}
         slash_cooldown_hours: ${SLASH_COOLDOWN_HOURS:int:3}
@@ -46,6 +46,7 @@ type: skill
         w3_notification_type: ${NOTIFICATION_TYPE:str:w3_notification_type}
         w3_notification_api_key: ${NOTIFICATION_API_KEY:str:w3_notification_api_key}
         inbox_auth: ${INBOX_AUTH:str:inbox_auth}
+        farcaster_auth: ${FARCASTER_AUTH:str:farcaster_auth}
 ---
 public_id: valory/ledger:0.19.0
 type: connection
