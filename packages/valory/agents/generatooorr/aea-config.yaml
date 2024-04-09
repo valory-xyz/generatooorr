@@ -38,8 +38,8 @@ skills:
 - valory/abstract_abci:0.1.0:bafybeibvz3hi25ktgdzm25kih25o5osml62zk4kzpgmzmyrem3hzo2vtnm
 - valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
 - valory/farcaster_write_abci:0.1.0:bafybeihyur4o467n7pwaysjd4x5nccu4m53tf5xlyivd4od7uy35li754y
-- valory/generatooorr_abci:0.1.0:bafybeidb2ccns25xn3jypzj4ifjszszjwzn547hmcsc3pcrj46wok2oldu
-- valory/inbox_abci:0.1.0:bafybeicccmc5mlsi7fydvtcjwfs3juhn5gml7ntdhkugycyvkngg5xmwgy
+- valory/generatooorr_abci:0.1.0:bafybeihxjjfnl5xv2zvihltalve5fxcxfsszriqqlu4yrvmqbae4u4rini
+- valory/inbox_abci:0.1.0:bafybeigteoyjx57d4bi4ioem3szs52lomtjpy7dluuduopqmjannbuywmu
 - valory/mech_interact_abci:0.1.0:bafybeidl7fcaznve53hq5wzzidvgg64hn2riagx533eoxrciscv5ntg3xu
 - valory/nft_mint_abci:0.1.0:bafybeibnxrdfoxitnvjpbaxchau53obus4dkgx4n2rcsmjv5m3ddpfkpri
 - valory/outbox_abci:0.1.0:bafybeiep777axbgqkhnfhknyahvudxxucwxniio6gpeclwojnqdpftpwca

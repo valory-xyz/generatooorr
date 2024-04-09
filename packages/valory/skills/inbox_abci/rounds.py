@@ -64,6 +64,12 @@ class SynchronizedData(BaseSynchronizedData):
         return json.loads(serialized)
 
     @property
+    def mech_responses(self) -> List:
+        """Get the mech responses."""
+        serialized = self.db.get("mech_responses", "[]")
+        return json.loads(serialized)
+
+    @property
     def requests(self) -> Dict:
         """Get the mech requests."""
         return self.db.get("requests", {})
@@ -85,7 +91,12 @@ class WaitRound(CollectSameUntilThresholdRound):
             # If no requeest - WaitRound.no_request # noqa: E800
             # Else - {"address": "...", "prompt": "...", "tool": "...", "nonce": ...} # noqa: E800
             if payload == WaitRound.no_request:
-                return self.synchronized_data, Event.NO_REQUEST
+                return self.synchronized_data.update(
+                    **{
+                        # added to avoid cross-period key errors
+                        get_name(SynchronizedData.mech_responses): json.dumps([]),
+                    }
+                ), Event.NO_REQUEST
 
             address = payload.pop("address")
             synchronized_data = self.synchronized_data.update(
