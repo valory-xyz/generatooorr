@@ -7,7 +7,7 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeihoplqp3y2k6y4anmmtw4jfnvxuul36hurubnn2mdyxyuoaewibaa
 fingerprint_ignore_patterns: []
-agent: valory/generatooorr:0.1.0:bafybeib2qkpltzszmi3vgghsscbgc6bmsxrhsjxpcgdp42qe2wdj6a36iu
+agent: valory/generatooorr:0.1.0:bafybeibs7lylcgcn4olmjibfnldwo7lm47c57ruzrwmzpp3gtzcs37ud3q
 number_of_agents: 1
 deployment:
   agent:
@@ -42,6 +42,7 @@ type: skill
         serious_slash_unit_amount: ${SERIOUS_SLASH_UNIT_AMOUNT:int:8000000000000000}
         agent_registry_address: ${AGENT_REGISTRY_ADDRESS:str:0x84B4DA67B37B1EA1dea9c7044042C1d2297b80a0}
         agent_id: ${AGENT_ID:int:1}
+        reset_tendermint_after: ${RESET_TENDERMINT_AFTER:int:50}
         w3_inbox_project_id: ${PROJECT_ID:str:w3_inbox_project_id}
         w3_notification_type: ${NOTIFICATION_TYPE:str:w3_notification_type}
         w3_notification_api_key: ${NOTIFICATION_API_KEY:str:w3_notification_api_key}

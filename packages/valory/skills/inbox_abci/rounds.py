@@ -106,6 +106,9 @@ class WaitRound(CollectSameUntilThresholdRound):
 class FinishedInboxWaitingRound(DegenerateRound, ABC):
     """FinishedTokenTrackRound"""
 
+class FinishedWithoutRequestRound(DegenerateRound, ABC):
+    """FinishedWithoutRequestRound"""
+
 
 class InboxAbciApp(AbciApp[Event]):
     """InboxAbciApp"""
@@ -115,14 +118,16 @@ class InboxAbciApp(AbciApp[Event]):
     transition_function: AbciAppTransitionFunction = {
         WaitRound: {
             Event.DONE: FinishedInboxWaitingRound,
-            Event.NO_REQUEST: WaitRound,
+            Event.NO_REQUEST: FinishedWithoutRequestRound,
             Event.NO_MAJORITY: WaitRound,
             Event.ROUND_TIMEOUT: WaitRound,
         },
         FinishedInboxWaitingRound: {},
+        FinishedWithoutRequestRound: {},
     }
     final_states: Set[AppState] = {
         FinishedInboxWaitingRound,
+        FinishedWithoutRequestRound,
     }
     event_to_timeout: EventToTimeout = {
         Event.ROUND_TIMEOUT: 30.0,
@@ -132,5 +137,6 @@ class InboxAbciApp(AbciApp[Event]):
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedInboxWaitingRound: set(),
+        FinishedWithoutRequestRound: set(),
     }
     cross_period_persisted_keys: FrozenSet[str] = frozenset([])
