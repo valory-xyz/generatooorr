@@ -164,8 +164,8 @@ class HttpApplication:
                 message.headers.strip().split("\n"),
             )
         )
-        auth = headers.get('Authorization', '')
-        if auth != self.auth:
+        auth = headers.get('Authorization', '') or headers.get('authorization', '') or headers.get('AUTHORIZATION', '')
+        if auth != self.farcaster_auth:
             return TypedResponse(
                 code=HttpResponseCode.UNAUTHORIZED,
                 data={"status": "Unauthorized", "message": "Invalid authentication"}

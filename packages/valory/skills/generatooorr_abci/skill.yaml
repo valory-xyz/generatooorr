@@ -20,7 +20,7 @@ protocols: []
 skills:
 - valory/abstract_round_abci:0.1.0:bafybeic2emnylfmdtidobgdsxa4tgdelreeimtglqzrmic6cumhpsbfzhe
 - valory/registration_abci:0.1.0:bafybeibzduasg5pahk2d2glc36wlopg54ybwcdmjqbzozt2lmkp4reqsdu
-- valory/inbox_abci:0.1.0:bafybeigteoyjx57d4bi4ioem3szs52lomtjpy7dluuduopqmjannbuywmu
+- valory/inbox_abci:0.1.0:bafybeibbe6fnijtdd4gup4jk5b34zrxpm5ilwfxlt3epjpk5ln33zievzm
 - valory/farcaster_write_abci:0.1.0:bafybeihyur4o467n7pwaysjd4x5nccu4m53tf5xlyivd4od7uy35li754y
 - valory/subscription_abci:0.1.0:bafybeicasgoyeh3lpklwgfaatlt3gljufwl3uqfjs7mhq2eyz4w6gdw7bm
 - valory/mech_interact_abci:0.1.0:bafybeidl7fcaznve53hq5wzzidvgg64hn2riagx533eoxrciscv5ntg3xu
@@ -112,7 +112,7 @@ models:
       ipfs_address: https://gateway.autonolas.tech/ipfs/
       inbox_auth: inbox_auth
       keeper_allowed_retries: 3
-      reset_pause_duration: 300
+      reset_pause_duration: 30
       on_chain_service_id: null
       reset_tendermint_after: 2
       retry_attempts: 400
