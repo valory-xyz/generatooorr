@@ -18,15 +18,15 @@ connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
-- valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
-- valory/inbox_abci:0.1.0:bafybeibxodwdspyve7kde7kjythi6auve2asj7dg7lphaagvebeexjyiy4
-- valory/mech_interact_abci:0.1.0:bafybeihtnl4euowvvhehrxrt2edfjjfx2vav7n4touhtargz4sgldhwzx4
-- valory/nft_mint_abci:0.1.0:bafybeicmnhmwmqtt3jqgadlsoowidjbbq7z5ac4lruw4hevn5hfosjqqra
-- valory/transaction_settlement_abci:0.1.0:bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq
-- valory/outbox_abci:0.1.0:bafybeifpo7k6mrtau4swxxznpcakilkfora463wa7efxhlgybbpplzpgoi
-- valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
-- valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
+- valory/abstract_round_abci:0.1.0:bafybeiar2yhzxacfe3qqamqhaihtlcimquwedffctw55sowx6rac3cm3ui
+- valory/registration_abci:0.1.0:bafybeieu7vq3pyns4t5ty6u3sbmpkd7yznpg3rmqifoz3jhy7pmqyg3w6q
+- valory/inbox_abci:0.1.0:bafybeif6rrvc2dzihr2popxxkaipntdhjsvcenm62idaojrlzccjlkyni4
+- valory/mech_interact_abci:0.1.0:bafybeigk5wyzk752rrl5hl5lo5dpwjnamcuekpsnrrgntld66w2eqstf3m
+- valory/nft_mint_abci:0.1.0:bafybeig6tx7crysm2wjkbztityobxnou75j3cvejljrczppm2lypawydum
+- valory/transaction_settlement_abci:0.1.0:bafybeic3tccdjypuge2lewtlgprwkbb53lhgsgn7oiwzyrcrrptrbeyote
+- valory/outbox_abci:0.1.0:bafybeiboynon7c5ep3s2phyjarh7nfg6esmxt33w2lhc4lgbo4ungp5gnq
+- valory/reset_pause_abci:0.1.0:bafybeiameewywqigpupy3u2iwnkfczeiiucue74x2l5lbge74rmw6bgaie
+- valory/termination_abci:0.1.0:bafybeif2zim2de356eo3sipkmoev5emwadpqqzk3huwqarywh4tmqt3vzq
 behaviours:
   main:
     args: {}
@@ -184,5 +184,5 @@ models:
     class_name: TendermintDialogues
 dependencies:
   open-aea-cli-ipfs:
-    version: ==1.50.0
+    version: ==1.52.0
 is_abstract: false
